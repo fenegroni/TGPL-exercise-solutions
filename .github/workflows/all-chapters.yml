@@ -1,4 +1,4 @@
-name: all-chapters
+name: All chapters
 
 on:
   push:
