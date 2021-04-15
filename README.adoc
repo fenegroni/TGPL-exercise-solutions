@@ -6,8 +6,8 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-all_chapters: image:{url-workflows}/all-chapters/badge.svg?branch=main[link={url-actions}]
-:badge-chapter5: image:{url-workflows}/chapter5/badge.svg?branch=main[link={url-actions}]
+:badge-all_chapters: image:{url-workflows}/All chapters/badge.svg?branch=main[link={url-actions}]
+:badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters} {badge-chapter5}
 

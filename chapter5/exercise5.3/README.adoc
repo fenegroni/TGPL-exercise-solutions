@@ -3,7 +3,7 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-exercise53: image:{url-workflows}/exercise5.3/badge.svg?branch=main[link={url-actions}]
+:badge-exercise53: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main[link={url-actions}]
 
 {badge-exercise53}
 
