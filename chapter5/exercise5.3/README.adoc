@@ -3,10 +3,9 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-all_chapters: image:{url-workflows}/All chapters/badge.svg?branch=main[link={url-actions}]
-:badge-chapter5: image:{url-workflows}/chapter5/badge.svg?branch=main[link={url-actions}]
+:badge-exercise53: image:{url-workflows}/exercise5.3/badge.svg?branch=main[link={url-actions}]
 
-{badge-chapter5}
+{badge-exercise53}
 
 Write a function that
 reads an HTML document from os.Stdin and
