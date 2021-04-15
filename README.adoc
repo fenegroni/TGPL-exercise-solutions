@@ -6,31 +6,49 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-all_chapters: image:{url-workflows}/All chapters/badge.svg?branch=main[link={url-actions}]
+:badge-all_chapters: image:{url-workflows}/all-chapters/badge.svg?branch=main[link={url-actions}]
 :badge-chapter5: image:{url-workflows}/chapter5/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters} {badge-chapter5}
 
-Solutions to the exercises in the book The Go Programming Language using TDD.
+Solutions to the exercises in the book
+_The Go Programming Language_
+using TDD.
 
 Copyright (C) 2021  Filippo Erik Negroni
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software:
+you can redistribute it and/or modify it
+under the terms of the GNU General Public License
+as published by the Free Software Foundation,
+either version 3 of the License,
+or (at your option) any later version.
 
-For a copy of the GNU General Public License see <https://www.gnu.org/licenses/>.
+For a copy of the GNU General Public License
+see <https://www.gnu.org/licenses/>.
 
 == Rules of TDD
-. Write no more of a unit test than sufficient to fail (compilation failures are failures).
-. Write no more production code than necessary to pass the one failing unit test.
+. Write no more of a unit test than sufficient to fail
+(compilation failures are failures).
+. Write no more production code than necessary
+to pass the one failing unit test.
 
 == TDD in Go
 
 TDD in Go is pretty straightforward.
-It's a pity though that even the official book The Go Programming Language (TGPL) does not cover testing until chapter 11.
-It contains sound advise on how to write tests and shows off Go's simple yet powerful approach.
+It's a pity though that even the official book
+The Go Programming Language (TGPL)
+does not cover testing until chapter 11.
+It contains sound advise
+on how to write tests
+and shows off Go's simple yet powerful approach.
 
-In this repository you will find solutions to the exercises in the book, developed using TDD. Each exercise has its own Readme describing the TDD approach taken.
+In this repository
+you will find solutions to the exercises in the book,
+developed using TDD.
+Each exercise has its own `README.adoc`
+describing the TDD approach taken.
 
 == Solutions
 
-{url-base}/tree/master/chapter5[`Chapter 5`]
+* {url-base}/tree/master/chapter5[`Chapter 5`]

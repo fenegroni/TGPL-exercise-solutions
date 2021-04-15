@@ -1,0 +1,15 @@
+= Chapter 5
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-chapter5: image:{url-workflows}/chapter5/badge.svg?branch=main[link={url-actions}]
+:badge-exercise53: image:{url-workflows}/exercise5.3/badge.svg?branch=main[link={url-actions}]
+
+{badge-chapter5} {badge-exercise53}
+
+My solutions to the exercises in Chapter 5 of the book
+_The Go Programming Language_
+using TDD.
+
+* {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3]
