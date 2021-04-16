@@ -24,7 +24,8 @@ func Visit(links []string, n *html.Node) []string {
 		return links
 	}
 	for _, a := range n.Attr {
-		if a.Key == "href" || a.Key == "src" {
+		switch a.Key {
+		case "href", "src":
 			links = append(links, a.Val)
 		}
 	}
