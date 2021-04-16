@@ -1,0 +1,47 @@
+= Exercise 4.9
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise4-9: image:{url-workflows}/Exercise 4.9/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise4-9}
+
+Write a program `wordfreq`
+to report the frequency of each word in an input text file.
+Call `input.Split(bufio.ScanWords)` before the first call to `Scan`
+to break the input into words instead of lines.
+
+== Test
+
+We test a function called `WordFreq` that receives the input as an `os.Reader`.
+
+In `main` we can pass os.Stdin as the input file to `WordFreq`.
+
+In `TestWordFreq` we can use string literals or
+we can build large inputs using `strings.Builder`.
+
+TODO: decide which approach to take
+
+== Example
+
+Given this string literal as input:
+
+[literal]
+The red fox jumped over the box.
+The red box didn't move over.
+
+the Example function's `Unordered output` is:
+
+[source,go]
+----
+// Unordered output:
+// 3 the
+// 2 red
+// 2 over
+// 2 box
+// 1 jumped
+// 1 fox
+// 1 didn't
+// 1 move
+----
