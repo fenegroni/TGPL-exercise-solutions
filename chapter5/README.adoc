@@ -4,14 +4,16 @@
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
 :badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main[link={url-actions}]
+:badge-exercise51: image:{url-workflows}/Exercise 5.1/badge.svg?branch=main[link={url-actions}]
 :badge-exercise52: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main[link={url-actions}]
 :badge-exercise53: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main[link={url-actions}]
 
-{badge-chapter5} {badge-exercise52} {badge-exercise53}
+{badge-chapter5} {badge-exercise51} {badge-exercise52} {badge-exercise53}
 
 My solutions to the exercises in Chapter 5 of the book
 _The Go Programming Language_
 using TDD.
 
+* {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1]
 * {url-base}/tree/master/chapter5/exercise5.2[Exercise 5.2]
 * {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3]
