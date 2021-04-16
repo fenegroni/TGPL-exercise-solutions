@@ -16,7 +16,7 @@ such as images, scripts, and style sheets.
 The test should cover all element types that contain links.
 These are elements with attributes `src` or `href`.
 
-E.g. `<script>` and `<img>` use `src`, `<a>` and <link>` use `href`.
+E.g. `<script>` and `<img>` use `src`, `<a>` and `<link>` use `href`.
 
 `<link>` is used in `<head>` to point to a style sheet.
 
