@@ -20,7 +20,7 @@ using recursive calls to `Visit` instead of a loop.
 Write a function to populate a mapping from element names - `p`, `div`, `span` and so on -
 to the number of elements with that name in an HTML document tree
 * {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3] {badge-exercise53} +
-Write a function that prints the contents of all text nodes in an HTML document tree.
+Write a function to print the contents of all text nodes in an HTML document tree.
 Do not descend into <script> or <style> elements,
 since their content are not visible in a web browser.
 * {url-base}/tree/master/chapter5/exercise5.4[Exercise 5.4] {badge-exercise54} +
