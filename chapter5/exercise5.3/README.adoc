@@ -7,7 +7,7 @@
 
 {badge-exercise53}
 
-Write a function that to print the contents of all text nodes in an HTML document tree.
+Write a function to print the contents of all text nodes in an HTML document tree.
 Do not descend into <script> or <style> elements,
 since their content are not visible in a web browser.
 
