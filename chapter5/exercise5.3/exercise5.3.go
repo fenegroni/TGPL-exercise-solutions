@@ -29,8 +29,7 @@ func PrintAllTextNodesContent(n *html.Node, out io.Writer) {
 		return
 	}
 	if n.Type == html.TextNode {
-		trimmedData := strings.TrimSpace(n.Data)
-		if trimmedData != "" {
+		if trimmedData := strings.TrimSpace(n.Data); trimmedData != "" {
 			_, _ = fmt.Fprintln(out, trimmedData)
 		}
 	}
