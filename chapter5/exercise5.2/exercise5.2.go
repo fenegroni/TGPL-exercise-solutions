@@ -1,4 +1,4 @@
-// Exercise52 prints a count of all the elements in an HTML document
+// Exercise5.2 prints a count of all the elements in an HTML document
 // read from standard input.
 package main
 
@@ -11,7 +11,7 @@ import (
 func main() {
 	doc, err := html.Parse(os.Stdin)
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "exercise52: %v\n", err)
+		_, _ = fmt.Fprintf(os.Stderr, "exercise5.2: %v\n", err)
 		os.Exit(1)
 	}
 	elements := map[string]int{}
@@ -21,8 +21,8 @@ func main() {
 	}
 }
 
-// CountElements populates a mapping from element names (p, div, span and so on)
-// to the number of elements with that name in an HTML document tree.
+// CountElements populates elements with element names (p, div, span and so on)
+// and the number of elements with that name found in n.
 func CountElements(elements map[string]int, n *html.Node) {
 	if n == nil {
 		return

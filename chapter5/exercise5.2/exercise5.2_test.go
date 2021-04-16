@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestExercise52(t *testing.T) {
+func TestCountElements(t *testing.T) {
 	tests := []struct {
 		document string
 		want     map[string]int

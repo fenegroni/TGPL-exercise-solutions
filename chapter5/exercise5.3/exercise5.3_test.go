@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestExercise53(t *testing.T) {
+func TestPrintAllTextNodesContent(t *testing.T) {
 	tests := []struct {
 		document string
 		want     string
