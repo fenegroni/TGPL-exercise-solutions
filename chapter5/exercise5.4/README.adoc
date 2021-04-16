@@ -1,0 +1,50 @@
+= Exercise 5.4
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Extend the `Visit` function so that
+it extracts other kinds of links from the document,
+such as images, scripts, and style sheets.
+
+== Test
+
+The test should cover all element types that contain links.
+These are elements with attributes `src` or `href`.
+
+E.g. `<script>` and `<img>` use `src`, `<a>` and <link>` use `href`.
+
+`<link>` is used in `<head>` to point to a style sheet.
+
+== Example
+
+Given this example HTML document as input:
+
+[source,html]
+----
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <a href="link">a</a>
+        <img src="imagelink">
+        <script src="scriptlink"></script>
+    </body>
+</html>
+----
+
+the Example function's `Output` is:
+
+[source,go]
+----
+// Output:
+// style.css
+// link
+// imagelink
+// scriptlink
+----
