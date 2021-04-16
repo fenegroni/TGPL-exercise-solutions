@@ -15,7 +15,17 @@ My solutions to the exercises in Chapter 5 of the book
 _The Go Programming Language_
 using TDD.
 
-* {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1] {badge-exercise51}
-* {url-base}/tree/master/chapter5/exercise5.2[Exercise 5.2] {badge-exercise52}
-* {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3] {badge-exercise53}
-* {url-base}/tree/master/chapter5/exercise5.4[Exercise 5.4] {badge-exercise54}
+* {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1] {badge-exercise51} +
+Change the `findlinks` program to traverse the `n.FirstChild` linked list
+using recursive calls to `Visit` instead of a loop.
+* {url-base}/tree/master/chapter5/exercise5.2[Exercise 5.2] {badge-exercise52} +
+Write a function to populate a mapping from element names - `p`, `div`, `span` and so on -
+to the number of elements with that name in an HTML document tree
+* {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3] {badge-exercise53} +
+Write a function that to print the contents of all text nodes in an HTML document tree.
+Do not descend into <script> or <style> elements,
+since their content are not visible in a web browser.
+* {url-base}/tree/master/chapter5/exercise5.4[Exercise 5.4] {badge-exercise54} +
+Extend the `Visit` function so that
+it extracts other kinds of links from the document,
+such as images, scripts, and style sheets.
