@@ -11,9 +11,7 @@
 
 {badge-chapter5}
 
-My solutions to the exercises in Chapter 5 of the book
-_The Go Programming Language_
-using TDD.
+== Functions
 
 * {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1] {badge-exercise51} +
 Change the `findlinks` program to traverse the `n.FirstChild` linked list
