@@ -1,0 +1,42 @@
+= Exercise 5.2
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise52: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise52}
+
+Write a function to populate a mapping from element names
+- `p`, `div`, `span` and so on -
+to the number of elements with that name in an HTML document tree
+
+== Test
+
+I wrote a function called `CountElements`,
+very similar to `visit` in exercise 5.1.
+
+The test is also very similar to the one in exercise 5.1,
+except it uses a map between elements and their count.
+
+[source,go]
+----
+struct {
+	document string
+	want     map[string]int
+}
+----
+
+== Example
+
+An `// Unordered output:` comment is necessary:
+when printing the map contents,
+there is no guarantee the order in which the elements are stored in it:
+`<a>` can appear before or after `<p>`.
+
+[source,go]
+----
+// Unordered output:
+// <a>: 3
+// <p>: 1
+----

@@ -1,7 +1,5 @@
-// Exercise53 reads an HTML document from os.Stdin and
-// prints the content of all text nodes in an HTML document tree.
-// Does not descend into <script> or <style> elements,
-// since their content are not visible in a web browser.
+// Exercise53 prints the content of all text nodes in an HTML document
+// read from standard input, except for <script> and <style> elements.
 package main
 
 import (
@@ -15,7 +13,7 @@ import (
 func main() {
 	parseTree, err := html.Parse(os.Stdin)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "exercise52: %v\n", err)
+		_, _ = fmt.Fprintf(os.Stderr, "exercise52: %v\n", err)
 		os.Exit(1)
 	}
 	PrintAllTextNodesContent(parseTree, os.Stdout)

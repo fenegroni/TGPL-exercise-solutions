@@ -7,11 +7,8 @@
 
 {badge-exercise53}
 
-Write a function that
-reads an HTML document from os.Stdin and
-prints the content of all text nodes in an HTML document tree.
-
-Does not descend into <script> or <style> elements,
+Write a function that to print the contents of all text nodes in an HTML document tree.
+Do not descend into <script> or <style> elements,
 since their content are not visible in a web browser.
 
 == Test
