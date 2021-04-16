@@ -37,7 +37,7 @@ to pass the one failing unit test.
 
 TDD in Go is pretty straightforward.
 It's a pity though that even the official book
-The Go Programming Language (TGPL)
+_The Go Programming Language_
 does not cover testing until chapter 11.
 It contains sound advise
 on how to write tests
