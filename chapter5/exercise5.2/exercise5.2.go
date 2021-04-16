@@ -28,13 +28,10 @@ func CountElements(elements map[string]int, n *html.Node) {
 		return
 	}
 	if n.Type == html.ElementNode {
-		ignore := false
-		for _, s := range []string{"html", "head", "body"} {
-			if s == n.Data {
-				ignore = true
-			}
-		}
-		if !ignore {
+		switch n.Data {
+		case "html", "head", "body":
+			// ignore
+		default:
 			elements[n.Data]++
 		}
 	}
