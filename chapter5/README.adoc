@@ -18,4 +18,4 @@ using TDD.
 * {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1] {badge-exercise51}
 * {url-base}/tree/master/chapter5/exercise5.2[Exercise 5.2] {badge-exercise52}
 * {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3] {badge-exercise53}
-* {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.4] {badge-exercise54}
+* {url-base}/tree/master/chapter5/exercise5.4[Exercise 5.4] {badge-exercise54}
