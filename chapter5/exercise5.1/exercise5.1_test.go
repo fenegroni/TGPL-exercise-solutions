@@ -28,7 +28,13 @@ func TestVisit(t *testing.T) {
 }
 
 func ExampleVisit() {
-	document := `<html><head></head><body><a href="link1">a</a><a href="link2">b</a></body></html>`
+	document := `<html>
+	<head></head>
+	<body>
+		<a href="link1">a</a>
+		<a href="link2">b</a>
+	</body>
+</html>`
 	parseTree, _ := html.Parse(strings.NewReader(document))
 	for _, link := range Visit(nil, parseTree) {
 		fmt.Println(link)

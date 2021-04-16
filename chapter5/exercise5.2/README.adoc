@@ -29,6 +29,22 @@ struct {
 
 == Example
 
+Given this example HTML document as input:
+
+[source,html]
+----
+<html>
+    <head></head>
+    <body>
+        <a href="link1">a</a>
+        <p>
+            <a href="link2">b</a>
+        </p>
+        <a href="link3">c</a>
+    </body>
+</html>
+----
+
 An `// Unordered output:` comment is necessary:
 when printing the map contents,
 there is no guarantee the order in which the elements are stored in it:

@@ -32,20 +32,20 @@ func TestPrintAllTextNodesContent(t *testing.T) {
 
 func ExamplePrintAllTextNodesContent() {
 	document := `<html>
-<head></head>
-<body>
-	<style>
-		p {
-			color: red;
-		}
-	</style>
-	<h1>title</h1>
-	<script src="javascript.js">
-		document.write("hello!")
-	</script>
-	<p>line1</p>
-	<p>line2</p>
-</body>
+	<head></head>
+	<body>
+		<style>
+			p {
+				color: red;
+			}
+		</style>
+		<h1>title</h1>
+		<script src="javascript.js">
+			document.write("hello!")
+		</script>
+		<p>line1</p>
+		<p>line2</p>
+	</body>
 </html>`
 	parseTree, _ := html.Parse(strings.NewReader(document))
 	PrintAllTextNodesContent(parseTree, os.Stdout)

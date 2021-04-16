@@ -43,7 +43,8 @@ return Visit(Visit(links, n.FirstChild), n.NextSibling)
 
 Given this example HTML document as input:
 
-[literal]
+[source,html]
+----
 <html>
     <head>
     </head>
@@ -52,6 +53,7 @@ Given this example HTML document as input:
         <a href="link2">b</a>
     </body>
 </html>
+----
 
 the Example function's `Output` is:
 

@@ -34,7 +34,8 @@ empty lines are not printed.
 
 Given this example HTML document as input:
 
-[literal]
+[source,html]
+----
 <html>
     <head></head>
     <body>
@@ -51,6 +52,7 @@ Given this example HTML document as input:
         <p>line2</p>
     </body>
 </html>
+----
 
 the Example function's `Output` is very simple.
 

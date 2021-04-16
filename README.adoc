@@ -9,7 +9,7 @@
 :badge-all_chapters: image:{url-workflows}/All chapters/badge.svg?branch=main[link={url-actions}]
 :badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main[link={url-actions}]
 
-{badge-all_chapters} {badge-chapter5}
+{badge-all_chapters}
 
 Solutions to the exercises in the book
 _The Go Programming Language_
@@ -51,4 +51,4 @@ describing the TDD approach taken.
 
 == Solutions
 
-* {url-base}/tree/master/chapter5[`Chapter 5`]
+* {url-base}/tree/master/chapter5[`Chapter 5`] {badge-chapter5}

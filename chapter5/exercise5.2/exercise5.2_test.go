@@ -29,7 +29,16 @@ func TestCountElements(t *testing.T) {
 }
 
 func ExampleCountElements() {
-	document := `<html><head></head><body><a href="link1">a</a><p><a href="link2">b</a></p><a href="link3">c</a></body></html>`
+	document := `<html>
+	<head></head>
+	<body>
+		<a href="link1">a</a>
+		<p>
+			<a href="link2">b</a>
+		</p>
+		<a href="link3">c</a>
+	</body>
+</html>`
 	parseTree, _ := html.Parse(strings.NewReader(document))
 	elements := map[string]int{}
 	CountElements(elements, parseTree)
