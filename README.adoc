@@ -59,7 +59,7 @@ describing the TDD approach taken.
 
 * {url-base}/tree/master/chapter4[`Chapter 4`] {badge-chapter4} +
 Composite Types
-** {url-base}/tree/master/chapter5/exercise4.9[Exercise 4.9] {badge-exercise4-9} +
+** {url-base}/tree/master/chapter4/exercise4.9[Exercise 4.9] {badge-exercise4-9} +
 Write a program `wordfreq`
 to report the frequency of each word in an input text file.
 Call `input.Split(bufio.ScanWords)` before the first call to `Scan`
