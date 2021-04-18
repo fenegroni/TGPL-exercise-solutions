@@ -82,4 +82,4 @@ Extend the `Visit` function so that
 it extracts other kinds of links from the document,
 such as images, scripts, and style sheets.
 ** {url-base}/tree/master/chapter5/exercise5.5[Exercise 5.5] {badge-exercise5-5} +
-Implement `countWordAndImages`.
+Implement `countWordsAndImages`.
