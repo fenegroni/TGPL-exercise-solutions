@@ -3,13 +3,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"golang.org/x/net/html"
 	"net/http"
+	"os"
+	"strings"
 )
 
 func main() {
-
+	for _, url := range os.Args[1:] {
+		words, images, err := CountWordsAndImages(url)
+		if err != nil {
+			_, _ = fmt.Fprintf(os.Stderr, "exercise5.5: %v\n", err)
+			continue
+		}
+		fmt.Printf("%s, words: %d, images: %d\n", url, words, images)
+	}
 }
 
 // CountWordsAndImages does an HTTP GET request for the HTML document url and
@@ -30,5 +40,31 @@ func CountWordsAndImages(url string) (words, images int, err error) {
 }
 
 func countWordsAndImages(n *html.Node) (words, images int) {
+	if n == nil {
+		return
+	}
+	if !(n.Type == html.ElementNode && (n.Data == "script" || n.Data == "style")) {
+		if n.Type == html.TextNode {
+			words += countWords(n.Data)
+		}
+		if n.Type == html.ElementNode && n.Data == "img" {
+			images++
+		}
+		w, i := countWordsAndImages(n.FirstChild)
+		words += w
+		images += i
+	}
+	w, i := countWordsAndImages(n.NextSibling)
+	words += w
+	images += i
+	return
+}
+
+func countWords(input string) (words int) {
+	scanner := bufio.NewScanner(strings.NewReader(input))
+	scanner.Split(bufio.ScanWords)
+	for scanner.Scan() {
+		words++
+	}
 	return
 }

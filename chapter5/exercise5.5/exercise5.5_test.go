@@ -24,6 +24,8 @@ func Test_countWordsAndImages(t *testing.T) {
 			result{3, 2}},
 		{"<html><head></head><body><style>p {color: red;}</style><h1> title line </h1>\n\t<script src=\"javascript.js\">document.write(\"hello!\")</script>\n<p>long line 1</p><p>long line 2</p></body></html>",
 			result{8, 0}},
+		{"<html><head></head><body><img src=\"image1\"><img src=\"image2\"><img src=\"image3\"></body></html>",
+			result{0, 3}},
 	}
 	for _, test := range tests {
 		parseTree, _ := html.Parse(strings.NewReader(test.document))
