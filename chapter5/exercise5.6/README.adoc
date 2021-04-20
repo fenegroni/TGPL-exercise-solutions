@@ -1,0 +1,30 @@
+= Exercise 5.6
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Modify the `corner` function in section 3.2 of the book,
+to use named results and a bare return statement.
+
+== Test
+
+We rename the previous implementation of `corner` into `oldcorner`.
+This allows us to compare the new implementation of `corner` to the old one.
+
+=== `Test_corner`
+
+An opaque-box test of `corner` vs. `oldcorner`.
+Given the same input, we expect the same output from both functions.
+If `oldcorner` returns NaN, we skip to the next iteration so that
+a new corner implementation can resolve the issue.
+
+=== `TestCornerReturnsNaNOrInf`
+
+Reports for what combinations of i and j
+`corner` returns an invalid number (NaN or +/-Inf).
+This was an issue with the original implementation
+which we fix in Exercise 3.1.
