@@ -1,53 +1,67 @@
-// Findlinks prints the links in an HTML document read from standard input.
-package main
+// Package htmltraverse provides functions to traverse elements of
+// an HTML document.
+// Call ForEachNode and choose the pre and post function pair of your choice.
+// Both functions are optional.
+// Pre functions traverse the document in pre-order.
+// Post functions traverse the document in post-order.
+// Pair pre and post functions together to implement pretty printing.
+
+package htmltraverse
 
 import (
 	"fmt"
 	"golang.org/x/net/html"
-	"log"
-	"net/http"
+	"io"
 	"os"
 )
 
-func main() {
-	for _, url := range os.Args[1:] {
-		words, images, err := CountWordsAndImages(url)
-		if err != nil {
-			_, _ = fmt.Fprintf(os.Stderr, "exercise5.5: %v\n", err)
-			continue
-		}
-		fmt.Printf("%s, words: %d, images: %d\n", url, words, images)
-	}
+// Depth is used by some pre and post functions to store
+// the current element's nesting depth level.
+// StartElement and EndElement use it for indentation purposes.
+var Depth int
 
-	resp, err := http.Get("http://www.google.com")
-	if err != nil {
-		log.Fatalf("Can't get url %s: %v", "http://www.google.com", err)
-	}
-	parseTree, err := html.Parse(resp.Body)
-	_ = resp.Body.Close()
-	if err != nil {
-		log.Fatalf("parsing HTML: %v", err)
-	}
-	for _, link := range Visit(nil, parseTree) {
-		fmt.Println(link)
-	}
-}
+// Out is the output destination for pre and post functions.
+// Standard output is used by default.
+var Out io.Writer = os.Stdout
 
+// ForEachNode calls the functions pre(x) and post(x) for each node x
+// in the tree rooted at n. Both functions are optional.
+// pre is called before the children are visited (preorder) and
+// post is called after (postorder).
 func ForEachNode(n *html.Node, pre, post func(n *html.Node)) {
-	//TODO implement ForEachNode pg.133
+	if pre != nil {
+		pre(n)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		ForEachNode(c, pre, post)
+	}
+	if post != nil {
+		post(n)
+	}
 }
 
-// Visit appends to links each link found in n and returns the result.
-func Visit(links []string, n *html.Node) []string {
-	if n == nil {
-		return links
+// StartElement prints the start tag of an HTML element, indenting the
+// output using two spaces for each level of depth.
+// It increments Depth with every start tag.
+// Sends its output to Out.
+// To use EndElement effectively, it must be used in combination with
+// StartElement, and Depth should be set to 0 before calling ForEachNode
+func StartElement(n *html.Node) {
+	if n.Type == html.ElementNode {
+		_, _ = fmt.Fprintf(Out, "%*s<%s>\n", Depth*2, "", n.Data)
+		Depth++
 	}
-	if n.Type == html.ElementNode && n.Data == "a" {
-		for _, a := range n.Attr {
-			if a.Key == "href" {
-				links = append(links, a.Val)
-			}
-		}
+}
+
+// EndElement prints the end tag of an HTML element, indenting the
+// output using two spaces for each level of depth.
+// It decrements Depth with every end tag.
+// Sends its output to Out.
+// To use EndElement effectively, it must be used in combination with
+// StartElement, and Depth should be set to 0 before calling ForEachNode
+func EndElement(n *html.Node) {
+	if n.Type == html.ElementNode {
+		Depth--
+		_, _ = fmt.Fprintf(Out, "%*s</%s>\n", Depth*2, "", n.Data)
 	}
-	return Visit(Visit(links, n.FirstChild), n.NextSibling)
 }
