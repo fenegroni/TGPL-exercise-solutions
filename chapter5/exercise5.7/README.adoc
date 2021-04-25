@@ -1,30 +1,33 @@
-= Exercise 5.6
+= Exercise 5.7
 // Refs:
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-exercise: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
+:badge-exercise: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
 
 {badge-exercise}
 
-Modify the `corner` function in section 3.2 of the book,
-to use named results and a bare return statement.
+Develop `startElement` and `endElement` into a general HTML pretty-printer.
+Print comment nodes, `text` nodes, and attributes of each element (`<a href='...'>`).
+Use short forms like `<img/>` instead of `<img></img>` when an element has no children.
+Write a test to ensure the output can be parsed successfully. (See Chapter 11.)
 
 == Test
 
-We rename the previous implementation of `corner` into `oldcorner`.
-This allows us to compare the new implementation of `corner` to the old one.
+We test the implementation of `PrettyPrint`,
+which reads from `input`, writes to `output`,
+and performs the task in our exercise.
 
-=== `Test_corner`
+The implementation is a little flaky:
 
-An opaque-box test of `corner` vs. `oldcorner`.
-Given the same input, we expect the same output from both functions.
-If `oldcorner` returns NaN, we skip to the next iteration so that
-a new corner implementation can resolve the issue.
+. it uses global variables to keep track of state.
 
-=== `TestCornerReturnsNaNOrInf`
+. `startElement` prints the start tag of an HTML element
+by relying on being called the first time an element is encountered,
+before all child elements are visited.
 
-Reports for what combinations of i and j
-`corner` returns an invalid number (NaN or +/-Inf).
-This was an issue with the original implementation
-which we fix in Exercise 3.1.
+. `endElement` prints the end tag of the element
+by relying on being called after all child nodes are visited.
+
+. indenting the output requires a global `depth`,
+incremented by `startElement` and decremented by `endElement`.
