@@ -1,0 +1,39 @@
+= Exercise 5.8
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Modify `forEachNode`
+so that the `pre` and `post` functions return a boolean result
+indicating whether to continue the traversal.
+Use it to write a function `ElementByID`
+with the following signature
+that finds the first HTML element with the specified `id` attribute.
+The function should stop the traversal as soon as a match is found.
+
+[source,go]
+----
+func ElementByID(doc *html.Node, id string) *html.Node
+----
+
+== Test
+
+The test will have a few HTML elements
+with the `id` attribute in several combinations
+to validate the implementation is robust.
+
+== Implementation
+
+We had to modify `forEachNode` to return a boolean
+to indicate whether to continue traversing the tree
+as a result of a `pre` or `post` function
+returning `false`.
+
+`elementWithID` uses package level variables
+`idToFind` and `nodeFound`
+which are set and returned by `ElementByID`.
+It returns `false` to tell `forEachNode` to stop traversing the tree.
