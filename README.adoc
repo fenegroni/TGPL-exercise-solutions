@@ -16,7 +16,7 @@
 :badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-7: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
+:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters}
 
