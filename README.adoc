@@ -16,6 +16,7 @@
 :badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
+:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters}
 
@@ -87,3 +88,8 @@ Implement `countWordsAndImages`.
 ** {url-base}/tree/master/chapter5/exercise5.6[Exercise 5.6] {badge-exercise5-6} +
 Modify the `corner` function in section 3.2 of the book,
 to use named results and a bare return statement.
+** {url-base}/tree/master/chapter5/exercise5.7[Exercise 5.7] {badge-exercise5-7} +
+Develop `startElement` and `endElement` into a general HTML pretty-printer.
+Print comment nodes, `text` nodes, and attributes of each element (`<a href='...'>`).
+Use short forms like `<img/>` instead of `<img></img>` when an element has no children.
+Write a test to ensure the output can be parsed successfully. (See Chapter 11.)

@@ -1,0 +1,48 @@
+= Exercise 5.7
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Develop `startElement` and `endElement` into a general HTML pretty-printer.
+Print comment nodes, `text` nodes, and attributes of each element (`<a href='...'>`).
+Use short forms like `<img/>` instead of `<img></img>` when an element has no children.
+Write a test to ensure the output can be parsed successfully. (See Chapter 11.)
+
+== Test
+
+We test the implementation of `PrettyPrint`,
+which reads from `input`, writes to `output`,
+and performs the task in our exercise.
+
+The implementation is a little flaky:
+
+. it uses global variables to keep track of state.
+
+. `startElement` prints the start tag of an HTML element
+by relying on being called the first time an element is encountered,
+before all child elements are visited.
+
+. `endElement` prints the end tag of the element
+by relying on being called after all child nodes are visited.
+
+. indenting the output requires a global `depth`,
+incremented by `startElement` and decremented by `endElement`.
+
+=== The image element
+
+The image element uses the tag `<img>` without an end tag and without the `/` character at the end.
+
+We handle that case which corrects the exercise requirement.
+
+=== Parsing the output
+
+The `html.Parse` function does not seem to return an error
+when the html is malformed.
+
+We use the `outline` function from the book
+to build an outline of the document
+and ensure that the output is correctly parsed.
