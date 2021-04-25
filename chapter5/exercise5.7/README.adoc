@@ -31,3 +31,18 @@ by relying on being called after all child nodes are visited.
 
 . indenting the output requires a global `depth`,
 incremented by `startElement` and decremented by `endElement`.
+
+=== The image element
+
+The image element uses the tag `<img>` without an end tag and without the `/` character at the end.
+
+We handle that case which corrects the exercise requirement.
+
+=== Parsing the output
+
+The `html.Parse` function does not seem to return an error
+when the html is malformed.
+
+We use the `outline` function from the book
+to build an outline of the document
+and ensure that the output is correctly parsed.

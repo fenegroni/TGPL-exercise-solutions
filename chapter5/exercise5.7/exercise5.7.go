@@ -42,15 +42,37 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 }
 
 func startElement(n *html.Node) {
-	if n.Type == html.ElementNode {
-		_, _ = fmt.Fprintf(output, "%*s<%s>\n", depth*2, "", n.Data)
+	switch n.Type {
+	case html.ElementNode:
+		_, _ = fmt.Fprintf(output, "%*s<%s", depth*2, "", n.Data)
+		printAttributes(n)
+		if n.FirstChild == nil && n.Data != "img" {
+			_, _ = fmt.Fprintf(output, "/")
+		}
+		_, _ = fmt.Fprintf(output, ">\n")
 		depth++
+	case html.TextNode:
+		_, _ = fmt.Fprintf(output, "%*s%s\n", depth*2, "", n.Data)
+	case html.CommentNode:
+		_, _ = fmt.Fprintf(output, "%*s<!--%s", depth*2, "", n.Data)
 	}
 }
 
 func endElement(n *html.Node) {
-	if n.Type == html.ElementNode {
+	switch n.Type {
+	case html.ElementNode:
 		depth--
+		if n.FirstChild == nil || n.Data == "img" {
+			break
+		}
 		_, _ = fmt.Fprintf(output, "%*s</%s>\n", depth*2, "", n.Data)
+	case html.CommentNode:
+		_, _ = fmt.Fprintf(output, "-->\n")
+	}
+}
+
+func printAttributes(n *html.Node) {
+	for _, a := range n.Attr {
+		_, _ = fmt.Fprintf(output, " %s=%q", a.Key, a.Val)
 	}
 }
