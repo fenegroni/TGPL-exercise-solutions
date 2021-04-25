@@ -1,4 +1,4 @@
-name: Exercise 5.67
+name: Exercise 5.7
 on:
   push:
     branches: [ main ]
