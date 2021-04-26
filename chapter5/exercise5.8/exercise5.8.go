@@ -9,6 +9,7 @@ var foundNode *html.Node
 
 func ElementByID(doc *html.Node, id string) *html.Node {
 	idToFind = id
+	foundNode = nil
 	forEachNode(doc, elementWithID, nil)
 	return foundNode
 }

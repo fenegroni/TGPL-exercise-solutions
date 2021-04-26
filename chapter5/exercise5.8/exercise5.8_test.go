@@ -27,6 +27,9 @@ func TestElementByID(t *testing.T) {
 		{`<html><head></head><body id=""><h1 id="y">My First Heading</h1><p id="x">My first paragraph.<img src="image1.png" width="200" id="x"></p><h2 id="x">My second paragraph.<img src="image1.png" width="200" id="x"></h2></body></html>`,
 			`x`,
 			`p`},
+		{`<html><head></head><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>`,
+			`x`,
+			``},
 	}
 	for _, test := range tests {
 		doc, _ := html.Parse(strings.NewReader(test.document))
