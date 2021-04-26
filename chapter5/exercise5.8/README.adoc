@@ -37,3 +37,12 @@ returning `false`.
 `idToFind` and `nodeFound`
 which are set and returned by `ElementByID`.
 It returns `false` to tell `forEachNode` to stop traversing the tree.
+
+== Why not use anonymous functions
+
+Because at this point in the book
+anonymous functions have not been introduced yet.
+
+Most solutions I have seen
+do not correctly stop traversing sibling nodes.
+One of my tests covers this scenario.
