@@ -1,0 +1,62 @@
+= Exercise 5.9
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Write a function `expand(s string, f func(string) string) string`
+that replaces each substring "```$foo```" within `s`
+by the text returned by `f("foo")`.
+
+== Test
+
+We validate substitutions work like they do in `bash`
+when the `$` variable notation is used
+without a pair of `{` and `}`.
+
+The test cases cover
+empty identifiers,
+unicode characters,
+consecutive identifiers,
+empty strings.
+
+== Implementation
+
+We only substitute identifiers that are made of letters and not numbers.
+
+We match everything between `$` and the next non-letter rune.
+
+For example, if the function `f` returns `123` for `number`, given:
+
+====
+This is a $number.
+====
+
+the replaced string will be:
+
+====
+This is a 123.
+====
+
+But given this string:
+
+====
+These are $numbers.
+====
+
+the replacement will be:
+
+====
+These are
+====
+
+That is, we don't do partial matching.
+
+== Identifiers
+
+We define a function, `notIdentifierRune`,
+to determine what runes are recognised
+as characters of an identifier.
