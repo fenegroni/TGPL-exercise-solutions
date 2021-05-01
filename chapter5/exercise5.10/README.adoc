@@ -1,0 +1,15 @@
+= Exercise 5.10
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Rewrite `topoSort` to use maps instead of slices and eliminate the initial sort.
+Verify that the results, though nondeterministic, are valid topological orderings.
+
+== Test
+
+
