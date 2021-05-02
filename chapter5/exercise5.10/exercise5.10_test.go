@@ -10,7 +10,7 @@ func TestVerifyToposort(t *testing.T) {
 		{"a": {"b"}, "b": {"c"}, "d": {"c"}},
 	}
 	for _, test := range tests {
-		if err := verifyTopologicalSorting(topoSortOrig, test); err != nil {
+		if err := verifyTopologicalSorting(topoSort, test); err != nil {
 			t.Errorf("%v", err)
 		}
 	}
@@ -29,7 +29,7 @@ func TestVerifyOriginalToposort(t *testing.T) {
 		"operating systems":     {"data structures", "computer organisation"},
 		"programming languages": {"data structures", "computer organisation"},
 	}
-	if err := verifyTopologicalSorting(topoSort, graph); err != nil {
+	if err := verifyTopologicalSorting(topoSortOrig, graph); err != nil {
 		t.Errorf("%v", err)
 	}
 }
