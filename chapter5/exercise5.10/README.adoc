@@ -1,0 +1,42 @@
+= Exercise 5.10
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Rewrite `topoSort` to use maps instead of slices and
+eliminate the initial sort.
+Verify that the results, though nondeterministic,
+are valid topological orderings.
+
+== Test
+
+I will keep the original implementation
+and rename it `originalTopoSort`.
+
+In pure TDD style
+we test the original implementation
+to make sure we do have a way to verify
+the result is a valid topological ordering.
+
+Then we test the new function
+so that we gain confidence in the new implementation.
+
+The new functions uses maps in place of slices
+as explained in the book
+at the end of Section 4.3
+where they introduce the type graph.
+
+By writing the tests first
+I gain confidence in my implementation.
+
+== How to verify topological ordering
+
+My idea is to validate that
+there are no values appearing before their keys.
+
+For example, given the list from the book,
+in the resulting list I should not see
