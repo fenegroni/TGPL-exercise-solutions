@@ -7,9 +7,33 @@
 
 {badge-exercise}
 
-Rewrite `topoSort` to use maps instead of slices and eliminate the initial sort.
-Verify that the results, though nondeterministic, are valid topological orderings.
+Rewrite `topoSort` to use maps instead of slices and
+eliminate the initial sort.
+Verify that the results, though nondeterministic,
+are valid topological orderings.
 
 == Test
 
+Since I am not clear  what exactly the authors mean
+when they say _use maps instead of slices_
+I will keep the original implementation
+and rename it `topoSortOriginal`.
 
+In pure TDD style
+we test the original implementation
+to make sure we do have a way to verify
+the result is a valid topological ordering.
+
+Then we test the new function
+so that we gain confidence in the new implementation.
+
+By writing the tests first
+I gain confidence in my implementation.
+
+== How to verify topological ordering
+
+My idea is to validate that
+there are no values appearing before their keys.
+
+For example, given the list from the book,
+in the resulting list I should not see

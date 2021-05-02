@@ -19,6 +19,7 @@
 :badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-8: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main[link={url-actions}]
+:badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters}
 
@@ -107,3 +108,8 @@ The function should stop the traversal as soon as a match is found.
 Write a function `expand(s string, f func(string) string) string`
 that replaces each substring "```$foo```" within `s`
 by the text returned by `f("foo")`.
+** {url-base}/tree/master/chapter5/exercise5.10[Exercise 5.10] {badge-exercise5-10} +
+Rewrite `topoSort` to use maps instead of slices and
+eliminate the initial sort.
+Verify that the results, though nondeterministic,
+are valid topological orderings.
