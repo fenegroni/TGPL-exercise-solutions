@@ -5,18 +5,21 @@ import (
 	"sort"
 )
 
+type edges map[string]bool
+type graph map[string]edges
+
 // prereqs maps computer science courses to their prerequisites.
-var prereqs = map[string][]string{
-	"algorithms":            {"data structures"},
-	"calculus":              {"linar algebra"},
-	"compilers":             {"data structures", "formal languages", "computer organisation"},
-	"data structures":       {"discrete math"},
-	"databases":             {"data structures"},
-	"discrete math":         {"intro to programming"},
-	"formal languages":      {"discrete math"},
-	"networks":              {"operating systems"},
-	"operating systems":     {"data structures", "computer organisation"},
-	"programming languages": {"data structures", "computer organisation"},
+var prereqs = graph{
+	"algorithms":            {"data structures": true},
+	"calculus":              {"linear algebra": true},
+	"compilers":             {"data structures": true, "formal languages": true, "computer organisation": true},
+	"data structures":       {"discrete math": true},
+	"databases":             {"data structures": true},
+	"discrete math":         {"intro to programming": true},
+	"formal languages":      {"discrete math": true},
+	"networks":              {"operating systems": true},
+	"operating systems":     {"data structures": true, "computer organisation": true},
+	"programming languages": {"data structures": true, "computer organisation": true},
 }
 
 func main() {
@@ -25,29 +28,29 @@ func main() {
 	}
 }
 
-func topoSort(m map[string][]string) []string {
-	var order []string
+func topoSort(g graph) (order []string) {
 	seen := make(map[string]bool)
-	var visitAll func(items []string)
-	visitAll = func(items []string) {
-		for _, item := range items {
-			if !seen[item] {
-				seen[item] = true
-				visitAll(m[item])
-				order = append(order, item)
+	var visitAll func(edges)
+	visitAll = func(e edges) {
+		for s := range e {
+			if !seen[s] {
+				seen[s] = true
+				visitAll(g[s])
+				order = append(order, s)
 			}
 		}
 	}
-	var keys []string
-	for key := range m {
-		keys = append(keys, key)
+	for s, e := range g {
+		if !seen[s] {
+			seen[s] = true
+			visitAll(e)
+			order = append(order, s)
+		}
 	}
-	sort.Strings(keys)
-	visitAll(keys)
 	return order
 }
 
-func topoSortOrig(m map[string][]string) []string {
+func originalTopoSort(m map[string][]string) []string {
 	var order []string
 	seen := make(map[string]bool)
 	var visitAll func(items []string)

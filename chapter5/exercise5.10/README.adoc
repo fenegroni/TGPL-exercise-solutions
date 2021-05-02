@@ -14,10 +14,8 @@ are valid topological orderings.
 
 == Test
 
-Since I am not clear  what exactly the authors mean
-when they say _use maps instead of slices_
 I will keep the original implementation
-and rename it `topoSortOriginal`.
+and rename it `originalTopoSort`.
 
 In pure TDD style
 we test the original implementation
@@ -26,6 +24,11 @@ the result is a valid topological ordering.
 
 Then we test the new function
 so that we gain confidence in the new implementation.
+
+The new functions uses maps in place of slices
+as explained in the book
+at the end of Section 4.3
+where they introduce the type graph.
 
 By writing the tests first
 I gain confidence in my implementation.
