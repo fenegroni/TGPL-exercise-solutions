@@ -30,13 +30,11 @@ as explained in the book
 at the end of Section 4.3
 where they introduce the type graph.
 
-By writing the tests first
-I gain confidence in my implementation.
-
 == How to verify topological ordering
 
 My idea is to validate that
 there are no values appearing before their keys.
 
-For example, given the list from the book,
+For example, given the data from the book,
 in the resulting list I should not see
+_algorithms_ before _data structures_.

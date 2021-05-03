@@ -1,0 +1,33 @@
+= Exercise 5.11
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+The instructor of the _linear algebra_ course decides that
+_calculus_ is now a prerequisite.
+Extend the `topoSort` function to report cycles.
+
+== Test
+
+We add a new test `TestTopoSortCyclicGraph`
+which reveals the `topoSort` implementation
+from _Exercise 5.10_ fails to produce
+a topographically correct ordering.
+
+Fortunately it does not get stuck
+into an infinite loop,
+thanks to the `seen` slice.
+
+== Error detection
+
+A cycle in the graph would
+produce an invalid output;
+we can return an `error` result in such case.
+
+We pass an additional parameter to `verifyTopologicalSorting`
+to indicate whether we expect `topoSort`
+to detect a cycle in the input graph.
