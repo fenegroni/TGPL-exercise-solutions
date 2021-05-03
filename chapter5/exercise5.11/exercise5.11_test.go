@@ -17,7 +17,7 @@ func TestVerifyTopoSort(t *testing.T) {
 		{"a": {"b": true, "c": true}, "b": {"c": true}, "d": nil},
 	}
 	for _, test := range tests {
-		if l, err := verifyTopologicalSorting(test); err != nil {
+		if l, err := verifyTopologicalSorting(test, false); err != nil {
 			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 		}
 	}
@@ -31,7 +31,7 @@ func TestTopoSortCyclicGraph(t *testing.T) {
 		{"a": {"b": true}, "b": {"c": true, "a": true}, "c": {"a": true}},
 	}
 	for _, test := range tests {
-		if l, err := verifyTopologicalSorting(test); err != nil {
+		if l, err := verifyTopologicalSorting(test, true); err != nil {
 			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 		}
 	}
@@ -51,13 +51,19 @@ func TestTopoSortSubjects(t *testing.T) {
 		"programming languages": {"data structures": true, "computer organisation": true},
 		"linear algebra":        {"calculus": true},
 	}
-	if l, err := verifyTopologicalSorting(test); err != nil {
+	if l, err := verifyTopologicalSorting(test, true); err != nil {
 		t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 	}
 }
 
-func verifyTopologicalSorting(g graph) ([]string, error) {
-	l := topoSort(g)
+func verifyTopologicalSorting(g graph, cyclic bool) ([]string, error) {
+	l, ok := topoSort(g)
+	if cyclic {
+		if ok {
+			return l, fmt.Errorf("failed to detect cycle")
+		}
+		return l, nil
+	}
 	indices := stringListIndices(l)
 	for k, v := range g {
 		kItem, kIsPresent := indices[k]
@@ -86,10 +92,10 @@ func verifyTopologicalSorting(g graph) ([]string, error) {
 
 // stringListIndices maps each string in list to its index i within list.
 // visited is set to false and is used
-func stringListIndices(list []string) map[string]indexItem {
-	indices := make(map[string]indexItem)
+func stringListIndices(list []string) map[string]*indexItem {
+	indices := make(map[string]*indexItem)
 	for index, value := range list {
-		indices[value] = indexItem{index, false}
+		indices[value] = &indexItem{i: index}
 	}
 	return indices
 }

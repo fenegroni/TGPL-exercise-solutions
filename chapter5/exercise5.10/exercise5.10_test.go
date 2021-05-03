@@ -69,10 +69,10 @@ func verifyTopologicalSorting(g graph) ([]string, error) {
 
 // stringListIndices maps each string in list to its index i within list.
 // visited is set to false and is used
-func stringListIndices(list []string) map[string]indexItem {
-	indices := make(map[string]indexItem)
+func stringListIndices(list []string) map[string]*indexItem {
+	indices := make(map[string]*indexItem)
 	for index, value := range list {
-		indices[value] = indexItem{index, false}
+		indices[value] = &indexItem{i: index}
 	}
 	return indices
 }

@@ -23,12 +23,14 @@ var prereqs = graph{
 }
 
 func main() {
-	for i, course := range topoSort(prereqs) {
-		fmt.Printf("%d:\t%s\n", i+1, course)
+	if order, ok := topoSort(prereqs); ok{
+		for i, course := range order {
+			fmt.Printf("%d:\t%s\n", i+1, course)
+		}
 	}
 }
 
-func topoSort(g graph) (order []string) {
+func topoSort(g graph) (order []string, ok bool) {
 	seen := make(map[string]bool)
 	var visitAll func(edges)
 	visitAll = func(e edges) {
@@ -47,5 +49,16 @@ func topoSort(g graph) (order []string) {
 			order = append(order, s)
 		}
 	}
-	return order
+	indices := make(map[string]int)
+	for index, value := range order {
+		indices[value] = index
+	}
+	for k, v := range g {
+		for i := range v {
+			if indices[k] < indices[i] {
+				return nil, false
+			}
+		}
+	}
+	return order, true
 }
