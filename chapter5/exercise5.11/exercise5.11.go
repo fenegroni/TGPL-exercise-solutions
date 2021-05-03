@@ -19,6 +19,7 @@ var prereqs = graph{
 	"networks":              {"operating systems": true},
 	"operating systems":     {"data structures": true, "computer organisation": true},
 	"programming languages": {"data structures": true, "computer organisation": true},
+	"linear algebra":        {"calculus": true},
 }
 
 func main() {

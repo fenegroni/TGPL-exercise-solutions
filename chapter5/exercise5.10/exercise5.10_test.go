@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+type indexItem struct{i int; visited bool}
+
 func TestVerifyTopoSort(t *testing.T) {
 	tests := []graph{
 		{},
@@ -13,61 +15,64 @@ func TestVerifyTopoSort(t *testing.T) {
 		{"a": {"b": true, "c": true}, "b": {"c": true}, "d": nil},
 	}
 	for _, test := range tests {
-		if err := verifyTopologicalSorting(test); err != nil {
-			t.Errorf("topoSort(%v): %v", test, err)
+		if l, err := verifyTopologicalSorting(test); err != nil {
+			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 		}
 	}
 }
 
-func verifyTopologicalSorting(g graph) error {
+func TestTopoSortSubjects(t *testing.T) {
+	test := graph{
+		"algorithms":            {"data structures": true},
+		"calculus":              {"linear algebra": true},
+		"compilers":             {"data structures": true, "formal languages": true, "computer organisation": true},
+		"data structures":       {"discrete math": true},
+		"databases":             {"data structures": true},
+		"discrete math":         {"intro to programming": true},
+		"formal languages":      {"discrete math": true},
+		"networks":              {"operating systems": true},
+		"operating systems":     {"data structures": true, "computer organisation": true},
+		"programming languages": {"data structures": true, "computer organisation": true},
+	}
+	if l, err := verifyTopologicalSorting(test); err != nil {
+		t.Errorf("topoSort(%v) = %v: %v", test, l, err)
+	}
+}
+
+func verifyTopologicalSorting(g graph) ([]string, error) {
 	l := topoSort(g)
 	indices := stringListIndices(l)
 	for k, v := range g {
+		kItem, kIsPresent := indices[k]
+		if !kIsPresent {
+			return l, fmt.Errorf("%q is not present", k)
+		}
+		kItem.visited = true
 		for i := range v {
-			if indices[k] < indices[i] {
-				return fmt.Errorf("%q appears before %q", k, i)
+			iItem, iIsPresent := indices[i]
+			if !iIsPresent {
+				return l, fmt.Errorf("%q is not present", i)
+			}
+			iItem.visited = true
+			if kItem.i < iItem.i {
+				return l, fmt.Errorf("%q appears before %q", k, i)
 			}
 		}
 	}
-	return nil
-}
-
-func TestVerifyOriginalTopoSort(t *testing.T) {
-	subjects := map[string][]string{
-		"algorithms":            {"data structures"},
-		"calculus":              {"linear algebra"},
-		"compilers":             {"data structures", "formal languages", "computer organisation"},
-		"data structures":       {"discrete math"},
-		"databases":             {"data structures"},
-		"discrete math":         {"intro to programming"},
-		"formal languages":      {"discrete math"},
-		"networks":              {"operating systems"},
-		"operating systems":     {"data structures", "computer organisation"},
-		"programming languages": {"data structures", "computer organisation"},
-	}
-	if err := verifyOriginalTopologicalSorting(subjects); err != nil {
-		t.Errorf("%v", err)
-	}
-}
-
-func verifyOriginalTopologicalSorting(g map[string][]string) error {
-	l := originalTopoSort(g)
-	indices := stringListIndices(l)
-	for k, v := range g {
-		for _, i := range v {
-			if indices[k] < indices[i] {
-				return fmt.Errorf("%q appears before %q", k, i)
-			}
+	for s, item := range indices {
+		if !item.visited {
+			return l, fmt.Errorf("%q was not in the original graph", s)
 		}
 	}
-	return nil
+	return l, nil
 }
 
-// stringListIndices maps each string in list to its index within list.
-func stringListIndices(list []string) map[string]int {
-	indices := make(map[string]int)
+// stringListIndices maps each string in list to its index i within list.
+// visited is set to false and is used
+func stringListIndices(list []string) map[string]indexItem {
+	indices := make(map[string]indexItem)
 	for index, value := range list {
-		indices[value] = index
+		indices[value] = indexItem{index, false}
 	}
 	return indices
 }
