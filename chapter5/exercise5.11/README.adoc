@@ -13,21 +13,15 @@ Extend the `topoSort` function to report cycles.
 
 == Test
 
+In validating the list produced by `topoSort`
+in _Exercise 5.10_, we accidentally figured out
+how to detect a cycle in a graph.
+
+The new `topoSort` implements
+a similar algorithm and returns an error
+if it detects a cycle in the graph.
+
 We add a new test `TestTopoSortCyclicGraph`
-which reveals the `topoSort` implementation
-from _Exercise 5.10_ fails to produce
-a topographically correct ordering.
-
-Fortunately it does not get stuck
-into an infinite loop,
-thanks to the `seen` slice.
-
-== Error detection
-
-A cycle in the graph would
-produce an invalid output;
-we can return an `error` result in such case.
-
-We pass an additional parameter to `verifyTopologicalSorting`
-to indicate whether we expect `topoSort`
-to detect a cycle in the input graph.
+which errors if `topoSort` fails to detect a cyclic graph,
+on top of all the checks we already performed
+in _Exercise 5.10_.

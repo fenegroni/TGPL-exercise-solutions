@@ -14,7 +14,7 @@ are valid topological orderings.
 
 == Test
 
-I will keep the original implementation
+I keep the original implementation
 and rename it `originalTopoSort`.
 
 In pure TDD style
@@ -22,8 +22,7 @@ we test the original implementation
 to make sure we do have a way to verify
 the result is a valid topological ordering.
 
-Then we test the new function
-so that we gain confidence in the new implementation.
+Then we test the new `topoSort` implementation.
 
 The new functions uses maps in place of slices
 as explained in the book
@@ -38,3 +37,9 @@ there are no values appearing before their keys.
 For example, given the data from the book,
 in the resulting list I should not see
 _algorithms_ before _data structures_.
+
+`TestVerifyTopoSort` only tests directed acyclic graphs.
+
+The test fails if `topoSort` fails to order
+all the elements of the graph or lists elements that were not
+in the original graph.

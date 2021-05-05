@@ -5,8 +5,12 @@ import (
 	"testing"
 )
 
-type indexItem struct{i int; visited bool}
+type indexItem struct {
+	i       int
+	visited bool
+}
 
+// TestVerifyTopoSort only tests directed acyclic graphs.
 func TestVerifyTopoSort(t *testing.T) {
 	tests := []graph{
 		{},
@@ -39,6 +43,9 @@ func TestTopoSortSubjects(t *testing.T) {
 	}
 }
 
+// verifyTopologicalSorting errors if topoSort fails to order
+// all the elements of the graph or lists elements that were not
+// in the original graph.
 func verifyTopologicalSorting(g graph) ([]string, error) {
 	l := topoSort(g)
 	indices := stringListIndices(l)

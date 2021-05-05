@@ -5,10 +5,12 @@ import (
 	"testing"
 )
 
-// TODO Move check for cyclic graphs in topoSort
+type indexItem struct {
+	i       int
+	visited bool
+}
 
-type indexItem struct{i int; visited bool}
-
+// TestVerifyTopoSort only tests directed acyclic graphs.
 func TestVerifyTopoSort(t *testing.T) {
 	tests := []graph{
 		{},
@@ -23,6 +25,7 @@ func TestVerifyTopoSort(t *testing.T) {
 	}
 }
 
+// TestTopoSortCyclicGraph only tests directed cyclic graphs.
 func TestTopoSortCyclicGraph(t *testing.T) {
 	tests := []graph{
 		{"a": {"b": true}, "b": {"a": true}},
@@ -37,7 +40,8 @@ func TestTopoSortCyclicGraph(t *testing.T) {
 	}
 }
 
-func TestTopoSortSubjects(t *testing.T) {
+// TestTopoSortCyclicSubjects tests a cyclic prerequisite for linear algebra
+func TestTopoSortCyclicSubjects(t *testing.T) {
 	test := graph{
 		"algorithms":            {"data structures": true},
 		"calculus":              {"linear algebra": true},
@@ -56,6 +60,10 @@ func TestTopoSortSubjects(t *testing.T) {
 	}
 }
 
+// verifyTopologicalSorting verifies that g is cyclic only if cyclic is set to true.
+// It errors if topoSort fails to detect a cyclic graph,
+// fails to order all the elements of the graph,
+// or lists elements that were not in the original graph.
 func verifyTopologicalSorting(g graph, cyclic bool) ([]string, error) {
 	l, ok := topoSort(g)
 	if cyclic {
