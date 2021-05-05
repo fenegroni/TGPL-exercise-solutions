@@ -4,48 +4,48 @@
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
 :badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-1: image:{url-workflows}/Exercise 5.1/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-2: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-3: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-8: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main[link={url-actions}]
-:badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main[link={url-actions}]
+:badge-exercise5-1: image:{url-workflows}/Exercise 5.1/badge.svg?branch=main
+:badge-exercise5-2: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main
+:badge-exercise5-3: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main
+:badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main
+:badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main
+:badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main
+:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main
+:badge-exercise5-8: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main
+:badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main
+:badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main
+:badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
+:badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
 
 {badge-chapter5}
 
 == Functions
 
-* {url-base}/tree/master/chapter5/exercise5.1[Exercise 5.1] {badge-exercise5-1} +
+* {badge-exercise5-1}[link={url-base}/tree/master/chapter5/exercise5.1] +
 Change the `findlinks` program to traverse the `n.FirstChild` linked list
 using recursive calls to `Visit` instead of a loop.
-* {url-base}/tree/master/chapter5/exercise5.2[Exercise 5.2] {badge-exercise5-2} +
+* {badge-exercise5-2}[link={url-base}/tree/master/chapter5/exercise5.2] +
 Write a function to populate a mapping from element names - `p`, `div`, `span` and so on -
 to the number of elements with that name in an HTML document tree
-* {url-base}/tree/master/chapter5/exercise5.3[Exercise 5.3] {badge-exercise5-3} +
+* {badge-exercise5-3}[link={url-base}/tree/master/chapter5/exercise5.3] +
 Write a function to print the contents of all text nodes in an HTML document tree.
 Do not descend into <script> or <style> elements,
 since their content are not visible in a web browser.
-* {url-base}/tree/master/chapter5/exercise5.4[Exercise 5.4] {badge-exercise5-4} +
+* {badge-exercise5-4}[link={url-base}/tree/master/chapter5/exercise5.4] +
 Extend the `Visit` function so that
 it extracts other kinds of links from the document,
 such as images, scripts, and style sheets.
-* {url-base}/tree/master/chapter5/exercise5.5[Exercise 5.5] {badge-exercise5-5} +
+* {badge-exercise5-5}[link={url-base}/tree/master/chapter5/exercise5.5] +
 Implement `countWordsAndImages`.
-* {url-base}/tree/master/chapter5/exercise5.6[Exercise 5.6] {badge-exercise5-6} +
+* {badge-exercise5-6}[link={url-base}/tree/master/chapter5/exercise5.6] +
 Modify the `corner` function in section 3.2 of the book,
 to use named results and a bare return statement.
-* {url-base}/tree/master/chapter5/exercise5.7[Exercise 5.7] {badge-exercise5-7} +
+* {badge-exercise5-7}[link={url-base}/tree/master/chapter5/exercise5.7] +
 Develop `startElement` and `endElement` into a general HTML pretty-printer.
 Print comment nodes, `text` nodes, and attributes of each element (`<a href='...'>`).
 Use short forms like `<img/>` instead of `<img></img>` when an element has no children.
 Write a test to ensure the output can be parsed successfully. (See Chapter 11.)
-* {url-base}/tree/master/chapter5/exercise5.8[Exercise 5.8] {badge-exercise5-8} +
+* {badge-exercise5-8}[link={url-base}/tree/master/chapter5/exercise5.8] +
 Modify `forEachNode`
 so that the `pre` and `post` functions return a boolean result
 indicating whether to continue the traversal.
@@ -53,20 +53,20 @@ Use it to write a function `ElementByID`
 with the following signature
 that finds the first HTML element with the specified `id` attribute.
 The function should stop the traversal as soon as a match is found.
-* {url-base}/tree/master/chapter5/exercise5.9[Exercise 5.9] {badge-exercise5-9} +
+* {badge-exercise5-9}[link={url-base}/tree/master/chapter5/exercise5.9] +
 Write a function `expand(s string, f func(string) string) string`
 that replaces each substring "```$foo```" within `s`
 by the text returned by `f("foo")`.
-* {url-base}/tree/master/chapter5/exercise5.10[Exercise 5.10] {badge-exercise5-10} +
+* {badge-exercise5-10}[link={url-base}/tree/master/chapter5/exercise5.10] +
 Rewrite `topoSort` to use maps instead of slices and
 eliminate the initial sort.
 Verify that the results, though nondeterministic,
 are valid topological orderings.
-* {url-base}/tree/master/chapter5/exercise5.11[Exercise 5.11] {badge-exercise5-11} +
+* {badge-exercise5-11}[link={url-base}/tree/master/chapter5/exercise5.11] +
 The instructor of the _linear algebra_ course decides that
 _calculus_ is now a prerequisite.
 Extend the `topoSort` function to report cycles.
-* {url-base}/tree/master/chapter5/exercise5.12[Exercise 5.12] {badge-exercise5-12} +
+* {badge-exercise5-12}[link={url-base}/tree/master/chapter5/exercise5.12] +
 The `startElement` and `endElement` functions in
 `gopl.io/ch5/outline2` (_Section 5.5_)
 share a global variable, `depth`.
