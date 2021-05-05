@@ -14,3 +14,13 @@ Turn them into anonymous functions that share a variable
 local to the `outline` function.
 
 == Test
+
+We first write the test for outline to validate
+the original implementation from the book works.
+
+Then we make the code testable.
+
+We factor out the URL processing part of `outline` into `outlineURL`,
+and test again.
+
+Finally, we move `startElement`, `endElement` and `depth` into `outline`.
