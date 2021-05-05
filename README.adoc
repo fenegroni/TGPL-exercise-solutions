@@ -21,6 +21,7 @@
 :badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main[link={url-actions}]
+:badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main[link={url-actions}]
 
 {badge-all_chapters}
 
@@ -118,3 +119,9 @@ are valid topological orderings.
 The instructor of the _linear algebra_ course decides that
 _calculus_ is now a prerequisite.
 Extend the `topoSort` function to report cycles.
+** {url-base}/tree/master/chapter5/exercise5.12[Exercise 5.12] {badge-exercise5-12} +
+The `startElement` and `endElement` functions in
+`gopl.io/ch5/outline2` (_Section 5.5_)
+share a global variable, `depth`.
+Turn them into anonymous functions that share a variable
+local to the `outline` function.
