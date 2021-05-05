@@ -1,0 +1,29 @@
+= Exercise 5.13
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Modify `crawl` to make local copies of the pages it finds,
+creating directories as necessary.
+Don't make copies of pages that come from a different domain.
+For example, if the original page comes from `golang.org`,
+save all files from there,
+but exclude ones from `vimeo.com`.
+
+== Test
+
+This is a candidate for mocking.
+
+One test to check files are saved as returned by the mock server.
+
+Another test to make sure the server is not called for
+resources from domains other than `golang.org`.
+
+We can use package `net/httptest` to set up
+an in place server and provide the
+package `links` under test with an HTTP client
+specific to the mock server.
