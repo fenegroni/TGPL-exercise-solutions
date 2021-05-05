@@ -1,0 +1,16 @@
+= Exercise 5.12
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+The `startElement` and `endElement` functions in
+`gopl.io/ch5/outline2` (_Section 5.5_)
+share a global variable, `depth`.
+Turn them into anonymous functions that share a variable
+local to the `outline` function.
+
+== Test
