@@ -6,7 +6,6 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-all_chapters: image:{url-workflows}/All chapters/badge.svg?branch=main[link={url-actions}]
 :badge-chapter4: image:{url-workflows}/Chapter 4/badge.svg?branch=main[link={url-actions}]
 :badge-exercise4-9: image:{url-workflows}/Exercise 4.9/badge.svg?branch=main[link={url-actions}]
 :badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main[link={url-actions}]
@@ -23,7 +22,8 @@
 :badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main[link={url-actions}]
 :badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main[link={url-actions}]
 
-{badge-all_chapters}
+{badge-chapter4}
+{badge-chapter5}
 
 Solutions to the exercises in the book
 _The Go Programming Language_
