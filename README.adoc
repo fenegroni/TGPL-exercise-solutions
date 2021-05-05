@@ -21,8 +21,10 @@
 :badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
 :badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
 
-{badge-chapter4}
-{badge-chapter5}
+image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
+image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
+{badge-chapter4}[link={url-base}/tree/master/chapter4]
+{badge-chapter5}[link={url-base}/tree/master/chapter5]
 
 Solutions to the exercises in the book
 _The Go Programming Language_
