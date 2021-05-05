@@ -64,9 +64,10 @@ func TestOutline2(t *testing.T) {
 `},
 	}
 	for _, test := range tests {
-		input = strings.NewReader(test.document)
 		output = new(strings.Builder)
-		outline2()
+		if err := outline(strings.NewReader(test.document)); err != nil {
+			t.Fatalf("outline2(%q): %v", test.document, err)
+		}
 		if got := output.(*strings.Builder).String(); got != test.want {
 			t.Errorf("outline2(%q) =\n%q\nwant\n%q", test.document, got, test.want)
 		}
