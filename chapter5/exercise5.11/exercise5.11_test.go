@@ -29,6 +29,7 @@ func TestVerifyTopoSort(t *testing.T) {
 func TestTopoSortCyclicGraph(t *testing.T) {
 	tests := []graph{
 		{"a": {"b": true}, "b": {"a": true}},
+		{"a": {"a": true}},
 		{"a": {"b": true}, "b": {"c": true}, "c": {"a": true}},
 		{"c": {"a": true}, "b": {"c": true}, "a": {"b": true}},
 		{"a": {"b": true}, "b": {"c": true, "a": true}, "c": {"a": true}},

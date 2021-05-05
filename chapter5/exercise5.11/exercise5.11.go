@@ -32,13 +32,18 @@ func main() {
 
 func topoSort(g graph) (order []string, ok bool) {
 	seen := make(map[string]bool)
-	var visitAll func(edges)
-	// Todo: collect nodes as we visit
+	dependents := make(map[string]bool)
+	var visitAll func(edges) // needed for recursive call
 	visitAll = func(e edges) {
 		for s := range e {
+			if found := dependents[s]; found {
+				ok = false
+			}
 			if !seen[s] {
+				dependents[s] = true
 				seen[s] = true
 				visitAll(g[s])
+				dependents[s] = false
 				order = append(order, s)
 			}
 		}
@@ -47,6 +52,7 @@ func topoSort(g graph) (order []string, ok bool) {
 	for s := range g {
 		nodes[s] = true
 	}
+	ok = true
 	visitAll(nodes)
-	return order, true
+	return order, ok
 }
