@@ -17,11 +17,12 @@ In validating the list produced by `topoSort`
 in _Exercise 5.10_, we accidentally figured out
 how to detect a cycle in a graph.
 
-The new `topoSort` implements
-a similar algorithm and returns an error
-if it detects a cycle in the graph.
-
 We add a new test `TestTopoSortCyclicGraph`
 which errors if `topoSort` fails to detect a cyclic graph,
 on top of all the checks we already performed
 in _Exercise 5.10_.
+
+The new `topoSort` implements
+uses an additional map `dependents`
+to detect cyclic dependencies and
+returns an error if the graph has a cycle.
