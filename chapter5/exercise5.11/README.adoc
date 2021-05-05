@@ -1,0 +1,27 @@
+= Exercise 5.11
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+The instructor of the _linear algebra_ course decides that
+_calculus_ is now a prerequisite.
+Extend the `topoSort` function to report cycles.
+
+== Test
+
+In validating the list produced by `topoSort`
+in _Exercise 5.10_, we accidentally figured out
+how to detect a cycle in a graph.
+
+The new `topoSort` implements
+a similar algorithm and returns an error
+if it detects a cycle in the graph.
+
+We add a new test `TestTopoSortCyclicGraph`
+which errors if `topoSort` fails to detect a cyclic graph,
+on top of all the checks we already performed
+in _Exercise 5.10_.

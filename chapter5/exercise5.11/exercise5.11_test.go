@@ -19,13 +19,29 @@ func TestVerifyTopoSort(t *testing.T) {
 		{"a": {"b": true, "c": true}, "b": {"c": true}, "d": nil},
 	}
 	for _, test := range tests {
-		if l, err := verifyTopologicalSorting(test); err != nil {
+		if l, err := verifyTopologicalSorting(test, false); err != nil {
 			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 		}
 	}
 }
 
-func TestTopoSortSubjects(t *testing.T) {
+// TestTopoSortCyclicGraph only tests directed cyclic graphs.
+func TestTopoSortCyclicGraph(t *testing.T) {
+	tests := []graph{
+		{"a": {"b": true}, "b": {"a": true}},
+		{"a": {"b": true}, "b": {"c": true}, "c": {"a": true}},
+		{"c": {"a": true}, "b": {"c": true}, "a": {"b": true}},
+		{"a": {"b": true}, "b": {"c": true, "a": true}, "c": {"a": true}},
+	}
+	for _, test := range tests {
+		if l, err := verifyTopologicalSorting(test, true); err != nil {
+			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
+		}
+	}
+}
+
+// TestTopoSortCyclicSubjects tests a cyclic prerequisite for linear algebra
+func TestTopoSortCyclicSubjects(t *testing.T) {
 	test := graph{
 		"algorithms":            {"data structures": true},
 		"calculus":              {"linear algebra": true},
@@ -37,17 +53,25 @@ func TestTopoSortSubjects(t *testing.T) {
 		"networks":              {"operating systems": true},
 		"operating systems":     {"data structures": true, "computer organisation": true},
 		"programming languages": {"data structures": true, "computer organisation": true},
+		"linear algebra":        {"calculus": true},
 	}
-	if l, err := verifyTopologicalSorting(test); err != nil {
+	if l, err := verifyTopologicalSorting(test, true); err != nil {
 		t.Errorf("topoSort(%v) = %v: %v", test, l, err)
 	}
 }
 
-// verifyTopologicalSorting errors if topoSort fails to order
-// all the elements of the graph or lists elements that were not
-// in the original graph.
-func verifyTopologicalSorting(g graph) ([]string, error) {
-	l := topoSort(g)
+// verifyTopologicalSorting verifies that g is cyclic only if cyclic is set to true.
+// It errors if topoSort fails to detect a cyclic graph,
+// fails to order all the elements of the graph,
+// or lists elements that were not in the original graph.
+func verifyTopologicalSorting(g graph, cyclic bool) ([]string, error) {
+	l, ok := topoSort(g)
+	if cyclic {
+		if ok {
+			return l, fmt.Errorf("failed to detect cycle")
+		}
+		return l, nil
+	}
 	indices := stringListIndices(l)
 	for k, v := range g {
 		kItem, kIsPresent := indices[k]
@@ -68,7 +92,7 @@ func verifyTopologicalSorting(g graph) ([]string, error) {
 	}
 	for s, item := range indices {
 		if !item.visited {
-			return l, fmt.Errorf("%q was not in the original graph", s)
+			return l, fmt.Errorf("%q does not appear in the sorted list", s)
 		}
 	}
 	return l, nil
