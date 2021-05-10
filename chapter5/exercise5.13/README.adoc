@@ -16,14 +16,20 @@ but exclude ones from `vimeo.com`.
 
 == Test
 
-This is a candidate for mocking.
+We will use package `net/httptest` to set up
+an in place server and provide the
+package `links` under test with the HTTP client.
 
-One test to check files are saved as returned by the mock server.
+One test to check files are saved as returned by the server.
 
 Another test to make sure the server is not called for
 resources from domains other than `golang.org`.
 
-We can use package `net/httptest` to set up
-an in place server and provide the
-package `links` under test with an HTTP client
-specific to the mock server.
+We use Afero to access a virtualised file system.
+Initially we are allowing the code to work as before,
+accessing files that we need to validate.
+
+A possible improvement is to instead mock the filesystem
+and check that files are written with the expected content,
+without having to read them back in the test
+to validate them.
