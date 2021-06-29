@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
+	"os"
 	"testing"
 )
 
 func TestSavePages(t *testing.T) {
-	// instantiate an http server from httptest
-	// create a handler for the index that returns a basic HTML page
-	// validate the content is saves locally as index.html
-	//
 	server2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case "/found.html":
@@ -21,7 +19,7 @@ func TestSavePages(t *testing.T) {
 	defer server2.Close()
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/":
+		case "/", "/index.html":
 			_, _ = fmt.Fprintln(w, "<html><body><a href=\"hello.html\">hello</a></body></html>")
 		case "/hello.html":
 			_, _ = fmt.Fprintln(w, "<html><body><a href=\"goodbye.html\">goodbye</a></body></html>")
@@ -30,5 +28,19 @@ func TestSavePages(t *testing.T) {
 		}
 	}))
 	defer server.Close()
-	breadthFirst(crawl, server.Client(), []string{server.URL})
+	breadthFirst(crawl, []string{server.URL})
+	serverUrl, _ := url.Parse(server.URL)
+	hostname := serverUrl.Hostname()
+	port := serverUrl.Port()
+	expected := []string{hostname+"/index.html", hostname+"/hello.html", hostname+"/goodbye.html"}
+	for _, filename := range expected {
+		f, err := os.Open(filename);
+		if err != nil {
+			t.Errorf("file not found: %s", filename)
+		}
+		f.Close()
+	}
+	// TODO Files will be created in the root of the test, and will need to be deleted afterwards
+	// TODO close all handles
+	// Must use defer
 }
