@@ -32,9 +32,9 @@ func TestSavePages(t *testing.T) {
 	serverUrl, _ := url.Parse(server.URL)
 	hostname := serverUrl.Hostname()
 	port := serverUrl.Port()
-	expected := []string{hostname+"/index.html", hostname+"/hello.html", hostname+"/goodbye.html"}
+	expected := []string{hostname + "/index.html", hostname + "/hello.html", hostname + "/goodbye.html"}
 	for _, filename := range expected {
-		f, err := os.Open(filename);
+		f, err := os.Open(filename)
 		if err != nil {
 			t.Errorf("file not found: %s", filename)
 		}
