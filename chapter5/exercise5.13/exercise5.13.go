@@ -57,22 +57,22 @@ func Extract(address string) ([]string, error) {
 	}
 	var links []string
 	// TODO only save links to urls within the selected domain
-	// analyse path and determine if it ends with a name or a slash or anything
-	// if the path is empty, it's index.html
 	var folderpath, filepath string
-	if resp.Request.URL.Path == "" {
-		folderpath = resp.Request.URL.Hostname()+
-		filepath = folderpath+"/index.html"
-	} else if strings.LastIndex(resp.Request.URL.Path, "/") == len(resp.Request.URL.Path)-1 {
-		folderpath = resp.Request.URL.Hostname()+"/"+resp.Request.URL.Path
-		filepath = folderpath+"/index.html"
+	requestUrl := resp.Request.URL
+	folderpath = requestUrl.Hostname() + "__" + requestUrl.Port()
+	if requestUrl.Path == "" {
+		filepath = folderpath + "/index.html"
+	} else if strings.LastIndex(requestUrl.Path, "/") == len(requestUrl.Path)-1 {
+		folderpath += "/" + requestUrl.Path
+		filepath = folderpath + "/index.html"
 	} else {
-		lastSlash := strings.LastIndex(resp.Request.URL.Path, "/")
-		lastDot := strings.LastIndex(resp.Request.URL.Path, ".")
-		if lastDot > lastSlash && lastDot < len(resp.Request.URL.Path)-1 {
-			folderpath = resp.Request.URL.Hostname() + "/" + resp.Request.URL.Path[:lastSlash]
-			filepath = folderpath+resp.Request.URL.Path[lastSlash:]
+		lastSlash := strings.LastIndex(requestUrl.Path, "/")
+		lastDot := strings.LastIndex(requestUrl.Path, ".")
+		if lastDot > lastSlash && lastDot < len(requestUrl.Path)-1 {
+			folderpath += "/" + requestUrl.Path[:lastSlash]
+			filepath = folderpath + requestUrl.Path[lastSlash:]
 		}
+		// TODO validate what happens if the condition is not met
 	}
 	// TODO check for '.', '..', '.exe', etc...
 	// save file
