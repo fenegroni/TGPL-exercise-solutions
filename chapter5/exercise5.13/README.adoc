@@ -1,0 +1,49 @@
+= Exercise 5.13
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Modify `crawl` to make local copies of the pages it finds,
+creating directories as necessary.
+Don't make copies of pages that come from a different domain.
+For example, if the original page comes from `golang.org`,
+save all files from there,
+but exclude ones from `vimeo.com`.
+
+== Test
+
+We will use package `net/httptest` to set up
+an in place server and provide the
+package `links` under test with the HTTP client.
+
+The first test checks the logic of saving files in the same domain.
+
+== Further tests
+
+We must write more tests:
+
+. Validate the file content is as expected.
+. Deal with executable content download
+. Handle relative paths, empty and malformed URLs.
+
+== Improvements
+
+The first test leaves files behind which need to be deleted.
+A function to delete all files in a known directory is trivial
+to implement, but requires a change to the logic that saves files
+to use a temporary known folder. And it doesn't cater for bugs
+in the program that could cause other files to be saved elsewhere.
+
+A much better approach is to isolate the file system logic.
+We could use Afero, a virtualised file system, to validate
+what operations the web crawler calls upon.
+
+This would allow an even further improvement.
+We could mock the filesystem and check that files
+are written with the expected content,
+without having to read them back in the test
+to validate them, or delete them.
