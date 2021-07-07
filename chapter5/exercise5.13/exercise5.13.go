@@ -86,6 +86,7 @@ func Extract(address string) ([]string, error) {
 	// TODO save file content
 	_ = os.MkdirAll(folderpath, 0)
 	_, _ = os.Create(filepath)
+	// TODO check for filesystem errors
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {
