@@ -70,7 +70,8 @@ func Extract(address string) ([]string, error) {
 	var links []string
 	var folderpath, filepath string
 	requestUrl := resp.Request.URL
-	folderpath = DownloadDir + "/" + requestUrl.Hostname() + "__" + requestUrl.Port()
+	//folderpath = DownloadDir + "/" + requestUrl.Hostname() + "__" + requestUrl.Port()
+	folderpath = DownloadDir + "/" + "ciao"
 	if requestUrl.Path == "" {
 		filepath = folderpath + "/index.html"
 	} else if strings.LastIndex(requestUrl.Path, "/") == len(requestUrl.Path)-1 {
