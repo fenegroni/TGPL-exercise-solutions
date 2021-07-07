@@ -16,6 +16,7 @@
 :badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main
 :badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
 :badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
+:badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
 
 {badge-chapter5}
 
@@ -72,3 +73,10 @@ The `startElement` and `endElement` functions in
 share a global variable, `depth`.
 Turn them into anonymous functions that share a variable
 local to the `outline` function.
+* {badge-exercise5-13}[link={url-base}/tree/master/chapter5/exercise5.13] +
+Modify `crawl` to make local copies of the pages it finds,
+creating directories as necessary.
+Don't make copies of pages that come from a different domain.
+For example, if the original page comes from `golang.org`,
+save all files from there,
+but exclude ones from `vimeo.com`.
