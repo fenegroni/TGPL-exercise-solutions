@@ -5,6 +5,7 @@ import (
 	"golang.org/x/net/html"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 )
@@ -31,12 +32,20 @@ func breadthFirst(f func(string) []string, worklist []string) {
 
 // crawl wraps calls to Extract, logging any errors,
 // allowing breadthFirst to continue crawling through all the hyperlinks.
-func crawl(url string) []string {
-	list, err := Extract(url)
+func crawl(address string) []string {
+	links, err := Extract(address)
 	if err != nil {
 		log.Print(err)
 	}
-	return list
+	var sameDomainLinks []string
+	addressUrl, _ := url.Parse(address)
+	for _, a := range links {
+		aUrl, _ := url.Parse(a)
+		if aUrl.Host == addressUrl.Host {
+			sameDomainLinks = append(sameDomainLinks, a)
+		}
+	}
+	return sameDomainLinks
 }
 
 // Extract makes an HTTP GET request to the specified URL address, parses
@@ -56,7 +65,6 @@ func Extract(address string) ([]string, error) {
 		return nil, fmt.Errorf("parsing %q as HTML: %v", address, err)
 	}
 	var links []string
-	// TODO only save links to urls within the selected domain
 	var folderpath, filepath string
 	requestUrl := resp.Request.URL
 	folderpath = requestUrl.Hostname() + "__" + requestUrl.Port()
@@ -75,9 +83,9 @@ func Extract(address string) ([]string, error) {
 		// TODO validate what happens if the condition is not met
 	}
 	// TODO check for '.', '..', '.exe', etc...
-	// save file
+	// TODO save file content
 	_ = os.MkdirAll(folderpath, 0)
-	os.Create(filepath)
+	_, _ = os.Create(filepath)
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {

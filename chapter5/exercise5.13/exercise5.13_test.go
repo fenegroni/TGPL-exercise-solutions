@@ -45,7 +45,7 @@ func TestSavePages(t *testing.T) {
 			t.Errorf("file not found: %s", filename)
 			continue
 		}
-		// TODO check content?
+		// TODO check content
 		_ = f.Close()
 	}
 	for _, filename := range notExpected {
@@ -56,6 +56,5 @@ func TestSavePages(t *testing.T) {
 			continue
 		}
 	}
-	// TODO Files will be created in the root of the test, and will need to be deleted afterwards
-	// TODO close all handles using defer.
+	// TODO Files will be created in the root of the test, and will need to be deleted afterwards.
 }
