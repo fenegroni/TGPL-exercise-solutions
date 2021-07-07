@@ -38,6 +38,7 @@ func crawl(address string) []string {
 	links, err := Extract(address)
 	if err != nil {
 		log.Print(err)
+		return nil
 	}
 	var sameDomainLinks []string
 	addressUrl, _ := url.Parse(address)
@@ -90,7 +91,10 @@ func Extract(address string) ([]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to create directory %q", folderpath)
 	}
-	_, _ = os.Create(filepath)
+	_, err = os.Create(filepath)
+	if err != nil {
+		return nil, fmt.Errorf("unable to create file %q", filepath)
+	}
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {
