@@ -73,10 +73,10 @@ func Extract(address string) ([]string, error) {
 	//folderpath = DownloadDir + "/" + requestUrl.Hostname() + "__" + requestUrl.Port()
 	folderpath = DownloadDir + "/" + "ciao"
 	if requestUrl.Path == "" {
-		filepath = folderpath + "/index.html"
+		filepath = folderpath + "/index"
 	} else if strings.LastIndex(requestUrl.Path, "/") == len(requestUrl.Path)-1 {
 		folderpath += "/" + requestUrl.Path
-		filepath = folderpath + "/index.html"
+		filepath = folderpath + "/index"
 	} else {
 		lastSlash := strings.LastIndex(requestUrl.Path, "/")
 		lastDot := strings.LastIndex(requestUrl.Path, ".")
