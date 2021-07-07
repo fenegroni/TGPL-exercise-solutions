@@ -91,10 +91,11 @@ func Extract(address string) ([]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to create directory %q", folderpath)
 	}
-	_, err = os.Create(filepath)
+	saveFile, err := os.Create(filepath)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create file %q", filepath)
 	}
+	saveFile.Close()
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {
