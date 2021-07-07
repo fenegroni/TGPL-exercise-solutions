@@ -28,11 +28,16 @@ func TestSavePages(t *testing.T) {
 		}
 	}))
 	defer server.Close()
+	var err error
+	DownloadDir, err = os.MkdirTemp("", "")
+	if err != nil {
+		t.Errorf("Unable to create temporary directory.")
+	}
 	breadthFirst(crawl, []string{server.URL})
 	serverUrl, _ := url.Parse(server.URL)
 	hostname := serverUrl.Hostname()
 	port := serverUrl.Port()
-	rootpath := hostname + "__" + port
+	rootpath := DownloadDir + "/" + hostname + "__" + port
 	expected := []string{rootpath + "/index.html", rootpath + "/hello.html", rootpath + "/goodbye.html"}
 	serverUrl, _ = url.Parse(server2.URL)
 	hostname = serverUrl.Hostname()

@@ -10,6 +10,8 @@ import (
 	"strings"
 )
 
+var DownloadDir string
+
 func main() {
 	// Crawl the web breadth-first,
 	// starting from the command-line arguments.
@@ -67,7 +69,7 @@ func Extract(address string) ([]string, error) {
 	var links []string
 	var folderpath, filepath string
 	requestUrl := resp.Request.URL
-	folderpath = requestUrl.Hostname() + "__" + requestUrl.Port()
+	folderpath = DownloadDir + "/" + requestUrl.Hostname() + "__" + requestUrl.Port()
 	if requestUrl.Path == "" {
 		filepath = folderpath + "/index.html"
 	} else if strings.LastIndex(requestUrl.Path, "/") == len(requestUrl.Path)-1 {
@@ -84,9 +86,11 @@ func Extract(address string) ([]string, error) {
 	}
 	// TODO check for '.', '..', '.exe', etc...
 	// TODO save file content
-	_ = os.MkdirAll(folderpath, 0)
+	err = os.MkdirAll(folderpath, 0)
+	if err != nil {
+		return nil, fmt.Errorf("unable to create directory %q", folderpath)
+	}
 	_, _ = os.Create(filepath)
-	// TODO check for filesystem errors
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {
