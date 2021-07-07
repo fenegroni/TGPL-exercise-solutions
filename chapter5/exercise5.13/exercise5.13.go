@@ -87,7 +87,7 @@ func Extract(address string) ([]string, error) {
 	}
 	// TODO check for '.', '..', '.exe', etc...
 	// TODO save file content
-	err = os.MkdirAll(folderpath, 0)
+	err = os.MkdirAll(folderpath, 0777)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create directory %q", folderpath)
 	}
