@@ -10,6 +10,11 @@ import (
 )
 
 func TestSavePages(t *testing.T) {
+	saveFile, err := os.Create("xyz")
+	if err != nil {
+		t.Errorf("unable to create file xyz")
+	}
+	saveFile.Close()
 	server2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case "/found.html":
