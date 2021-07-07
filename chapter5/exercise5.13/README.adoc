@@ -20,16 +20,30 @@ We will use package `net/httptest` to set up
 an in place server and provide the
 package `links` under test with the HTTP client.
 
-One test to check files are saved as returned by the server.
+The first test checks the logic of saving files in the same domain.
 
-Another test to make sure the server is not called for
-resources from domains other than `golang.org`.
+== Further tests
 
-We use Afero to access a virtualised file system.
-Initially we are allowing the code to work as before,
-accessing files that we need to validate.
+We must write more tests:
 
-A possible improvement is to instead mock the filesystem
-and check that files are written with the expected content,
+. Validate the file content is as expected.
+. Deal with executable content download
+. Handle relative paths, empty and malformed URLs.
+
+== Improvements
+
+The first test leaves files behind which need to be deleted.
+A function to delete all files in a known directory is trivial
+to implement, but requires a change to the logic that saves files
+to use a temporary known folder. And it doesn't cater for bugs
+in the program that could cause other files to be saved elsewhere.
+
+A much better approach is to isolate the file system logic.
+We could use Afero, a virtualised file system, to validate
+what operations the web crawler calls upon.
+
+This would allow an even further improvement.
+We could mock the filesystem and check that files
+are written with the expected content,
 without having to read them back in the test
-to validate them.
+to validate them, or delete them.
