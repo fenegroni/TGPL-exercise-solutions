@@ -1,9 +1,12 @@
-package main
+package exercise5_14
 
-import "testing"
+import (
+	"fmt"
+	"sort"
+)
 
-// prereqs maps computer science courses to their prerequisites.
 func ExampleBreadthFirst() {
+	// prereqs maps computer science courses to their prerequisites.
 	var prereqs = map[string][]string{
 		"algorithms":            {"data structures"},
 		"calculus":              {"linear algebra"},
@@ -16,13 +19,28 @@ func ExampleBreadthFirst() {
 		"operating systems":     {"data structures", "computer organisation"},
 		"programming languages": {"data structures", "computer organisation"},
 	}
-
 	visit := func(s string) []string {
-
+		fmt.Println(s)
+		return prereqs[s]
 	}
 	var courses []string
 	for k := range prereqs {
 		courses = append(courses, k)
 	}
-	breadthFirst(visit, courses)
+	sort.Strings(courses)
+	BreadthFirst(visit, courses)
+	// Output:
+	// algorithms
+	// calculus
+	// compilers
+	// data structures
+	// databases
+	// discrete math
+	// formal languages
+	// networks
+	// operating systems
+	// programming languages
+	// linear algebra
+	// computer organisation
+	// intro to programming
 }

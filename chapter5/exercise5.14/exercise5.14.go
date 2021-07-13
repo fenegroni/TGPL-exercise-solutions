@@ -1,15 +1,9 @@
-package main
+package exercise5_14
 
-import "fmt"
-
-func main() {
-	fmt.Println("exercise5.14")
-}
-
-// breadthFirst calls f for each item in the worklist.
+// BreadthFirst calls f for each item in the worklist.
 // Any items returned by f are added to the worklist.
 // f is called at most once for each item.
-func breadthFirst(f func(string) []string, worklist []string) {
+func BreadthFirst(f func(string) []string, worklist []string) {
 	seen := make(map[string]bool)
 	for len(worklist) > 0 {
 		items := worklist
