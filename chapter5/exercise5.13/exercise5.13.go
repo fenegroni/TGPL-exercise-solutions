@@ -18,6 +18,9 @@ func main() {
 	breadthFirst(crawl, os.Args[1:2])
 }
 
+// breadthFirst calls f for each item in the worklist.
+// Any items returned by f are added to the worklist.
+// f is called at most once for each item.
 func breadthFirst(f func(string) []string, worklist []string) {
 	seen := make(map[string]bool)
 	for len(worklist) > 0 {
