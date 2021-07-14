@@ -1,0 +1,26 @@
+= Exercise 5.15
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Use the `breadthFirst` function to explore a different structure. For example,
+you could use the course dependencies from the `topoSort` example (a directed graph), the file
+system hierarchy on your computer (a tree), or a list of bus or subway routes downloaded from
+your city government's web site (un undirected graph).
+
+== Example
+
+`BreadthFirst` encapsulates the essence of a breadth-first traversal.
+The caller provides an initial list `worklist` of items to visit
+and a function value `f` to call for each item.
+Each item is identified by a string.
+The function `f` returns a list of new items to append to `worklist`.
+The `BreadthFirst` function returns when all items have been visited.
+It maintains a set of strings to ensure that no item is visited twice.
+
+We provide the Example function `TestBreadthFirst` that prints the course dependencies
+from the `topoSort` example.
