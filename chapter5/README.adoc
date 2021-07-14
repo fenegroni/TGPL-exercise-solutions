@@ -17,6 +17,7 @@
 :badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
 :badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
 :badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
+:badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
 
 {badge-chapter5}
 
@@ -80,3 +81,8 @@ Don't make copies of pages that come from a different domain.
 For example, if the original page comes from `golang.org`,
 save all files from there,
 but exclude ones from `vimeo.com`.
+* {badge-exercise5-14}[link={url-base}/tree/master/chapter5/exercise5.14] +
+Use the `breadthFirst` function to explore a different structure. For example,
+you could use the course dependencies from the `topoSort` example (a directed graph), the file
+system hierarchy on your computer (a tree), or a list of bus or subway routes downloaded from
+your city government's web site (un undirected graph).
