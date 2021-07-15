@@ -13,26 +13,21 @@ Write variants that require at least one argument.
 
 == Test `Min` and `Max`
 
-`TestMin` expects `Min` to return two values: the minimum integer value and a boolean.
-The boolean is `false` if `Min` was called with no arguments.
-This works even if `Min` is called with an empty or `nil` argument list.
+`TestMin` and `TestMax` follow a similar pattern.
+The first argument of `Min` and `Max` is mandatory,
+therefore it is not possible to call either functions with no arguments.
 
-`TestMax` follows the same pattern as `TestMin`, but calls `Max` instead.
+Nevertheless we do test calling with an empty or `nil` variadic argument list
+to validate the function is not assuming it has been called with more than one argument.
 
-== `FastMin` and `FastMax`
+== `Min2` and `Max2`
 
-The functions `FastMin` and `FastMax` will panic
-if they are called with an empty or `nil` argument list.
-That's the price to pay if we want a cleaner function interface
-with no redundant checks.
-Further optimisations are possible,
-such as when determining the min or max between only two numbers.
 We can think of `Min2` and `Max2` as possible implementations
-of such simple functions.
+of optimised functions to when given only two numbers.
 
-== Benchmarking `Min`, `FastMin`, `Min2`
+== Benchmarking `Min` vs `Min2`
 
 We could improve this exercise further by benchmarking
-the fictional `Min2` function against the others
-to determine if such an optimisation would improve performance
-significantly if we were always passing two arguments.
+the fictional `Min2` function against the regular `Min`
+to determine performance improvements
+when passing only two arguments.
