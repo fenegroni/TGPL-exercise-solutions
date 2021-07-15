@@ -10,3 +10,29 @@
 Write variadic functions `max` and `min`, analogous to `sum`.
 What should these functions do when called with no arguments?
 Write variants that require at least one argument.
+
+== Test `Min` and `Max`
+
+`TestMin` expects `Min` to return two values: the minimum integer value and a boolean.
+The boolean is `false` if `Min` was called with no arguments.
+This works even if `Min` is called with an empty or `nil` argument list.
+
+`TestMax` follows the same pattern as `TestMin`, but calls `Max` instead.
+
+== `FastMin` and `FastMax`
+
+The functions `FastMin` and `FastMax` will panic
+if they are called with an empty or `nil` argument list.
+That's the price to pay if we want a cleaner function interface
+with no redundant checks.
+Further optimisations are possible,
+such as when determining the min or max between only two numbers.
+We can think of `Min2` and `Max2` as possible implementations
+of such simple functions.
+
+== Benchmarking `Min`, `FastMin`, `Min2`
+
+We could improve this exercise further by benchmarking
+the fictional `Min2` function against the others
+to determine if such an optimisation would improve performance
+significantly if we were always passing two arguments.
