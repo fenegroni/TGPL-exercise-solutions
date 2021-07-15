@@ -19,6 +19,7 @@
 :badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
 :badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
 :badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
+:badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
 
 {badge-chapter5}
 
@@ -91,3 +92,5 @@ your city government's web site (un undirected graph).
 Write variadic functions `max` and `min`, analogous to `sum`.
 What should these functions do when called with no arguments?
 Write variants that require at least one argument.
+* {badge-exercise5-16}[link={url-base}/tree/master/chapter5/exercise5.16] +
+Write a variadic version of `strings.Join`.

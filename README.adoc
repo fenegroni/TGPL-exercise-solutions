@@ -23,6 +23,7 @@
 :badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
 :badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
 :badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
+:badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
@@ -88,3 +89,4 @@ describing the TDD approach taken.
 {badge-exercise5-13}[link={url-base}/tree/master/chapter5/exercise5.13]
 {badge-exercise5-14}[link={url-base}/tree/master/chapter5/exercise5.14]
 {badge-exercise5-15}[link={url-base}/tree/master/chapter5/exercise5.15]
+{badge-exercise5-16}[link={url-base}/tree/master/chapter5/exercise5.16]

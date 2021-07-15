@@ -1,0 +1,21 @@
+= Exercise 5.16
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Write a variadic version of `strings.Join`.
+
+== Test
+
+`JoinStrings` is the name of the variadic version of `strings.Join`.
+
+In our test we call `JoinStrings` and `strings.Join` with the same arguments.
+We fail the test if they give different results.
+
+== `strings.Builder`
+
+`JoinStrings` uses `strings.Builder` to append strings and their separator.
