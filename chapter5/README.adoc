@@ -18,6 +18,7 @@
 :badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
 :badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
 :badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
+:badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
 
 {badge-chapter5}
 
