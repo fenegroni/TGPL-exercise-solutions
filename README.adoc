@@ -85,3 +85,4 @@ describing the TDD approach taken.
 {badge-exercise5-12}[link={url-base}/tree/master/chapter5/exercise5.12]
 {badge-exercise5-13}[link={url-base}/tree/master/chapter5/exercise5.13]
 {badge-exercise5-14}[link={url-base}/tree/master/chapter5/exercise5.14]
+{badge-exercise5-15}[link={url-base}/tree/master/chapter5/exercise5.15]

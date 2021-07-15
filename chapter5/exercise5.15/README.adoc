@@ -1,0 +1,33 @@
+= Exercise 5.15
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Write variadic functions `max` and `min`, analogous to `sum`.
+What should these functions do when called with no arguments?
+Write variants that require at least one argument.
+
+== Test `Min` and `Max`
+
+`TestMin` and `TestMax` follow a similar pattern.
+The first argument of `Min` and `Max` is mandatory,
+therefore it is not possible to call either functions with no arguments.
+
+Nevertheless we do test calling with an empty or `nil` variadic argument list
+to validate the function is not assuming it has been called with more than one argument.
+
+== `Min2` and `Max2`
+
+We can think of `Min2` and `Max2` as possible implementations
+of optimised functions to when given only two numbers.
+
+== Benchmarking `Min` vs `Min2`
+
+We could improve this exercise further by benchmarking
+the fictional `Min2` function against the regular `Min`
+to determine performance improvements
+when passing only two arguments.
