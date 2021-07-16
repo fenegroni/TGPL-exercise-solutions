@@ -94,3 +94,7 @@ What should these functions do when called with no arguments?
 Write variants that require at least one argument.
 * {badge-exercise5-16}[link={url-base}/tree/master/chapter5/exercise5.16] +
 Write a variadic version of `strings.Join`.
+* {badge-exercise5-17}[link={url-base}/tree/master/chapter5/exercise5.17] +
+Write a variadic function `ElementsByTagName` that, given an HTML node tree
+and zero or more names, returns all the elements that match one of those names.
+* {badge-exercise5-18}[link={url-base}/tree/master/chapter5/exercise5.18] +

@@ -1,0 +1,19 @@
+= Exercise 5.17
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Write a variadic function `ElementsByTagName` that, given an HTML node tree
+and zero or more names, returns all the elements that match one of those names.
+Here are two example calls:
+[source,go]
+----
+func ElementsByTagName(doc *html.Node, name ...string) []*html.Node
+
+images := ElementsByTagName(doc, "img")
+headings := ElementsByTagName(doc, "h1", "h2", "h3", "h4")
+----
