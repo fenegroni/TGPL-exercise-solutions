@@ -9,47 +9,37 @@ import (
 
 func TestElementsByTagName(t *testing.T) {
 	tests := []struct {
-		document string
-		tags     map[string]int
+		document  string
+		tags      []string
+		tagsCount map[string]int
 	}{
 		{`<html><head></head><body></body></html>`,
+			[]string{"html", "head", "body"},
 			map[string]int{"html": 1, "head": 1, "body": 1}},
 		{`<html><head></head><body><a href="link1">a</a></body></html>`,
+			[]string{"html", "head", "a"},
 			map[string]int{"html": 1, "head": 1, "a": 1}},
 		{`<html><head></head><body><a href="link1">a</a></body></html>`,
-			map[string]int{"head": 1, "link": 0}},
+			[]string{"head", "link"},
+			map[string]int{"head": 1}},
 		{`<html><head></head><body><a href="link1">a</a></body></html>`,
-			map[string]int{"link": 0}},
+			[]string{"link"},
+			map[string]int{}},
 	}
 	for _, test := range tests {
-		doc, _ := html.Parse(strings.NewReader(test.document))
-		var tags []string
-		expectEmptyResult := true
-		for tag, count := range test.tags {
-			tags = append(tags, tag)
-			if count > 0 {
-				expectEmptyResult = false
-			}
+		doc, err := html.Parse(strings.NewReader(test.document))
+		if err != nil {
+			t.Error(err)
+			continue
 		}
-		result := ElementsByTagName(doc, tags...)
-		if len(result) > 0 {
-			if expectEmptyResult {
-				t.Errorf("ElementsByTagName(%q, %v) = %v, want an empty result",
-					test.document, tags, result)
-			} else {
-				// make a map and compare with deep.equal from ex 5.1
-				var resultCount map[string]int
-				for _, tag := range result {
-					resultCount[tag.Data]++
-				}
-				if !reflect.DeepEqual(resultCount, test.tags) {
-					t.Errorf("ElementsByTagName(%q, %v) = %v, want %v",
-						test.document, tags, result, test.tags)
-				}
-			}
-		} else if !expectEmptyResult {
+		result := ElementsByTagName(doc, test.tags...)
+		resultCount := make(map[string]int)
+		for _, tag := range result {
+			resultCount[tag.Data]++
+		}
+		if !reflect.DeepEqual(resultCount, test.tagsCount) {
 			t.Errorf("ElementsByTagName(%q, %v) = %v, want %v",
-				test.document, tags, result, test.tags)
+				test.document, test.tags, resultCount, test.tagsCount)
 		}
 	}
 }
