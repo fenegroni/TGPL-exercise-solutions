@@ -18,3 +18,16 @@ func ElementsByTagName(doc *html.Node, name ...string) []*html.Node
 images := ElementsByTagName(doc, "img")
 headings := ElementsByTagName(doc, "h1", "h2", "h3", "h4")
 ----
+
+== Test
+
+We build a map with the count of each node we expect to find in the result from `ElementsByTagName`.
+We then use `reflect.DeepEqual` to compare the counts of all elements in the result set with
+each test's expectations.
+
+This strategy validates that `ElementsByTagName` does not return nodes that we didn't ask for,
+and does not return elements we did ask for but are not in the document.
+
+== `forEachNode`
+
+We use `forEachNode` from exercise 5.13, and an anonymous function, to implement `ElementsByTagName`.

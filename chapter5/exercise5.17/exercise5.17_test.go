@@ -25,6 +25,9 @@ func TestElementsByTagName(t *testing.T) {
 		{`<html><head></head><body><a href="link1">a</a></body></html>`,
 			[]string{"link"},
 			map[string]int{}},
+		{`<html><head></head><body><a href="link1">a</a><a href="link2">a</a></body></html>`,
+			[]string{"a"},
+			map[string]int{"a": 2}},
 	}
 	for _, test := range tests {
 		doc, err := html.Parse(strings.NewReader(test.document))

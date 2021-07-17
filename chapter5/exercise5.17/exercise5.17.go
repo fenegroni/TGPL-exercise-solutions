@@ -33,38 +33,3 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 		post(n)
 	}
 }
-
-/*
-{
-	visit := func(n *html.Node) {
-		if n == nil {
-			return
-		}
-		if n.Type == html.ElementNode {
-			for _, a := range n.Attr {
-				if a.Key == "href" {
-					links = append(links, a.Val)
-				}
-			}
-		}
-		visit(n.NextSibling)
-		visit(n.FirstChild)
-	}
-
-}
-
-// Visit appends to links each link found in n and returns the result.
-func visit(links []string, n *html.Node) []string {
-	if n == nil {
-		return links
-	}
-	if n.Type == html.ElementNode && n.Data == "a" {
-		for _, a := range n.Attr {
-			if a.Key == "href" {
-				links = append(links, a.Val)
-			}
-		}
-	}
-	return Visit(Visit(links, n.FirstChild), n.NextSibling)
-}
-*/
