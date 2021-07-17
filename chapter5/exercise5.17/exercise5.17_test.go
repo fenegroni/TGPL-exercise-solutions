@@ -2,7 +2,6 @@ package exercise5_17
 
 import (
 	"golang.org/x/net/html"
-	"golang.org/x/net/icmp"
 	"reflect"
 	"strings"
 	"testing"
@@ -29,7 +28,7 @@ func TestElementsByTagName(t *testing.T) {
 		for tag, count := range test.tags {
 			tags = append(tags, tag)
 			if count > 0 {
-				expectEmptyResult := false
+				expectEmptyResult = false
 			}
 		}
 		result := ElementsByTagName(doc, tags...)
@@ -41,7 +40,7 @@ func TestElementsByTagName(t *testing.T) {
 				// make a map and compare with deep.equal from ex 5.1
 				var resultCount map[string]int
 				for _, tag := range result {
-					resultCount[tag]++
+					resultCount[tag.Data]++
 				}
 				if !reflect.DeepEqual(resultCount, test.tags) {
 					t.Errorf("ElementsByTagName(%q, %v) = %v, want %v",
