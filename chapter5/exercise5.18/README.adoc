@@ -1,0 +1,10 @@
+= Exercise 5.18
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Without changing its behaviour, rewrite the `fetch` function to use `defer` to close the writable file.
