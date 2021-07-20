@@ -1,4 +1,4 @@
-package exercise5_18
+package main
 
 import "testing"
 

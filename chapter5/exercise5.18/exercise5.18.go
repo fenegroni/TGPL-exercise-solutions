@@ -1,11 +1,24 @@
-package exercise5_18
+package main
 
 import (
+	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path"
 )
+
+func main() {
+	for _, url := range os.Args[1:] {
+		filename, n, err := fetch(url)
+		if err != nil {
+			log.Printf("could not fetch url %q: %v", url, err)
+			continue
+		}
+		fmt.Printf("%s: %d", filename, n)
+	}
+}
 
 func fetch(url string) (filename string, n int64, err error) {
 	resp, err := http.Get(url)
