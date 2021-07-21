@@ -27,7 +27,7 @@ func fetch(url string) (filename string, n int64, err error) {
 	}
 	defer resp.Body.Close()
 	local := path.Base(resp.Request.URL.Path)
-	if local == "/" {
+	if local == "/" || local == "." {
 		local = "index.html"
 	}
 	f, err := os.Create(local)
