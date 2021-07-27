@@ -22,3 +22,12 @@ before and after calling fetch.
 Alternatively, we can also validate the log output
 if we implement the deferred call using an anonymous function.
 This technique might be easier to implement but is not as reliable.
+
+== First test implementation
+
+We validate that defer works using an anonymous function to print a log line.
+The output is validated using the 'deferred close call' sentence.
+
+== TODO
+
+. Delete the files or create them in a temporary folder
