@@ -15,19 +15,11 @@ We want to test that the file is correctly closed by defer.
 We don't need to set up a server, and the file can be assumed to be local.
 What we want is to make sure the file is closed correctly.
 
-One possible trick is to use the operating system to validate
-how many open file handles the program has
-before and after calling fetch.
-
-Alternatively, we can also validate the log output
-if we implement the deferred call using an anonymous function.
-This technique might be easier to implement but is not as reliable.
-
-== First test implementation
+=== Implementation
 
 We validate that defer works using an anonymous function to print a log line.
 The output is validated using the 'deferred close call' sentence.
 
-== TODO
-
-. Delete the files or create them in a temporary folder
+NOTE: A better strategy is to implement the OS file handle count.
+Unfortunately this requires system calls to find out
+if a file descriptor is in use by a process.
