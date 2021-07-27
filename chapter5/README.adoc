@@ -20,6 +20,8 @@
 :badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
 :badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
 :badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
+:badge-exercise5-17: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main
+:badge-exercise5-18: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main
 
 {badge-chapter5}
 
@@ -98,3 +100,4 @@ Write a variadic version of `strings.Join`.
 Write a variadic function `ElementsByTagName` that, given an HTML node tree
 and zero or more names, returns all the elements that match one of those names.
 * {badge-exercise5-18}[link={url-base}/tree/master/chapter5/exercise5.18] +
+Without changing its behaviour, rewrite the `fetch` function to use `defer` to close the writable file.
