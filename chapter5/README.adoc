@@ -101,3 +101,6 @@ Write a variadic function `ElementsByTagName` that, given an HTML node tree
 and zero or more names, returns all the elements that match one of those names.
 * {badge-exercise5-18}[link={url-base}/tree/master/chapter5/exercise5.18] +
 Without changing its behaviour, rewrite the `fetch` function to use `defer` to close the writable file.
+* {badge-exercise5-19}[link={url-base}/tree/master/chapter5/exercise5.19] +
+Use `panic` and `recover` to write a function that contains no `return` statement
+yet returns a non-zero value.

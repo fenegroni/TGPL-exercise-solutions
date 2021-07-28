@@ -1,0 +1,13 @@
+= Exercise 5.19
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 5.19/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Use `panic` and `recover` to write a function that contains no `return` statement
+yet returns a non-zero value.
+
+== Test
