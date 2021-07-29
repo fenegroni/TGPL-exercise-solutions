@@ -11,3 +11,14 @@ Use `panic` and `recover` to write a function that contains no `return` statemen
 yet returns a non-zero value.
 
 == Test
+
+Because a function with a return value will not compile if it does not contain a return statement,
+the test will validate that `panic` was called by comparing the result of `recover` to a known value.
+
+=== No return
+
+The function under test `NoReturnStatement` receives an argument and
+calls `panic` with that argument.
+
+`TestNoReturnStatement` calls `NoReturnStatement` with a known value and
+checks that recover returns that argument.
