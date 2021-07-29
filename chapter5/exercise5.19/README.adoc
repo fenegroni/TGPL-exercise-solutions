@@ -21,4 +21,4 @@ The function under test `NoReturnStatement` receives an argument and
 calls `panic` with that argument.
 
 `TestNoReturnStatement` calls `NoReturnStatement` with a known value and
-checks that recover returns that argument.
+checks that `recover` returns that argument.
