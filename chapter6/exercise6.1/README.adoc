@@ -1,0 +1,18 @@
+= Exercise 6.1
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Implement these additional methods:
+
+[source,go]
+----
+func (*IntSet) Len() int      // return the number of elements
+func (*IntSet) Remove(x int)  // remove x from the set
+func (*IntSet) Clear()        // remove all elements from the set
+func (*IntSet) Copy() *IntSet // return a copy of the set
+----
