@@ -8,11 +8,9 @@ import (
 func main() {
 	p := geometry.Point{X: 0, Y: 0}
 	q := geometry.Point{X: 1, Y: 0}
-	fmt.Printf("The distance between %v and %v is %v\n", p, q, p.Distance(q))
-	var path geometry.Path
-	r := geometry.Point{X: 0, Y: 1}
-	path = append(path, p, q, r)
-	fmt.Printf("The distance on path %v is %v\n", path, path.Distance())
+	fmt.Printf("The distance between p %v and q %v is %v\n", p, q, p.Distance(q))
+	p.ScaleBy(2.1)
+	fmt.Printf("Point p scaled by %g is %v\n", 2.1, p)
 	perim := geometry.Path{
 		{1, 1},
 		{5, 1},
