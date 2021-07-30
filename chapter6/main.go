@@ -2,7 +2,9 @@ package main
 
 import (
 	"TGPL-exercise-solutions/chapter6/geometry"
+	"TGPL-exercise-solutions/chapter6/geometry/coloured"
 	"fmt"
+	"net/url"
 )
 
 func main() {
@@ -18,4 +20,17 @@ func main() {
 		{1, 1},
 	}
 	fmt.Printf("The perimeter of triangle %v is %v\n", perim, perim.Distance())
+
+	m := url.Values{"lang": {"en"}}
+	m.Add("item", "1")
+	m.Add("item", "2")
+	fmt.Println(m.Get("lang"))
+	fmt.Println(m.Get("q"))
+	fmt.Println(m.Get("item"))
+	fmt.Println(m["item"])
+	m = nil
+	fmt.Println(m["item"])
+	// m.Add("item", "3")
+	var cp coloured.ColouredPoint
+	fmt.Printf("cp %v\n", cp)
 }
