@@ -9,13 +9,10 @@ func main() {
 	p := geometry.Point{X: 0, Y: 0}
 	q := geometry.Point{X: 1, Y: 0}
 	fmt.Printf("The distance between %v and %v is %v\n", p, q, p.Distance(q))
-	fmt.Printf("The distance between %v and %v is %v\n", q, p, geometry.Distance(q, p))
-
 	var path geometry.Path
 	r := geometry.Point{X: 0, Y: 1}
 	path = append(path, p, q, r)
 	fmt.Printf("The distance on path %v is %v\n", path, path.Distance())
-
 	perim := geometry.Path{
 		{1, 1},
 		{5, 1},
@@ -23,5 +20,4 @@ func main() {
 		{1, 1},
 	}
 	fmt.Printf("The perimeter of triangle %v is %v\n", perim, perim.Distance())
-	fmt.Printf("The perimeter of triangle %v is %v\n", perim, geometry.PathDistance(perim))
 }
