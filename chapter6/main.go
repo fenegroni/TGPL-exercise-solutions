@@ -4,10 +4,62 @@ import (
 	"TGPL-exercise-solutions/chapter6/geometry"
 	"TGPL-exercise-solutions/chapter6/geometry/coloured"
 	"fmt"
+	"image/color"
 	"net/url"
+	"sync"
 )
 
+type AType struct {
+	A int
+}
+
+type BType struct {
+	B int
+}
+
+func (at *AType) Increment() {
+	at.A++
+}
+
+func (bt *BType) Increment() {
+	bt.B++
+}
+
+type ABType struct {
+	AType
+	BType
+}
+
+var (
+	mu      sync.Mutex
+	mapping = make(map[string]string)
+)
+
+func Lookup(key string) string {
+	mu.Lock()
+	v := mapping[key]
+	mu.Unlock()
+	return v
+}
+
+var cache = struct {
+	sync.Mutex
+	mapping map[string]string
+}{
+	mapping: make(map[string]string),
+}
+
+func Lookup2(key string) string {
+	cache.Lock()
+	v := cache.mapping[key]
+	cache.Unlock()
+	return v
+}
+
 func main() {
+	at := ABType{AType{1}, BType{2}}
+	at.AType.Increment()
+
 	p := geometry.Point{X: 0, Y: 0}
 	q := geometry.Point{X: 1, Y: 0}
 	fmt.Printf("The distance between p %v and q %v is %v\n", p, q, p.Distance(q))
@@ -31,6 +83,13 @@ func main() {
 	m = nil
 	fmt.Println(m["item"])
 	// m.Add("item", "3")
-	var cp coloured.ColouredPoint
+	cp := coloured.ColouredPoint{Point: &geometry.Point{X: 1, Y: 2}, RGBA: &color.RGBA{A: 1, B: 2, G: 3, R: 4}}
 	fmt.Printf("cp %v\n", cp)
+	x := cp.ScaleBy(3.1)
+	fmt.Printf("x: %v\n", x)
+
+	mars := geometry.Point{1, 2}
+	pluto := geometry.Point{2, 3}
+	distanceFromMars := mars.Distance
+	fmt.Println(distanceFromMars(pluto))
 }

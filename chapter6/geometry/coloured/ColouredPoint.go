@@ -6,6 +6,6 @@ import (
 )
 
 type ColouredPoint struct {
-	geometry.Point
-	Color color.RGBA
+	*geometry.Point
+	*color.RGBA
 }
