@@ -1,34 +1,59 @@
-// Exercise5.1 prints the links in an HTML document read from standard input.
-package main
+package exercise6_1
 
 import (
 	"fmt"
-	"golang.org/x/net/html"
-	"os"
+	"strings"
 )
 
-func main() {
-	doc, err := html.Parse(os.Stdin)
-	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "exercise5.1: %v\n", err)
-		os.Exit(1)
+// An IntSet is a set of small non-negative integers.
+// Its zero value represents the empty set.
+type IntSet struct {
+	words []uint64
+}
+
+// Has reports whether the set contains the non-negative value x.
+func (s *IntSet) Has(x int) bool {
+	word, bit := x/64, uint(x%64)
+	return word < len(s.words) && s.words[word]&(1<<bit) != 0
+}
+
+// Add the non-negative value x to the set.
+func (s *IntSet) Add(x int) {
+	word, bit := x/64, uint(x%64)
+	for word >= len(s.words) {
+		s.words = append(s.words, 0)
 	}
-	for _, link := range Visit(nil, doc) {
-		fmt.Println(link)
+	s.words[word] |= 1 << bit
+}
+
+// UnionWith sets s to the union of s and t
+func (s *IntSet) UnionWith(t *IntSet) {
+	for i, tword := range t.words {
+		if i < len(s.words) {
+			s.words[i] |= tword
+		} else {
+			s.words = append(s.words, tword)
+		}
 	}
 }
 
-// Visit appends to links each link found in n and returns the result.
-func Visit(links []string, n *html.Node) []string {
-	if n == nil {
-		return links
-	}
-	if n.Type == html.ElementNode && n.Data == "a" {
-		for _, a := range n.Attr {
-			if a.Key == "href" {
-				links = append(links, a.Val)
+// String returns the set as a string of the form "{1 2 3}"
+func (s *IntSet) String() string {
+	var buf strings.Builder
+	buf.WriteString("{")
+	for i, word := range s.words {
+		if word == 0 {
+			continue
+		}
+		for j := 0; j < 64; j++ {
+			if word&(1<<uint(j)) != 0 {
+				if buf.Len() > len("{") {
+					buf.WriteString(" ")
+				}
+				fmt.Fprintf(&buf, "%d", 64*i+j)
 			}
 		}
 	}
-	return Visit(Visit(links, n.FirstChild), n.NextSibling)
+	buf.WriteString("}")
+	return buf.String()
 }
