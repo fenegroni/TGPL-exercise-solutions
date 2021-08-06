@@ -11,6 +11,47 @@ type IntSet struct {
 	words []uint64
 }
 
+// slowLen returns the number of elements in the set using a slow algorithm
+func (s *IntSet) slowLen() int {
+	count := 0
+	for _, word := range s.words {
+		if word == 0 {
+			continue
+		}
+		for j := uint(0); j < 64; j++ {
+			if word&(1<<j) != 0 {
+				count++
+			}
+		}
+	}
+	return count
+}
+
+// fastLen returns the number of elements in the set using a fast algorithm
+func (s *IntSet) fastLen() int {
+	count := 0
+	for _, word := range s.words {
+		for word > 0 {
+			word &= word - 1
+			count++
+		}
+	}
+	return count
+}
+
+// lookupLen returns the number of elements in the set using a table lookup
+func (s *IntSet) lookupLen() int {
+	// TODO implement lookupLen
+	// TODO Panic if lookup table is not populated
+	panic("IntSet.lookupLen not implemented")
+	return 0
+}
+
+// Len returns the number of elements in the set
+func (s *IntSet) Len() int {
+	return s.fastLen()
+}
+
 // Has reports whether the set contains the non-negative value x.
 func (s *IntSet) Has(x int) bool {
 	word, bit := x/64, uint(x%64)
