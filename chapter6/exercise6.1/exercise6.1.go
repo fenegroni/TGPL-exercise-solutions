@@ -31,7 +31,7 @@ func (s *IntSet) slowLen() int {
 func (s *IntSet) fastLen() int {
 	count := 0
 	for _, word := range s.words {
-		for word > 0 {
+		for word != 0 {
 			word &= word - 1
 			count++
 		}
