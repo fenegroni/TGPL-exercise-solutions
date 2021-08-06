@@ -9,7 +9,7 @@
 
 Implement these additional methods:
 
-[source,go]
+[source]
 ----
 func (*IntSet) Len() int      // return the number of elements
 func (*IntSet) Remove(x int)  // remove x from the set
