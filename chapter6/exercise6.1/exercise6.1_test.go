@@ -22,3 +22,9 @@ func TestIntSet_Len_nonempty(t *testing.T) {
 		t.Errorf("Len() of %v != 4.", v)
 	}
 }
+
+func TestIntSet_fastLen(t *testing.T) {
+}
+
+func TestIntSet_lookupLen(t *testing.T) {
+}

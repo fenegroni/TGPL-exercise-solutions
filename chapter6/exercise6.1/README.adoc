@@ -32,8 +32,9 @@ The `Len` method has two implementations: the first one uses the property of bit
 to speedily count the bits set to 1 in an `int`.
 The speed of this algorithm is variable and depends on the size of the set and the number of bits set to 1.
 
-A second algorithm produces results in constant time, but requires the implementation to precalculate
+A second algorithm produces results in near-constant time, but requires the implementation to precalculate
 the lookup table at the start, which means both start up time and memory size.
+This might be a consideration in embedded real-time systems.
 
 NOTE: We can write benchmarks to determine which algorithm is more appropriate for the specific programme,
 and whether there's a way for us to pre-determine which one will be most advantageous.

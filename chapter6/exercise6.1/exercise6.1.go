@@ -11,6 +11,9 @@ type IntSet struct {
 	words []uint64
 }
 
+// pc[i] is the population count of i
+var pc *[256]byte
+
 // slowLen returns the number of elements in the set using a slow algorithm
 func (s *IntSet) slowLen() int {
 	count := 0
@@ -39,17 +42,28 @@ func (s *IntSet) fastLen() int {
 	return count
 }
 
-// lookupLen returns the number of elements in the set using a table lookup
+func init() {
+	pc = &[256]byte{}
+	for i := range pc {
+		pc[i] = pc[i/2] + byte(i&1)
+	}
+}
+
+// lookupLen returns the number of elements in the set using table lookups
 func (s *IntSet) lookupLen() int {
-	// TODO implement lookupLen
-	// TODO Panic if lookup table is not populated
-	panic("IntSet.lookupLen not implemented")
-	return 0
+	if pc == nil {
+		panic("Missing IntSet.lookupLen lookup table implementation")
+	}
+	count := 0
+	for _, word := range s.words {
+		count += int(pc[word])
+	}
+	return count
 }
 
 // Len returns the number of elements in the set
 func (s *IntSet) Len() int {
-	return s.fastLen()
+	return s.lookupLen()
 }
 
 // Has reports whether the set contains the non-negative value x.
@@ -91,7 +105,7 @@ func (s *IntSet) String() string {
 				if buf.Len() > len("{") {
 					buf.WriteString(" ")
 				}
-				fmt.Fprintf(&buf, "%d", 64*i+j)
+				_, _ = fmt.Fprintf(&buf, "%d", 64*i+j)
 			}
 		}
 	}
