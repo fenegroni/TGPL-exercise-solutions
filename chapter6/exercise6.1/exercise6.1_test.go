@@ -83,7 +83,4 @@ func TestIntSet_Remove(t *testing.T) {
 	if v.Len() == 0 {
 		t.Error("Remove(1000) cleared all elements")
 	}
-	if v.Len() > 1 {
-		t.Error("After Remove(1000), Len() > 1")
-	}
 }

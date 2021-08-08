@@ -90,11 +90,11 @@ func (s *IntSet) Add(x int) {
 
 // Remove the non-negative value x from the set
 func (s *IntSet) Remove(x int) {
-	word, _ := x/64, uint(x%64)
+	word, bit := x/64, uint(x%64)
 	if word >= len(s.words) {
 		return
 	}
-	// s.words[word] |= 1 << bit
+	s.words[word] &^= 1 << bit
 }
 
 // UnionWith sets s to the union of s and t
