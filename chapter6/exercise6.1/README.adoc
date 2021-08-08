@@ -21,7 +21,28 @@ func (*IntSet) Copy() *IntSet // return a copy of the set
 
 We implement unit tests at the single method level and at the type level.
 
-=== Negative numbers
+Individual method tests cover a number of cases, some separated out.
+
+The type level `TestIntSet` integrates all the set operations
+and uses the string representation of a set to validate results.
+
+== Clear and Trim
+
+We implement the method `Trim` to allow efficient memory usage
+since `Clear` and `Remove` clear bits but do not remove empty words
+from the tail of the set.
+
+If we add a big number to the set and then remove it,
+we could be left with lots of unused memory
+if adding big numbers to the set rarely happens.
+
+== Compare
+
+Comparing two sets needs some thinking because
+if we want to make sets comparable we might need to do it in such a way
+other packages can pick up on it.
+
+== Negative numbers
 
 Negative numbers are not handled and the interface allows them to be passed in.
 What we do as a result if currently undefined behaviour.
