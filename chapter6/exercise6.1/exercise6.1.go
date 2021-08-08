@@ -88,13 +88,28 @@ func (s *IntSet) Add(x int) {
 	s.words[word] |= 1 << bit
 }
 
-// Remove the non-negative value x from the set
+// Remove the non-negative value x from the set.
 func (s *IntSet) Remove(x int) {
 	word, bit := x/64, uint(x%64)
-	if word >= len(s.words) {
-		return
+	if word < len(s.words) {
+		s.words[word] &^= 1 << bit
 	}
-	s.words[word] &^= 1 << bit
+}
+
+// Clear removes all elements from the set
+func (s *IntSet) Clear() {
+	for i := range s.words {
+		s.words[i] = 0
+	}
+}
+
+// Trim removes unusued memory
+func (s *IntSet) Trim() {
+	sz := len(s.words)
+	for sz > 1 && s.words[sz-1] == 0 {
+		sz--
+	}
+	s.words = s.words[:sz]
 }
 
 // UnionWith sets s to the union of s and t
@@ -121,7 +136,7 @@ func (s *IntSet) String() string {
 				if buf.Len() > len("{") {
 					buf.WriteString(" ")
 				}
-				_, _ = fmt.Fprintf(&buf, "%d", 64*i+j)
+				buf.WriteString(fmt.Sprintf("%d", 64*i+j))
 			}
 		}
 	}
