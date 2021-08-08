@@ -56,7 +56,14 @@ func (s *IntSet) lookupLen() int {
 	}
 	count := 0
 	for _, word := range s.words {
-		count += int(pc[word])
+		count += int(pc[byte(word>>(8*0))] +
+			pc[byte(word>>(8*1))] +
+			pc[byte(word>>(8*2))] +
+			pc[byte(word>>(8*3))] +
+			pc[byte(word>>(8*4))] +
+			pc[byte(word>>(8*5))] +
+			pc[byte(word>>(8*6))] +
+			pc[byte(word>>(8*7))])
 	}
 	return count
 }
@@ -66,19 +73,28 @@ func (s *IntSet) Len() int {
 	return s.lookupLen()
 }
 
-// Has reports whether the set contains the non-negative value x.
+// Has reports whether the set contains the non-negative value x
 func (s *IntSet) Has(x int) bool {
 	word, bit := x/64, uint(x%64)
 	return word < len(s.words) && s.words[word]&(1<<bit) != 0
 }
 
-// Add the non-negative value x to the set.
+// Add the non-negative value x to the set
 func (s *IntSet) Add(x int) {
 	word, bit := x/64, uint(x%64)
 	for word >= len(s.words) {
 		s.words = append(s.words, 0)
 	}
 	s.words[word] |= 1 << bit
+}
+
+// Remove the non-negative value x from the set
+func (s *IntSet) Remove(x int) {
+	word, _ := x/64, uint(x%64)
+	if word >= len(s.words) {
+		return
+	}
+	// s.words[word] |= 1 << bit
 }
 
 // UnionWith sets s to the union of s and t
