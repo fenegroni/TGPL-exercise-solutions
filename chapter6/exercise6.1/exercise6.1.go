@@ -112,6 +112,11 @@ func (s *IntSet) Trim() {
 	s.words = s.words[:sz]
 }
 
+// Copy returns a copy of the set
+func (s *IntSet) Copy() *IntSet {
+	return s
+}
+
 // UnionWith sets s to the union of s and t
 func (s *IntSet) UnionWith(t *IntSet) {
 	for i, tword := range t.words {

@@ -171,3 +171,11 @@ func TestIntSet_Trim_emptyset(t *testing.T) {
 		t.Fatal("Trim() changes the size of an empty set")
 	}
 }
+
+func TestIntSet_Copy_emptyset(t *testing.T) {
+	v, p := new(IntSet), new(IntSet)
+	p = v.Copy()
+	if p.Len() != 0 {
+		t.Fatalf("Calling Copy() on an empty set produces a non-empty set: %v", p)
+	}
+}
