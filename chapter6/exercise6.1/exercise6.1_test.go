@@ -173,9 +173,16 @@ func TestIntSet_Trim_emptyset(t *testing.T) {
 }
 
 func TestIntSet_Copy_emptyset(t *testing.T) {
-	v, p := new(IntSet), new(IntSet)
+	var p *IntSet
+	v := new(IntSet)
 	p = v.Copy()
 	if p.Len() != 0 {
 		t.Fatalf("Calling Copy() on an empty set produces a non-empty set: %v", p)
 	}
+	if &p.words == &v.words {
+		t.Fatal("Calling Copy() on an empty set causes memory to be shared")
+	}
+	// TODO Is copying an empty set by reusing the empty slice an issue?
+	// We can test this by validating that after adding a bunch of elements to one set
+	// the other set is still empty.
 }
