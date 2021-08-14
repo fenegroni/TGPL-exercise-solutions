@@ -180,9 +180,20 @@ func TestIntSet_Copy_emptyset(t *testing.T) {
 		t.Fatalf("Calling Copy() on an empty set produces a non-empty set: %v", p)
 	}
 	if &p.words == &v.words {
-		t.Fatal("Calling Copy() on an empty set causes memory to be shared")
+		t.Fatal("Calling Copy() on an empty set reuses the words slice")
 	}
-	// TODO Is copying an empty set by reusing the empty slice an issue?
-	// We can test this by validating that after adding a bunch of elements to one set
-	// the other set is still empty.
+}
+
+func TestIntSet_Copy(t *testing.T) {
+	v := new(IntSet)
+	v.Add(1)
+	v.Add(100)
+	v.Add(1000)
+	p := v.Copy()
+	if p.String() != v.String() {
+		t.Fatalf("p = v.Copy(); expect %v got %v", p, v)
+	}
+	if &p.words == &v.words {
+		t.Fatal("Calling Copy() reuses the words slice")
+	}
 }

@@ -114,7 +114,13 @@ func (s *IntSet) Trim() {
 
 // Copy returns a copy of the set
 func (s *IntSet) Copy() *IntSet {
-	return s
+	z := new(IntSet)
+	s.Trim()
+	z.words = make([]uint64, len(s.words))
+	for i := range s.words {
+		z.words[i] = s.words[i]
+	}
+	return z
 }
 
 // UnionWith sets s to the union of s and t
