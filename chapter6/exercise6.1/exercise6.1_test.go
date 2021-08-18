@@ -51,88 +51,96 @@ func TestIntSet(t *testing.T) {
 	}
 }
 
-func TestIntSet_Len_emptyset(t *testing.T) {
-	v := new(IntSet)
-	if v.Len() != 0 {
-		t.Fatalf("Len() of %v != 0", v)
-	}
-}
-
 func TestIntSet_Len(t *testing.T) {
 	v := new(IntSet)
+	if v.Len() != 0 {
+		t.Fatalf("Len of empty set != 0")
+	}
 	v.Add(0)
+	if v.Len() != 1 {
+		t.Fatalf("%v.Len() != 1", v)
+	}
 	v.Add(1)
 	v.Add(2)
 	if v.Len() != 3 {
-		t.Fatalf("Len() of %v != 3", v)
+		t.Fatalf("%v.Len() != 3", v)
+	}
+	v.Remove(2)
+	if v.Len() != 2 {
+		t.Fatalf("%v.Len() != 2", v)
 	}
 	v.Add(1000)
-	if v.Len() != 4 {
-		t.Fatalf("Len() of %v != 4", v)
+	if v.Len() != 3 {
+		t.Fatalf("%v.Len() != 3", v)
+	}
+}
+
+func TestIntSet_Len_hugeset(t *testing.T) {
+	v := new(IntSet)
+	const targetSize int = 1000000
+	for i := 0; i < targetSize; i++ {
+		v.Add(i)
+	}
+	if v.Len() != targetSize {
+		t.Fatalf("Len of huge set != %d", targetSize)
 	}
 }
 
 func TestIntSet_fastLen(t *testing.T) {
 	v := new(IntSet)
 	if v.fastLen() != 0 {
-		t.Fatalf("fastLen() of %v != 0", v)
+		t.Fatalf("%v.Len() != 0", v)
 	}
 	v.Add(0)
 	if v.fastLen() != 1 {
-		t.Fatalf("fastLen() of %v != 1", v)
+		t.Fatalf("%v.Len() != 1", v)
 	}
 	v.Add(1000)
 	if v.fastLen() != 2 {
-		t.Fatalf("fastLen() of %v != 2", v)
+		t.Fatalf("%v.Len() != 2", v)
 	}
 }
 
 func TestIntSet_lookupLen(t *testing.T) {
 	v := new(IntSet)
 	if v.lookupLen() != 0 {
-		t.Fatalf("lookupLen() of %v != 0", v)
+		t.Fatalf("%v.Len() != 0", v)
 	}
 	v.Add(0)
 	if v.lookupLen() != 1 {
-		t.Fatalf("lookupLen() of %v != 1", v)
+		t.Fatalf("%v.Len() != 1", v)
 	}
 	v.Add(1000)
 	if v.lookupLen() != 2 {
-		t.Fatalf("lookupLen() of %v != 2", v)
-	}
-}
-
-func TestIntSet_Remove_does_not_add(t *testing.T) {
-	// TODO use String
-	v := new(IntSet)
-	v.Remove(1)
-	if v.Has(1) {
-		t.Fatal("Remove(1) adds 1")
+		t.Fatalf("%v.Len() != 2", v)
 	}
 }
 
 func TestIntSet_Remove(t *testing.T) {
-	// TODO use String
 	v := new(IntSet)
+	v.Remove(1)
+	want := "{}"
+	if got := v.String(); got != want {
+		t.Fatalf("{}.Remove(1) = %s, want %s", got, want)
+	}
 	v.Add(1)
 	v.Remove(1)
-	if v.Has(1) {
-		t.Fatalf("Remove(1) = %v", v)
+	if got := v.String(); got != want {
+		t.Fatalf("{1}.Remove(1) = %s, want %s", got, want)
 	}
 	v.Add(100)
 	v.Add(200)
 	v.Remove(100)
-	if v.Has(100) || !v.Has(200) {
-		t.Fatalf("Remove(100) = %v", v)
+	want = "{200}"
+	if got := v.String(); got != want {
+		t.Fatalf("{100 200}.Remove(100) = %s, want %s", got, want)
 	}
 	v.Add(1000)
 	v.Add(2000)
 	v.Remove(1000)
-	if v.Has(1000) || !v.Has(2000) || !v.Has(200) {
-		t.Fatalf("Remove(1000) = %v", v)
-	}
-	if v.Len() == 0 {
-		t.Fatal("Remove(1000) cleared all elements")
+	want = "{200 2000}"
+	if got := v.String(); got != want {
+		t.Fatalf("{200 1000 2000}.Remove(1000) = %s, want %s", got, want)
 	}
 }
 
