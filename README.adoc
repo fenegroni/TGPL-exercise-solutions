@@ -34,6 +34,7 @@ image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?st
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 {badge-chapter4}[link={url-base}/tree/master/chapter4]
 {badge-chapter5}[link={url-base}/tree/master/chapter5]
+{badge-chapter6}[link={url-base}/tree/master/chapter6]
 
 Solutions to the exercises in the book
 _The Go Programming Language_
