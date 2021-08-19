@@ -1,0 +1,63 @@
+= Exercise 6.1
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Implement these additional methods:
+
+[source]
+----
+func (*IntSet) Len() int      // return the number of elements
+func (*IntSet) Remove(x int)  // remove x from the set
+func (*IntSet) Clear()        // remove all elements from the set
+func (*IntSet) Copy() *IntSet // return a copy of the set
+----
+
+== Tests
+
+We implement unit tests at the single method level and at the type level.
+
+Individual method tests cover a number of cases, some separated out.
+
+The type level `TestIntSet` integrates all the set operations
+and uses the string representation of a set to validate results.
+
+== Clear and Trim
+
+We implement the method `Trim` to allow efficient memory usage
+since `Clear` and `Remove` clear bits but do not remove empty words
+from the tail of the set.
+
+If we add a big number to the set and then remove it,
+we could be left with lots of unused memory
+if adding big numbers to the set rarely happens.
+
+== Compare
+
+Comparing two sets needs some thinking because
+if we want to make sets comparable we might need to do it in such a way
+other packages can pick up on it.
+
+== Negative numbers
+
+Negative numbers are not handled and the interface allows them to be passed in.
+What we do as a result is currently undefined behaviour.
+
+== Benchmark `Len`
+
+The `Len` method has two implementations: the first one uses the property of bitwise operators
+to speedily count the bits set to 1 in an `int`.
+The speed of this algorithm is variable and depends on the size of the set and the number of bits set to 1.
+
+A second algorithm produces results in near-constant time, but requires the implementation to precalculate
+the lookup table at the start, which means both start up time and memory size.
+This might be a consideration in embedded real-time systems.
+
+NOTE: We can write benchmarks to determine which algorithm is more appropriate for the specific programme,
+and whether there's a way for us to pre-determine which one will be most advantageous.
+We could keep track of the set population every time Len is called and fire up a goroutine to populate
+the lookup table
