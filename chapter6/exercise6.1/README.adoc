@@ -45,7 +45,7 @@ other packages can pick up on it.
 == Negative numbers
 
 Negative numbers are not handled and the interface allows them to be passed in.
-What we do as a result if currently undefined behaviour.
+What we do as a result is currently undefined behaviour.
 
 == Benchmark `Len`
 

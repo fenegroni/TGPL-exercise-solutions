@@ -77,12 +77,12 @@ func TestIntSet_Len(t *testing.T) {
 
 func TestIntSet_Len_hugeset(t *testing.T) {
 	v := new(IntSet)
-	const targetSize int = 1000000
-	for i := 0; i < targetSize; i++ {
+	const want int = 1000000
+	for i := 0; i < want; i++ {
 		v.Add(i)
 	}
-	if v.Len() != targetSize {
-		t.Fatalf("Len of huge set != %d", targetSize)
+	if got := v.Len(); got != want {
+		t.Fatalf("Len of huge set = %d, want %d", got, want)
 	}
 }
 
@@ -167,9 +167,9 @@ func TestIntSet_Clear(t *testing.T) {
 func TestIntSet_ClearDontTrim(t *testing.T) {
 	v := new(IntSet)
 	v.Add(1000000)
-	oldLen := len(v.words)
+	oldSize := len(v.words)
 	v.Clear()
-	if len(v.words) != oldLen {
+	if len(v.words) != oldSize {
 		t.Fatal("Clear() trims the set")
 	}
 }
@@ -209,9 +209,9 @@ func TestIntSet_Trim_manglesset(t *testing.T) {
 	v := new(IntSet)
 	v.Add(100)
 	v.Trim()
-	// FIXME use String to validate contents
-	if v.Len() != 1 {
-		t.Fatalf("Trim() mangles the set")
+	want := "{100}"
+	if got := v.String(); got != want {
+		t.Fatalf("%s.Trim() = %s", want, got)
 	}
 }
 
@@ -229,7 +229,7 @@ func TestIntSet_Copy_emptyset(t *testing.T) {
 	v := new(IntSet)
 	p = v.Copy()
 	if p.Len() != 0 {
-		t.Fatalf("Calling Copy() on an empty set produces a non-empty set: %v", p)
+		t.Fatalf("%v.Copy() = %v", v, p)
 	}
 	if &p.words == &v.words {
 		t.Fatal("Calling Copy() on an empty set reuses the words slice")
@@ -242,10 +242,12 @@ func TestIntSet_Copy(t *testing.T) {
 	v.Add(100)
 	v.Add(1000)
 	p := v.Copy()
-	if p.String() != v.String() {
-		t.Fatalf("p = v.Copy(); expect %v got %v", p, v)
-	}
 	if &p.words == &v.words {
 		t.Fatal("Calling Copy() reuses the words slice")
 	}
+	if p.String() != v.String() {
+		t.Fatalf("%v.Copy() = %v", v, p)
+	}
 }
+
+// TODO Write benchmark functions
