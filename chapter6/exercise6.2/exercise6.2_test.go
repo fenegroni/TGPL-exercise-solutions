@@ -34,13 +34,9 @@ func TestIntSet(t *testing.T) {
 		for _, a := range test.actions {
 			switch a.op {
 			case add:
-				for _, v := range a.val {
-					s.Add(v)
-				}
+				s.AddAll(a.val...)
 			case remove:
-				for _, v := range a.val {
-					s.Remove(v)
-				}
+				s.RemoveAll(a.val...)
 			case clear:
 				s.Clear()
 			}

@@ -11,23 +11,6 @@ type IntSet struct {
 	words []uint64
 }
 
-// fastLen returns the number of elements in the set using a fast algorithm
-func (s *IntSet) fastLen() int {
-	count := 0
-	for _, word := range s.words {
-		for word != 0 {
-			word &= word - 1
-			count++
-		}
-	}
-	return count
-}
-
-// Len returns the number of elements in the set
-func (s *IntSet) Len() int {
-	return s.fastLen()
-}
-
 // Add the non-negative value x to the set
 func (s *IntSet) Add(x int) {
 	word, bit := x/64, uint(x%64)
@@ -71,4 +54,12 @@ func (s *IntSet) String() string {
 	}
 	buf.WriteString("}")
 	return buf.String()
+}
+
+func (*IntSet) AddAll(...int) {
+
+}
+
+func (*IntSet) RemoveAll(...int) {
+
 }
