@@ -14,5 +14,4 @@
 * {badge-exercise6-1}[link={url-base}/tree/master/chapter6/exercise6.1] +
 Implement these additional methods...
 * {badge-exercise6-2}[link={url-base}/tree/master/chapter6/exercise6.2] +
-Define a variadic `(*IntSet).AddAll(...int)` method that allows a list of
-values to be added, such as `s.AddAll(1, 2, 3)`.
+Define a variadic `AddAll(...int)` method that allows a list of values to be added.
