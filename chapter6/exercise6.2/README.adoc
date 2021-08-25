@@ -1,4 +1,4 @@
-= Exercise 6.1
+= Exercise 6.2
 // Refs:
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
