@@ -56,10 +56,14 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-func (*IntSet) AddAll(...int) {
-
+func (s *IntSet) AddAll(xs ...int) {
+	for _, x := range xs {
+		s.Add(x)
+	}
 }
 
-func (*IntSet) RemoveAll(...int) {
-
+func (s *IntSet) RemoveAll(xs ...int) {
+	for _, x := range xs {
+		s.Remove(x)
+	}
 }

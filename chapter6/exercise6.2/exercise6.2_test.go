@@ -3,12 +3,7 @@ package exercise6_2
 import "testing"
 
 func TestIntSet(t *testing.T) {
-	type operation int
-	const (
-		add operation = iota
-		remove
-		clear
-	)
+	type operation string
 	type action struct {
 		op  operation
 		val []int
@@ -17,27 +12,27 @@ func TestIntSet(t *testing.T) {
 		actions []action
 		want    string
 	}{
-		{[]action{{add, []int{1, 2}}}, "{1 2}"},
-		{[]action{{add, []int{0, 1000}}}, "{0 1000}"},
+		{[]action{{"add", []int{1, 2}}}, "{1 2}"},
+		{[]action{{"add", []int{0, 1000}}}, "{0 1000}"},
 		{[]action{
-			{add, []int{1, 1000}},
-			{remove, []int{1, 1000}},
+			{"add", []int{1, 1000}},
+			{"remove", []int{1, 1000}},
 		}, "{}"},
 		{[]action{
-			{add, []int{1, 1000}},
-			{remove, []int{1000}},
-			{add, []int{100}},
+			{"add", []int{1, 1000}},
+			{"remove", []int{1000}},
+			{"add", []int{100}},
 		}, "{1 100}"},
 	}
 	for _, test := range tests {
 		s := new(IntSet)
 		for _, a := range test.actions {
 			switch a.op {
-			case add:
+			case "add":
 				s.AddAll(a.val...)
-			case remove:
+			case "remove":
 				s.RemoveAll(a.val...)
-			case clear:
+			case "clear":
 				s.Clear()
 			}
 		}
@@ -45,4 +40,8 @@ func TestIntSet(t *testing.T) {
 			t.Errorf("%v = %s, want %s", test.actions, got, test.want)
 		}
 	}
+}
+
+func TestIntSet_AddAll(t *testing.T) {
+
 }
