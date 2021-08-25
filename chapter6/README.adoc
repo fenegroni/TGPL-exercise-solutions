@@ -5,6 +5,7 @@
 :url-actions: {url-base}/actions
 :badge-chapter6: image:{url-workflows}/Chapter 6/badge.svg?branch=main[link={url-actions}]
 :badge-exercise6-1: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main
+:badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
 
 {badge-chapter6}
 
@@ -12,3 +13,6 @@
 
 * {badge-exercise6-1}[link={url-base}/tree/master/chapter6/exercise6.1] +
 Implement these additional methods...
+* {badge-exercise6-2}[link={url-base}/tree/master/chapter6/exercise6.2] +
+Define a variadic `(*IntSet).AddAll(...int)` method that allows a list of
+values to be added, such as `s.AddAll(1, 2, 3)`.

@@ -1,0 +1,24 @@
+= Exercise 6.1
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Define a variadic `(*IntSet).AddAll(...int)` method that allows a list of
+values to be added, such as `s.AddAll(1, 2, 3)`.
+
+== Tests
+
+For this test, we leverage the `TestIntSet` function we made for exercise 6.1.
+For that reason we keep the code for `Add`, `Remove`, `Clear` and `String`
+as used by the test.
+
+For this exercise we also define the equivalent `RemoveAll` method
+that takes a list of values to remove from the set.
+
+We can then call `AddAll` and `RemoveAll`
+instead of calling `Add` and `Remove` in a loop
+to add and remove more than one value.
