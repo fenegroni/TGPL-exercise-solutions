@@ -62,7 +62,13 @@ func (s *IntSet) UnionWith(t *IntSet) {
 
 // IntersectWith sets s to the intersection of s and t
 func (s *IntSet) IntersectWith(t *IntSet) {
-	s.UnionWith(t)
+	limit := len(s.words)
+	if limit > len(t.words) {
+		limit = len(t.words)
+	}
+	for i := 0; i < limit; i++ {
+		s.words[i] &= t.words[i]
+	}
 }
 
 // DifferenceWith sets s to the difference of s and t
