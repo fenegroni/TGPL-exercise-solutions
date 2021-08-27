@@ -41,13 +41,36 @@ func TestIntSet_IntersectWith(t *testing.T) {
 		pStr := p.String()
 		v.IntersectWith(p)
 		if got := v.String(); got != test.want {
-			t.Fatalf("%s.IntersectWith(%s) = %s, want %s", vStr, pStr, got, test.want)
+			t.Errorf("%s.IntersectWith(%s) = %s, want %s", vStr, pStr, got, test.want)
 		}
 	}
 }
 
 func TestIntSet_DifferenceWith(t *testing.T) {
-
+	tests := []struct {
+		v, p []int
+		want string
+	}{
+		{[]int{}, []int{}, "{}"},
+		{[]int{0}, []int{}, "{0}"},
+		{[]int{0}, []int{0}, "{}"},
+		{[]int{100}, []int{}, "{100}"},
+		{[]int{100}, []int{100}, "{}"},
+		{[]int{1000}, []int{100}, "{1000}"},
+		{[]int{100}, []int{1000}, "{100}"},
+		{[]int{1, 100, 1000}, []int{100}, "{1 1000}"},
+	}
+	for _, test := range tests {
+		v, p := new(IntSet), new(IntSet)
+		v.AddAll(test.v...)
+		p.AddAll(test.p...)
+		vStr := v.String()
+		pStr := p.String()
+		v.DifferenceWith(p)
+		if got := v.String(); got != test.want {
+			t.Errorf("%s.DifferenceWith(%s) = %s, want %s", vStr, pStr, got, test.want)
+		}
+	}
 }
 
 func TestIntSet_SymmetricDifference(t *testing.T) {
