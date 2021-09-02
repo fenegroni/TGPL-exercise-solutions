@@ -82,7 +82,7 @@ func (s *IntSet) DifferenceWith(t *IntSet) {
 
 // SymmetricDifference sets s to the symmetric difference of s and t
 func (s *IntSet) SymmetricDifference(t *IntSet) {
-	s.UnionWith(t)
+	s.DifferenceWith(t)
 }
 
 // String returns the set as a string of the form "{1 2 3}"
