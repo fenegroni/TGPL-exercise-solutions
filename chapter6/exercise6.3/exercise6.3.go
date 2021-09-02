@@ -73,7 +73,11 @@ func (s *IntSet) IntersectWith(t *IntSet) {
 
 // DifferenceWith sets s to the difference of s and t
 func (s *IntSet) DifferenceWith(t *IntSet) {
-	s.UnionWith(t)
+	for i := 0; i < len(s.words); i++ {
+		if i < len(t.words) {
+			s.words[i] &^= t.words[i]
+		}
+	}
 }
 
 // SymmetricDifference sets s to the symmetric difference of s and t

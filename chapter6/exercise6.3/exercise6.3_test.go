@@ -59,6 +59,7 @@ func TestIntSet_DifferenceWith(t *testing.T) {
 		{[]int{1000}, []int{100}, "{1000}"},
 		{[]int{100}, []int{1000}, "{100}"},
 		{[]int{1, 100, 1000}, []int{100}, "{1 1000}"},
+		{[]int{1, 100, 1000}, []int{100, 4000}, "{1 1000}"},
 	}
 	for _, test := range tests {
 		v, p := new(IntSet), new(IntSet)
