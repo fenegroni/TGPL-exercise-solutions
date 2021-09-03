@@ -7,6 +7,7 @@
 :badge-exercise6-1: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main
 :badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
 :badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
+:badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
 
 {badge-chapter6}
 
@@ -18,3 +19,6 @@ Implement these additional methods...
 Define a variadic `AddAll(...int)` method that allows a list of values to be added.
 * {badge-exercise6-3}[link={url-base}/tree/master/chapter6/exercise6.3] +
 Implement methods for `IntersectWith`, `DifferenceWith`, and `SymmetricDifference`.
+* {badge-exercise6-4}[link={url-base}/tree/master/chapter6/exercise6.4] +
+Add a method `Elems` that returns a slice containing the elements of the set,
+suitable for iterating over with a `range` loop.

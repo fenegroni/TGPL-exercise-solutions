@@ -1,0 +1,11 @@
+= Exercise 6.4
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Add a method `Elems` that returns a slice containing the elements of the set,
+suitable for iterating over with a `range` loop.
