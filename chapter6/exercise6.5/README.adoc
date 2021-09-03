@@ -12,3 +12,11 @@ inefficient on a 32-bit platform. Modify the program to use the `uint` type, whi
 efficient unsigned integer type for the platform. Instead of dividing by 64, define a constant
 holding the effective size of `uint` in bits, 32 or 64. You can use the perhaps too-clever
 expression `32 << (^uint(0) >> 63)` for this purpose.
+
+== Test
+
+We test the implementation by leveraging the work done for Exercise 6.1.
+
+If the tests continue working, then we don't need to worry.
+
+Going forward we might put IntSet in a separate package that the unit tests use.

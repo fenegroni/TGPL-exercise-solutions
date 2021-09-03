@@ -24,3 +24,5 @@ Implement methods for `IntersectWith`, `DifferenceWith`, and `SymmetricDifferenc
 Add a method `Elems` that returns a slice containing the elements of the set,
 suitable for iterating over with a `range` loop.
 * {badge-exercise6-5}[link={url-base}/tree/master/chapter6/exercise6.5] +
+The type of each word used by `IntSet` is `uint64`, but 64-bit arithmetic may be
+inefficient on a 32-bit platform. Modify the program to use the `uint` type.
