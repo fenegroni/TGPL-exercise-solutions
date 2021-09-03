@@ -32,6 +32,7 @@
 :badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
 :badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
 :badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
+:badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
