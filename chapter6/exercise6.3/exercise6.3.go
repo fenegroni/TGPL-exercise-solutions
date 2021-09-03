@@ -82,7 +82,13 @@ func (s *IntSet) DifferenceWith(t *IntSet) {
 
 // SymmetricDifference sets s to the symmetric difference of s and t
 func (s *IntSet) SymmetricDifference(t *IntSet) {
-	s.DifferenceWith(t)
+	for i, tword := range t.words {
+		if i < len(s.words) {
+			s.words[i] ^= tword
+		} else {
+			s.words = append(s.words, tword)
+		}
+	}
 }
 
 // String returns the set as a string of the form "{1 2 3}"
