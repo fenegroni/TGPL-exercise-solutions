@@ -8,6 +8,7 @@
 :badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
 :badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
 :badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
+:badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
 
 {badge-chapter6}
 
@@ -22,3 +23,4 @@ Implement methods for `IntersectWith`, `DifferenceWith`, and `SymmetricDifferenc
 * {badge-exercise6-4}[link={url-base}/tree/master/chapter6/exercise6.4] +
 Add a method `Elems` that returns a slice containing the elements of the set,
 suitable for iterating over with a `range` loop.
+* {badge-exercise6-5}[link={url-base}/tree/master/chapter6/exercise6.5] +
