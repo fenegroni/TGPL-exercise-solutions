@@ -1,4 +1,4 @@
-package exercise6_2
+package exercise6_4
 
 import (
 	"fmt"
@@ -11,6 +11,23 @@ type IntSet struct {
 	words []uint64
 }
 
+// fastLen returns the number of elements in the set using a fast algorithm
+func (s *IntSet) fastLen() int {
+	count := 0
+	for _, word := range s.words {
+		for word != 0 {
+			word &= word - 1
+			count++
+		}
+	}
+	return count
+}
+
+// Len returns the number of elements in the set
+func (s *IntSet) Len() int {
+	return s.fastLen()
+}
+
 // Add the non-negative value x to the set
 func (s *IntSet) Add(x int) {
 	word, bit := x/64, uint(x%64)
@@ -20,18 +37,9 @@ func (s *IntSet) Add(x int) {
 	s.words[word] |= 1 << bit
 }
 
-// Remove the non-negative value x from the set.
-func (s *IntSet) Remove(x int) {
-	word, bit := x/64, uint(x%64)
-	if word < len(s.words) {
-		s.words[word] &^= 1 << bit
-	}
-}
-
-// Clear removes all elements from the set
-func (s *IntSet) Clear() {
-	for i := range s.words {
-		s.words[i] = 0
+func (s *IntSet) AddAll(xs ...int) {
+	for _, x := range xs {
+		s.Add(x)
 	}
 }
 
@@ -56,16 +64,17 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-// AddAll adds the non-negative values xs to the set
-func (s *IntSet) AddAll(xs ...int) {
-	for _, x := range xs {
-		s.Add(x)
+// Elems returns a slice containing the elements of the set suitable for iterating over with a range loop
+func (s *IntSet) Elems() (elems []int) {
+	for i, word := range s.words {
+		if word == 0 {
+			continue
+		}
+		for j := 0; j < 64; j++ {
+			if word&(1<<uint(j)) != 0 {
+				elems = append(elems, 64*i+j)
+			}
+		}
 	}
-}
-
-// RemoveAll removes all the non-negative values xs from the set
-func (s *IntSet) RemoveAll(xs ...int) {
-	for _, x := range xs {
-		s.Remove(x)
-	}
+	return
 }
