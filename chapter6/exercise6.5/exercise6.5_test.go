@@ -86,36 +86,6 @@ func TestIntSet_Len_hugeset(t *testing.T) {
 	}
 }
 
-func TestIntSet_fastLen(t *testing.T) {
-	v := new(IntSet)
-	if v.fastLen() != 0 {
-		t.Fatalf("%v.Len() != 0", v)
-	}
-	v.Add(0)
-	if v.fastLen() != 1 {
-		t.Fatalf("%v.Len() != 1", v)
-	}
-	v.Add(1000)
-	if v.fastLen() != 2 {
-		t.Fatalf("%v.Len() != 2", v)
-	}
-}
-
-func TestIntSet_lookupLen(t *testing.T) {
-	v := new(IntSet)
-	if v.lookupLen() != 0 {
-		t.Fatalf("%v.Len() != 0", v)
-	}
-	v.Add(0)
-	if v.lookupLen() != 1 {
-		t.Fatalf("%v.Len() != 1", v)
-	}
-	v.Add(1000)
-	if v.lookupLen() != 2 {
-		t.Fatalf("%v.Len() != 2", v)
-	}
-}
-
 func TestIntSet_Remove(t *testing.T) {
 	v := new(IntSet)
 	v.Remove(1)

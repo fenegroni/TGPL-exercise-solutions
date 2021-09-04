@@ -5,29 +5,12 @@ import (
 	"strings"
 )
 
+const intBits = 32 << (^uint(0) >> 63)
+
 // An IntSet is a set of small non-negative integers.
 // Its zero value represents the empty set.
 type IntSet struct {
-	words []uint64
-}
-
-// pc[i] is the population count of i
-var pc *[256]byte
-
-// slowLen returns the number of elements in the set using a slow algorithm
-func (s *IntSet) slowLen() int {
-	count := 0
-	for _, word := range s.words {
-		if word == 0 {
-			continue
-		}
-		for j := uint(0); j < 64; j++ {
-			if word&(1<<j) != 0 {
-				count++
-			}
-		}
-	}
-	return count
+	words []uint
 }
 
 // fastLen returns the number of elements in the set using a fast algorithm
@@ -42,46 +25,20 @@ func (s *IntSet) fastLen() int {
 	return count
 }
 
-func init() {
-	pc = &[256]byte{}
-	for i := range pc {
-		pc[i] = pc[i/2] + byte(i&1)
-	}
-}
-
-// lookupLen returns the number of elements in the set using table lookups
-func (s *IntSet) lookupLen() int {
-	if pc == nil {
-		panic("Missing IntSet.lookupLen lookup table implementation")
-	}
-	count := 0
-	for _, word := range s.words {
-		count += int(pc[byte(word>>(8*0))] +
-			pc[byte(word>>(8*1))] +
-			pc[byte(word>>(8*2))] +
-			pc[byte(word>>(8*3))] +
-			pc[byte(word>>(8*4))] +
-			pc[byte(word>>(8*5))] +
-			pc[byte(word>>(8*6))] +
-			pc[byte(word>>(8*7))])
-	}
-	return count
-}
-
 // Len returns the number of elements in the set
 func (s *IntSet) Len() int {
-	return s.lookupLen()
+	return s.fastLen()
 }
 
 // Has reports whether the set contains the non-negative value x
 func (s *IntSet) Has(x int) bool {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/intBits, uint(x%intBits)
 	return word < len(s.words) && s.words[word]&(1<<bit) != 0
 }
 
 // Add the non-negative value x to the set
 func (s *IntSet) Add(x int) {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/intBits, uint(x%intBits)
 	for word >= len(s.words) {
 		s.words = append(s.words, 0)
 	}
@@ -90,7 +47,7 @@ func (s *IntSet) Add(x int) {
 
 // Remove the non-negative value x from the set.
 func (s *IntSet) Remove(x int) {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/intBits, uint(x%intBits)
 	if word < len(s.words) {
 		s.words[word] &^= 1 << bit
 	}
@@ -116,7 +73,7 @@ func (s *IntSet) Trim() {
 func (s *IntSet) Copy() *IntSet {
 	z := new(IntSet)
 	s.Trim()
-	z.words = make([]uint64, len(s.words))
+	z.words = make([]uint, len(s.words))
 	for i := range s.words {
 		z.words[i] = s.words[i]
 	}
@@ -142,12 +99,12 @@ func (s *IntSet) String() string {
 		if word == 0 {
 			continue
 		}
-		for j := 0; j < 64; j++ {
+		for j := 0; j < intBits; j++ {
 			if word&(1<<uint(j)) != 0 {
 				if buf.Len() > len("{") {
 					buf.WriteString(" ")
 				}
-				buf.WriteString(fmt.Sprintf("%d", 64*i+j))
+				buf.WriteString(fmt.Sprintf("%d", intBits*i+j))
 			}
 		}
 	}
