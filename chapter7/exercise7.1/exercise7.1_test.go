@@ -5,7 +5,10 @@ import (
 	"testing"
 )
 
-func TestByteCounter_Write(t *testing.T) {
+func TestByteCounter_defaultValue(t *testing.T) {
 	var c ByteCounter
-	fmt.Println(c)
+	want := "0"
+	if got := fmt.Sprint(c); got != want {
+		t.Errorf("c is %s, want %s", got, want)
+	}
 }
