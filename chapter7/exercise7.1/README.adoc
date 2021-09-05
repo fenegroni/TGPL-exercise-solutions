@@ -23,3 +23,6 @@ To count words we define two new types, `WordCounter` and `LineCounter`,
 which are simple `int`s like `ByteCounter`.
 
 We have less brittle tests using test tables for both.
+
+NOTE: We should encapsulate these types so that counters can only be increased in a certain way.
+And type conversion is simpler: look at the `Counter` type in section 6.6 for an example.
