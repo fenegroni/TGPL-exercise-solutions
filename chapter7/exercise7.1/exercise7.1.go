@@ -3,7 +3,7 @@ package exercise7_1
 type ByteCounter int
 
 func (c *ByteCounter) Write(p []byte) (int, error) {
-	*c += ByteCounter(len(p)) // convert int to ByteCounter
+	*c += ByteCounter(len(p))
 	return len(p), nil
 }
 
