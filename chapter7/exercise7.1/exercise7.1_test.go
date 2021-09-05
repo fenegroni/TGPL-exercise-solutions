@@ -5,34 +5,39 @@ import (
 	"testing"
 )
 
-func TestByteCounter_defaultValue(t *testing.T) {
+func TestByteCounter(t *testing.T) {
 	var c ByteCounter
-	want := "0"
-	if got := fmt.Sprint(c); got != want {
-		t.Errorf("ByteCounter default value is %s, want %s", got, want)
+	want := 0
+	if got := int(c); got != want {
+		t.Errorf("ByteCounter default value is %d, want %d", got, want)
 	}
-}
-
-func TestByteCounter_Write(t *testing.T) {
-	var c ByteCounter
 	c.Write([]byte("hello"))
-	want := "5"
-	if got := fmt.Sprint(c); got != want {
-		t.Errorf("c is %s, want %s", got, want)
+	want = 5
+	if got := int(c); got != want {
+		t.Errorf("c is %d, want %d", got, want)
 	}
 	c = 0 // reset the counter
 	var name = "Dolly"
 	fmt.Fprintf(&c, "hello, %s", name)
-	want = "12"
-	if got := fmt.Sprint(c); got != want {
-		t.Errorf("c is %s, want %s", got, want)
+	want = 12
+	if got := int(c); got != want {
+		t.Errorf("c is %d, want %d", got, want)
+	}
+
+}
+
+func TestWordCounter(t *testing.T) {
+	var w WordCounter
+	want := 0
+	if got := int(w); got != want {
+		t.Errorf("WordCounter default value is %d, want %d", got, want)
 	}
 }
 
-func TestWordCounter_defaultValue(t *testing.T) {
-	var w WordCounter
-	want := "0"
-	if got := fmt.Sprint(w); got != want {
-		t.Errorf("WordCounter default value is %s, want %s", got, want)
+func TestLineCounter(t *testing.T) {
+	var w LineCounter
+	want := 0
+	if got := int(w); got != want {
+		t.Errorf("LineCounter default value is %d, want %d", got, want)
 	}
 }

@@ -8,3 +8,5 @@ func (c *ByteCounter) Write(p []byte) (int, error) {
 }
 
 type WordCounter int
+
+type LineCounter int
