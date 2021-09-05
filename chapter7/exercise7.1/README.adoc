@@ -21,10 +21,3 @@ for the other two types of counter.
 
 To count words we define two new types, `WordCounter` and `LineCounter`,
 which are simple `int` like `ByteCounter`.
-
-NOTE: We should encapsulate these types so that counters can only be increased in a certain way.
-And type conversion is simpler: look at the `Counter` type in section 6.6 for an example.
-
-NOTE: Optionally,
-we should use a base function and pass function arguments to make the counter
-implementation more robust.

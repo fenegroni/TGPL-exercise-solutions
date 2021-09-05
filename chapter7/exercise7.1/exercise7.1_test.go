@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+// TODO: encapsulate the counters.
+
 func TestByteCounter(t *testing.T) {
 	var c ByteCounter
 	want := 0
