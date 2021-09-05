@@ -12,3 +12,12 @@ func TestByteCounter_defaultValue(t *testing.T) {
 		t.Errorf("c is %s, want %s", got, want)
 	}
 }
+
+func TestByteCounter_Write(t *testing.T) {
+	var c ByteCounter
+	c.Write([]byte("hello"))
+	want := "5"
+	if got := fmt.Sprint(c); got != want {
+		t.Errorf("c is %s, want %s", got, want)
+	}
+}
