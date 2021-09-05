@@ -10,3 +10,16 @@
 Using the ideas from `ByteCounter`, implement counters for words and for lines.
 
 You will find `bufio.ScanWords` useful.
+
+== Tests for ByteCounter
+
+We begin solving the exercise by introducing very simple tests for `ByteCounter` first.
+These leverage what's written in the book and serve as building blocks
+for the other two types of counter.
+
+== `WordCounter` and `LineCounter`
+
+To count words we define two new types, `WordCounter` and `LineCounter`,
+which are simple `int`s like `ByteCounter`.
+
+We have less brittle tests using test tables for both.
