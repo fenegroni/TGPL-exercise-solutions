@@ -5,6 +5,7 @@
 :url-actions: {url-base}/actions
 :badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main[link={url-actions}]
 :badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
+:badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -12,3 +13,6 @@
 
 * {badge-exercise7-1}[link={url-base}/tree/master/chapter7/exercise7.1] +
 Using the ideas from `ByteCounter`, implement counters for words and for lines.
+* {badge-exercise7-2}[link={url-base}/tree/master/chapter7/exercise7.2] +
+Write a function `CountingWriter` that returns a new `Writer` that wraps the original
+and a pointer to an `int64` variable that contains the number of bytes written to the new `Writer`.
