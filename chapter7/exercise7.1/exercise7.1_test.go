@@ -50,9 +50,19 @@ func TestWordCounter(t *testing.T) {
 }
 
 func TestLineCounter(t *testing.T) {
-	var w LineCounter
+	var l LineCounter
 	want := 0
-	if got := int(w); got != want {
+	if got := int(l); got != want {
 		t.Fatalf("LineCounter default value is %d, want %d", got, want)
+	}
+	l.Write([]byte("hello\ndolly"))
+	want += 2
+	if got := int(l); got != want {
+		t.Errorf("l is %d, want %d", got, want)
+	}
+	l.Write([]byte("using \n at the end does not count as a new line\n"))
+	want += 2
+	if got := int(l); got != want {
+		t.Errorf("l is %d, want %d", got, want)
 	}
 }

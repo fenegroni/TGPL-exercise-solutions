@@ -27,3 +27,15 @@ func (w *WordCounter) Write(p []byte) (int, error) {
 }
 
 type LineCounter int
+
+// Write increments l by the number of lines in p split according to bufio.ScanLines
+func (l *LineCounter) Write(p []byte) (int, error) {
+	scanner := bufio.NewScanner(bytes.NewReader(p))
+	scanner.Split(bufio.ScanLines)
+	count := 0
+	for scanner.Scan() {
+		count++
+	}
+	*l += LineCounter(count)
+	return count, scanner.Err()
+}
