@@ -37,18 +37,17 @@ func TestWordCounter(t *testing.T) {
 	if got := int(w); got != want {
 		t.Fatalf("WordCounter default value is %d, want %d", got, want)
 	}
-	/*
-		w.Write([]byte("hello, dolly"))
-		want = 2
-		if got := int(w); got !=
-
-	*/
+	w.Write([]byte("hello, dolly"))
+	want = 2
+	if got := int(w); got != want {
+		t.Errorf("w is %d, want %d", got, want)
+	}
 }
 
 func TestLineCounter(t *testing.T) {
 	var w LineCounter
 	want := 0
 	if got := int(w); got != want {
-		t.Errorf("LineCounter default value is %d, want %d", got, want)
+		t.Fatalf("LineCounter default value is %d, want %d", got, want)
 	}
 }
