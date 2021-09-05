@@ -38,7 +38,12 @@ func TestWordCounter(t *testing.T) {
 		t.Fatalf("WordCounter default value is %d, want %d", got, want)
 	}
 	w.Write([]byte("hello, dolly"))
-	want = 2
+	want += 2
+	if got := int(w); got != want {
+		t.Errorf("w is %d, want %d", got, want)
+	}
+	w.Write([]byte("using a - counts as a word"))
+	want += 7
 	if got := int(w); got != want {
 		t.Errorf("w is %d, want %d", got, want)
 	}
