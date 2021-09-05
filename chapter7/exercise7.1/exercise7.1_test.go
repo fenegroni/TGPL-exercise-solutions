@@ -9,7 +9,7 @@ func TestByteCounter_defaultValue(t *testing.T) {
 	var c ByteCounter
 	want := "0"
 	if got := fmt.Sprint(c); got != want {
-		t.Errorf("c is %s, want %s", got, want)
+		t.Errorf("ByteCounter default value is %s, want %s", got, want)
 	}
 }
 
@@ -26,5 +26,13 @@ func TestByteCounter_Write(t *testing.T) {
 	want = "12"
 	if got := fmt.Sprint(c); got != want {
 		t.Errorf("c is %s, want %s", got, want)
+	}
+}
+
+func TestWordCounter_defaultValue(t *testing.T) {
+	var w WordCounter
+	want := "0"
+	if got := fmt.Sprint(w); got != want {
+		t.Errorf("WordCounter default value is %s, want %s", got, want)
 	}
 }
