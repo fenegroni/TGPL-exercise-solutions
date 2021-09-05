@@ -1,0 +1,14 @@
+= Chapter 7
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main[link={url-actions}]
+:badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
+
+{badge-chapter7}
+
+== Interfaces
+
+* {badge-exercise7-1}[link={url-base}/tree/master/chapter7/exercise7.1] +
+Implement these additional methods...

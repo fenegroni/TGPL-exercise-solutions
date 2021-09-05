@@ -33,12 +33,15 @@
 :badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
 :badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
 :badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
+:badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main
+:badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 {badge-chapter4}[link={url-base}/tree/master/chapter4]
 {badge-chapter5}[link={url-base}/tree/master/chapter5]
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
+{badge-chapter7}[link={url-base}/tree/master/chapter7]
 
 Solutions to the exercises in the book
 _The Go Programming Language_
@@ -110,3 +113,6 @@ describing the TDD approach taken.
 {badge-exercise6-3}[link={url-base}/tree/master/chapter6/exercise6.3]
 {badge-exercise6-4}[link={url-base}/tree/master/chapter6/exercise6.4]
 {badge-exercise6-5}[link={url-base}/tree/master/chapter6/exercise6.5]
+
+{badge-chapter7}[link={url-base}/tree/master/chapter7]
+{badge-exercise7-1}[link={url-base}/tree/master/chapter7/exercise7.1]
