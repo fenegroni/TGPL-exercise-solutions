@@ -11,4 +11,4 @@
 == Interfaces
 
 * {badge-exercise7-1}[link={url-base}/tree/master/chapter7/exercise7.1] +
-Implement these additional methods...
+Using the ideas from `ByteCounter`, implement counters for words and for lines.

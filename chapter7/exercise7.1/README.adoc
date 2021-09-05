@@ -1,0 +1,12 @@
+= Exercise 7.1
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Using the ideas from `ByteCounter`, implement counters for words and for lines.
+
+You will find `bufio.ScanWords` useful.
