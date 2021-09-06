@@ -1,0 +1,11 @@
+= Exercise 7.3
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Write a `String` method for the `*tree` type in Section 4.4
+that reveals the sequence of values in the tree.
