@@ -7,6 +7,7 @@
 :badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
 :badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
 :badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
+:badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -20,3 +21,4 @@ and a pointer to an `int64` variable that contains the number of bytes written t
 * {badge-exercise7-3}[link={url-base}/tree/master/chapter7/exercise7.3] +
 Write a `String` method for the `*tree` type in Section 4.4
 that reveals the sequence of values in the tree.
+* {badge-exercise7-4}[link={url-base}/tree/master/chapter7/exercise7.4] +
