@@ -15,3 +15,21 @@ that at any moment contains the number of bytes written to the new `Writer`.
 ----
 func CountingWriter(w io.Writer) (io.Writer, *int64)
 ----
+
+== Test
+
+We first use `CountingWriter` to get a `Writer` and then we write a string to an empty `strings.Builder`.
+
+We then write a second string using the same `Writer` as before, therefore to the same `strings.Builder`.
+Here we expect the count to be the length of concatenating the second string to the first.
+
+Finally we write a third string to the same `strings.Builder` as before.
+Except this time we use a second `Writer`
+created by passing the original `strings.Builder` to `CountingWriter`.
+
+At this point we want the byte count for this second `Writer` to be the length of the third string only.
+The byte count of the first `Writer` should not change
+because the two `Writer` objects are distinct instances.
+
+The string representation of the encapsulated `strings.Builder` used by both ``Writer``'s
+should then be the concatenation of all three strings.
