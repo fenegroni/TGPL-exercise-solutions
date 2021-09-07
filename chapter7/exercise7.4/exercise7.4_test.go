@@ -11,83 +11,21 @@ import (
 func TestNewReader(t *testing.T) {
 	tests := []struct {
 		document string
-		pretty   string
 		outline  string
 	}{
 		{`<html><head></head><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>`,
-			`<html>
-  <head/>
-  <body>
-    <h1>
-      My First Heading
-    </h1>
-    <p>
-      My first paragraph.
-    </p>
-  </body>
-</html>
-`,
 			"[html]\n[html head]\n[html body]\n[html body h1]\n[html body p]\n"},
 		{`<html><head></head><body><h1>My First Heading</h1><!-- My first comment --><p>My first paragraph.</p></body></html>`,
-			`<html>
-  <head/>
-  <body>
-    <h1>
-      My First Heading
-    </h1>
-    <!-- My first comment -->
-    <p>
-      My first paragraph.
-    </p>
-  </body>
-</html>
-`,
 			"[html]\n[html head]\n[html body]\n[html body h1]\n[html body p]\n"},
 		{`<html><head></head><body><h1>My First Heading</h1><!-- My first comment --><p>My first paragraph.<a href="link1">link 1</a></p></body></html>`,
-			`<html>
-  <head/>
-  <body>
-    <h1>
-      My First Heading
-    </h1>
-    <!-- My first comment -->
-    <p>
-      My first paragraph.
-      <a href="link1">
-        link 1
-      </a>
-    </p>
-  </body>
-</html>
-`,
 			"[html]\n[html head]\n[html body]\n[html body h1]\n[html body p]\n[html body p a]\n"},
 		{`<html><head></head><body><h1>My First Heading</h1><!-- My first comment --><p>My first paragraph.<img src="image1.png" width="200"></p></body></html>`,
-			`<html>
-  <head/>
-  <body>
-    <h1>
-      My First Heading
-    </h1>
-    <!-- My first comment -->
-    <p>
-      My first paragraph.
-      <img src="image1.png" width="200">
-    </p>
-  </body>
-</html>
-`,
 			"[html]\n[html head]\n[html body]\n[html body h1]\n[html body p]\n[html body p img]\n"},
 	}
 	for _, test := range tests {
-		input = strings.NewReader(test.document)
-		output = new(strings.Builder)
-		PrettyPrint()
-		if gotPretty := output.(*strings.Builder).String(); gotPretty != test.pretty {
-			t.Errorf("PrettyPrint(%q) =\n%q\nwant\n%q", test.document, gotPretty, test.pretty)
-		}
-		gotTree, err := html.Parse(strings.NewReader(output.(*strings.Builder).String()))
+		gotTree, err := html.Parse(strings.NewReader(test.document))
 		if err != nil {
-			t.Errorf("PrettyPrint(%q): error: %v", test.document, err)
+			t.Errorf("html.Parse(NewReader(%q)): error: %v", test.document, err)
 		}
 		var gotOutline io.Writer = new(strings.Builder)
 		outline(nil, gotTree, gotOutline)
