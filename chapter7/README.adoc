@@ -22,3 +22,5 @@ and a pointer to an `int64` variable that contains the number of bytes written t
 Write a `String` method for the `*tree` type in Section 4.4
 that reveals the sequence of values in the tree.
 * {badge-exercise7-4}[link={url-base}/tree/master/chapter7/exercise7.4] +
+Implement a simple version of `strings.NewReader`,
+and use it to make the HTML parser take input from a string.

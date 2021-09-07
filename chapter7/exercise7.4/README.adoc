@@ -6,3 +6,8 @@
 :badge-exercise: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main[link={url-actions}]
 
 {badge-exercise}
+
+The `strings.NewReader` function returns a value that satisfies the `io.Reader` interface
+(and others) by reading from its argument, a string.
+Implement a simple version of `NewReader` yourself,
+and use it to make the HTML parser take input from a string.
