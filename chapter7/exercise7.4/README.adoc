@@ -11,3 +11,17 @@ The `strings.NewReader` function returns a value that satisfies the `io.Reader` 
 (and others) by reading from its argument, a string.
 Implement a simple version of `NewReader` yourself,
 and use it to make the HTML parser take input from a string.
+
+== Test
+
+We use the same test we implemented for exercise 5.7
+using the `outline` function to
+build a string representation of an HTML document
+given the parse tree got from `html.Parse`.
+In this test we call `html.Parse` by calling our own implementation of `NewReader`
+using the string from each test case.
+
+As we can see from the implementation, out of the many interfaces our `Reader` has to satisfy
+only the `io.Reader` interface needs to implemented for the test to pass.
+
+Luckily for us, the other interfaces that `strings.Reader` implements are not called by `html.Parse`.

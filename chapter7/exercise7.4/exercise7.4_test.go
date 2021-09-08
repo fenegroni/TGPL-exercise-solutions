@@ -23,9 +23,9 @@ func TestNewReader(t *testing.T) {
 			"[html]\n[html head]\n[html body]\n[html body h1]\n[html body p]\n[html body p img]\n"},
 	}
 	for _, test := range tests {
-		gotTree, err := html.Parse(strings.NewReader(test.document))
+		gotTree, err := html.Parse(NewReader(test.document))
 		if err != nil {
-			t.Errorf("html.Parse(NewReader(%q)): error: %v", test.document, err)
+			t.Errorf("html.Parse(Reader(%q)): error: %v", test.document, err)
 		}
 		var gotOutline io.Writer = new(strings.Builder)
 		outline(nil, gotTree, gotOutline)
