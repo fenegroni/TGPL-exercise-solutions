@@ -8,6 +8,7 @@
 :badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
 :badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
 :badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
+:badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -24,3 +25,5 @@ that reveals the sequence of values in the tree.
 * {badge-exercise7-4}[link={url-base}/tree/master/chapter7/exercise7.4] +
 Implement a simple version of `strings.NewReader`,
 and use it to make the HTML parser take input from a string.
+* {badge-exercise7-5}[link={url-base}/tree/master/chapter7/exercise7.5] +
+Implement the `LimitReader` function in the `io` package.
