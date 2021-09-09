@@ -12,3 +12,23 @@ an `io.Reader r` and a number of bytes `n`,
 and returns another `Reader` that
 reads from `r` but reports an end-of-file condition after `n` bytes.
 Implement it.
+
+== Test the original
+
+The test was initially written to target the original `io.LimitedReader` implementation.
+We quickly figured out that the resulting `Reader` did not return the error `io.EOF`
+the first time it was asked to read more than the limit.
+
+Although it is reasonable to expect an end-of-file error when asking for more bytes
+than are available, implementations of `io.Reader` can choose whether to return
+`io.EOF` or `nil`. The contract only stipulates that subsequent invocations of `Read`
+will not return any bytes and will return `io.EOF` in such cases.
+
+My expectation from what I read in the documentation of `LimitedReader` was
+that it would have returned `io.EOF` on the first call to `Read`.
+
+Thank goodness for Test Driven Development!
+
+== Implementation
+
+I decided to implement my `LimitedReader` to match my expectations instead.
