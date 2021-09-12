@@ -29,11 +29,18 @@ func TestLimitReader(t *testing.T) {
 		p := make([]byte, test.limit/2+10)
 		n, err := eofZero.Read(p)
 		n2, err2 := eofZero.Read(p)
-		if int64(n) > test.limit || (err != io.EOF && err != nil) {
-			t.Errorf("first pass io.LimitReader(%d).Read(%d) returns (%d, %v) want (%d, %v)", test.limit, len(p), n, err, test.limit, io.EOF)
+		n3, err3 := eofZero.Read(p)
+		if int64(n+n2+n3) > test.limit {
+			t.Errorf("LimitReader(%d).Read(%d) reads %d bytes, want %d", test.limit, len(p), n+n2+n3, test.limit)
 		}
-		if int64(n2) > 0 || err2 != io.EOF {
-			t.Errorf("second pass io.LimitReader(%d).Read(%d) returns (%d, %v) want (%d, %v)", test.limit, len(p), n, err, 0, io.EOF)
+		if err != io.EOF && err != nil {
+			t.Errorf("LimitReader(%d).Read: first pass reading %d bytes returns error %v want either nil or io.EOF", test.limit, len(p), err)
+		}
+		if err2 != io.EOF && err2 != nil {
+			t.Errorf("LimitReader(%d).Read: second pass reading %d bytes returns error %v want either nil or io.EOF", test.limit, len(p), err)
+		}
+		if err3 != io.EOF {
+			t.Errorf("LimitReader(%d).Read: third pass reading %d bytes returns error %v want io.EOF", test.limit, len(p), err)
 		}
 	}
 }
