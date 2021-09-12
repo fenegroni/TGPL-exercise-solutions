@@ -26,7 +26,7 @@ func TestLimitReader(t *testing.T) {
 	var z zero
 	for _, test := range tests {
 		eofZero := LimitReader(&z, test.limit)
-		p := make([]byte, test.limit+10)
+		p := make([]byte, test.limit/2+10)
 		n, err := eofZero.Read(p)
 		n2, err2 := eofZero.Read(p)
 		if int64(n) > test.limit || (err != io.EOF && err != nil) {
