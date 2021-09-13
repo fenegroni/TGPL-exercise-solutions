@@ -9,6 +9,7 @@
 :badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
 :badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
 :badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
+:badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -27,3 +28,4 @@ Implement a simple version of `strings.NewReader`,
 and use it to make the HTML parser take input from a string.
 * {badge-exercise7-5}[link={url-base}/tree/master/chapter7/exercise7.5] +
 Implement the `LimitReader` function in the `io` package.
+* {badge-exercise7-6}[link={url-base}/tree/master/chapter7/exercise7.6] +
