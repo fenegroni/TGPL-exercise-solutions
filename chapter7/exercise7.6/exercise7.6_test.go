@@ -17,6 +17,7 @@ func TestCelsiusFlag(t *testing.T) {
 		{[]string{"-temp", "-10°C"}, -10.0},
 		{[]string{"-temp", "32F"}, 0},
 		{[]string{"-temp", "32°F"}, 0},
+		{[]string{"-temp", "0K"}, -273.15},
 	}
 	for _, test := range tests {
 		flags := flag.NewFlagSet("test", flag.ContinueOnError)
