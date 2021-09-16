@@ -8,3 +8,14 @@
 {badge-exercise}
 
 Add support for Kelvin temperatures to `tempflag`.
+
+== Test
+
+In the book `tempflag` is the name of the package in 7.4.
+
+In our test, we called the package `tempconv`
+which was the name originally used in the book in Chapter 2.
+
+Inside package `tempconv` we created a file called `tempflag.go`.
+
+That's where we add support for Kelvin temperatures.
