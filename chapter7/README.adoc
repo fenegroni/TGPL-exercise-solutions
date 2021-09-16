@@ -29,3 +29,4 @@ and use it to make the HTML parser take input from a string.
 * {badge-exercise7-5}[link={url-base}/tree/master/chapter7/exercise7.5] +
 Implement the `LimitReader` function in the `io` package.
 * {badge-exercise7-6}[link={url-base}/tree/master/chapter7/exercise7.6] +
+Add support for Kelvin temperatures to `tempflag`.

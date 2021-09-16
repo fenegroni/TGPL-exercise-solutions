@@ -6,3 +6,5 @@
 :badge-exercise: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main[link={url-actions}]
 
 {badge-exercise}
+
+Add support for Kelvin temperatures to `tempflag`.
