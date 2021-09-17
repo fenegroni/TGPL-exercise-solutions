@@ -64,10 +64,15 @@ is the zero value of `celsiusFlag` when in fact it is not.
 So I implemented a way to detect if a `celsiusFlag` was built as a _zero value_
 
 ----
+type celsiusFlag struct{ Celsius; bool }
+
 func (f *celsiusFlag) String() string {
     if f.Celsius == 0 && f.bool == false {
         return ""
     }
     return f.Celsius.String()
 }
+
+func CelsiusFlag(set *flag.FlagSet, name string, value Celsius, usage string) *Celsius {
+	f := celsiusFlag{value, true}
 ----
