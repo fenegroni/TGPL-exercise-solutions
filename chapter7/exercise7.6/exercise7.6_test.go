@@ -1,7 +1,7 @@
 package exercise7_6
 
 import (
-	tempconv "TGPL-exercise-solutions/chapter7/exercise7.6/tempconv"
+	"TGPL-exercise-solutions/chapter7/exercise7.6/tempconv"
 	"flag"
 	"testing"
 )
