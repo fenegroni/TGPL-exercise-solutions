@@ -8,3 +8,66 @@
 {badge-exercise}
 
 Explain why the help message contains `°C` when the default value of `20.0` does not.
+
+== Explanation
+
+In our test we validate the help message output does contain `(default 20°C)`.
+
+This is because the `String` method on `Celsius` is used when printing default values.
+
+The interface `Value` used by the `flag` package to store values
+for command line flags requires two methods: `Set` and `String`.
+
+`celsiusFlag` only has the `Set` method defined explicitly,
+but a `celsiusFlag` has a `Celsius` unnamed field,
+and unnamed fields give the containing type access to all their methods.
+
+`celsiusFlag` _inherits_ `String` from `Celsius`.
+
+=== There's more!
+
+I was not sure what would happen if the `Celsius.String` method wasn't inherited.
+
+So I defined my own
+
+----
+func (*celsiusFlag) String() string {
+	return "20°C"
+}
+----
+
+but that didn't give the expected results.
+
+The test failed because not default value was being printed by `PrintDefaults`.
+
+I debugged the program and realised that in order to print the default value,
+the `flag` package goes to some lengths to ensure the value is printed correctly.
+
+It uses the reflection features in Go to try and figure out if the default value
+should be printed. I think it's because if the default value for a particular flag
+equals its _zero_ value, then it's not worth printing it.
+
+----
+// isZeroValue determines whether the string represents the zero
+// value for a flag.
+func isZeroValue(flag *Flag, value string) bool {
+    // Build a zero value of the flag's Value type, and see if the
+    // result of calling its String method equals the value passed in.
+    // This works unless the Value type is itself an interface type.
+----
+
+And when `celsiusFlag` is being checked for its _zero value_ representation,
+our naive implementation of `String` always gives the same value back,
+therefore `isZeroValue` thinks the default value of `20`
+is the zero value of `celsiusFlag` when in fact it is not.
+
+So I implemented a way to detect if a `celsiusFlag` was built as a _zero value_
+
+----
+func (f *celsiusFlag) String() string {
+    if f.Celsius == 0 && f.bool == false {
+        return ""
+    }
+    return f.Celsius.String()
+}
+----
