@@ -30,3 +30,5 @@ and use it to make the HTML parser take input from a string.
 Implement the `LimitReader` function in the `io` package.
 * {badge-exercise7-6}[link={url-base}/tree/master/chapter7/exercise7.6] +
 Add support for Kelvin temperatures to `tempflag`.
+* {badge-exercise7-7}[link={url-base}/tree/master/chapter7/exercise7.7] +
+Explain why the help message contains `°C` when the default value of `20.0` does not.
