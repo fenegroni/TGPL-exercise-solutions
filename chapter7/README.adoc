@@ -10,6 +10,8 @@
 :badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
 :badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
 :badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
+:badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
+:badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -32,3 +34,6 @@ Implement the `LimitReader` function in the `io` package.
 Add support for Kelvin temperatures to `tempflag`.
 * {badge-exercise7-7}[link={url-base}/tree/master/chapter7/exercise7.7] +
 Explain why the help message contains `°C` when the default value of `20.0` does not.
+* {badge-exercise7-8}[link={url-base}/tree/master/chapter7/exercise7.8] +
+Define an implementation of `sort.Interface` for use by a GUI table widget.
+Compare that approach with repeated sorting using `sort.Stable`.
