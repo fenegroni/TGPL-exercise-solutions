@@ -51,3 +51,21 @@ func TestPrintTracks(t *testing.T) {
 	}})
 	music.PrintTracks(tracks)
 }
+
+func TestIntSort(t *testing.T) {
+	values := []int{3, 1, 4, 1}
+	if false != sort.IntsAreSorted(values) {
+		t.Errorf("values are sorted: %v", values)
+	}
+	sort.Ints(values)
+	if true != sort.IntsAreSorted(values) {
+		t.Errorf("values are not sorted: %v", values)
+	}
+	sort.Sort(sort.Reverse(sort.IntSlice(values)))
+	if true != sort.IntsAreSorted(values) {
+		t.Errorf("values are not sorted by 'int' ascending sorted: %v", values)
+	}
+	if true != sort.IsSorted(sort.IntSlice(values)) {
+		t.Errorf("values are not sorted: %v", values)
+	}
+}
