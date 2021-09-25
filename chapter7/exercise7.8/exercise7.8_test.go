@@ -1,22 +1,29 @@
 package exercise7_8
 
 import (
+	"sort"
 	"testing"
 )
 
-type ThreeColumns struct {
-	A, B, C int
+type ThreeCols struct {
+	a, b, c int
 }
 
-type StableTable struct {
-	data []*ThreeColumns
+type StableSort struct {
+	T []*ThreeCols
 }
 
-func TestStableSortTracks(t *testing.T) {
-	var table = StableTable{
-		[]*ThreeColumns{{1, 2, 3}},
+func (s StableSort) Len() int      { return len(s.T) }
+func (s StableSort) Swap(i, j int) { s.T[i], s.T[j] = s.T[j], s.T[i] }
+
+func (s StableSort) Less(i, j int) bool {
+	return false
+}
+
+func TestStableSort(t *testing.T) {
+	var table = []*ThreeCols{
+		{1, 2, 3},
 	}
-	// want will show what we expect the order to be
-	// ordering by column A then column B is it different if the ordering is not kept?
-	// as we put tests together we can validate it.
+	sort.Sort(StableSort{table})
+	t.Logf("%v", *table[0])
 }
