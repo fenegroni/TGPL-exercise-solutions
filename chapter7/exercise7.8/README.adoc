@@ -15,3 +15,51 @@ Define an implementation of `sort.Interface` for use by such a table.
 Compare that approach with repeated sorting using `sort.Stable`.
 
 == Test
+
+We define the `Table` type, a slice of `TableRow`,
+and methods to satisfy the `sort.Sort` interface, as usual.
+
+Each test in `TestStableLess` is a `Table`.
+
+When calling `sort.Sort` on the test,
+we create a new object of type `stable.Sorted` out of the test object.
+using `stable.NewSorted`.
+`Sorted` is a `sort.Interface` implementation at its core,
+except it carries extra information to aid the sorting to be stable.
+
+Calling `sort.Sort` on a `stable.Sorted` object causes our `stable.Sorted.Less`
+to be called whenever elements have to be compared:
+in the comparison method,
+we first decide if the elements at index `i` and `j` are equal.
+If they are, we compare their original indexes before sorting began.
+
+This ensures the order of equal elements is maintained.
+
+=== `stable.Sorted`
+
+The `stable.Sorted` type combines the known `sort.Interface`
+required by `sort.Sort`, with a map.
+
+The map stores the original index of the elements to be sorted
+before they are compared and moved by `sort.Sort`.
+
+The map that assigns the original index to each element
+is populated when creating a `stable.Sorted` object
+using `stable.NewSorted`.
+
+=== `stable.SortableIndexable`
+
+To keep the implementation as generic as possible,
+in package `stable`, the new interface `SortableIndexable`
+combines the known `sort.Interface` with the method `At`
+to allow `Sorted.Less` to access elements of the `sort.Interface` object.
+
+=== `Table`
+
+For example, we define the `Table` type, a slice of `TableRow`,
+and methods to satisfy the `stable.SortableIndexable` interface.
+
+The `stable` package knows nothing about the `Table` type,
+except that its elements can be used as keys in a map.
+
+These keys, as far as `stable` is concerned, are simply empty interfaces.
