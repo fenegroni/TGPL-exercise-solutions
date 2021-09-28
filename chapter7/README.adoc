@@ -12,6 +12,7 @@
 :badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
 :badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
 :badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
+:badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -37,3 +38,4 @@ Explain why the help message contains `°C` when the default value of `20.0` doe
 * {badge-exercise7-8}[link={url-base}/tree/master/chapter7/exercise7.8] +
 Define an implementation of `sort.Interface` for use by a GUI table widget.
 Compare that approach with repeated sorting using `sort.Stable`.
+* {badge-exercise7-9}[link={url-base}/tree/master/chapter7/exercise7.9] +
