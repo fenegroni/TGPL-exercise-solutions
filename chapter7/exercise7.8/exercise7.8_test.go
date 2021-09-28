@@ -45,3 +45,5 @@ func TestStableLess(t *testing.T) {
 		}
 	}
 }
+
+// TODO: Write a benchmark against sort.Stable
