@@ -28,13 +28,13 @@ func (x ByYear) Less(i, j int) bool { return x[i].Year < x[j].Year }
 func (x ByYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 type CustomSort struct {
-	T         []*Track
-	CombiLess func(x, y *Track) bool
+	t    []*Track
+	less func(x, y *Track) bool
 }
 
-func (x CustomSort) Len() int           { return len(x.T) }
-func (x CustomSort) Less(i, j int) bool { return x.CombiLess(x.T[i], x.T[j]) }
-func (x CustomSort) Swap(i, j int)      { x.T[i], x.T[j] = x.T[j], x.T[i] }
+func (x CustomSort) Len() int           { return len(x.t) }
+func (x CustomSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
+func (x CustomSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
 
 func PrintTracks(tracks []*Track) {
 	const format = "%v\t%v\t%v\t%v\t%v\t\n"
@@ -45,4 +45,8 @@ func PrintTracks(tracks []*Track) {
 		_, _ = fmt.Fprintf(tw, format, t.Title, t.Artist, t.Album, t.Year, t.Length)
 	}
 	_ = tw.Flush()
+}
+
+func PrintTracksHTML(tracks []*Track) {
+	//html/template
 }

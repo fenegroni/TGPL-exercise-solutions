@@ -33,7 +33,7 @@ func ExamplePrintTracks() {
 	sort.Sort(sort.Reverse(ByYear(tracks)))
 	PrintTracks(tracks)
 	fmt.Println("Custom sorting: Title, Year, Length:")
-	sort.Sort(CustomSort{T: tracks, CombiLess: func(x, y *Track) bool {
+	sort.Sort(CustomSort{t: tracks, less: func(x, y *Track) bool {
 		if x.Title != y.Title {
 			return x.Title < y.Title
 		}
