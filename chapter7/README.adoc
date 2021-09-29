@@ -39,3 +39,5 @@ Explain why the help message contains `°C` when the default value of `20.0` doe
 Define an implementation of `sort.Interface` for use by a GUI table widget.
 Compare that approach with repeated sorting using `sort.Stable`.
 * {badge-exercise7-9}[link={url-base}/tree/master/chapter7/exercise7.9] +
+Use the `html/template` package (Section 4.6) to replace `printTracks` with a function
+that displays the tracks as an HTML table.
