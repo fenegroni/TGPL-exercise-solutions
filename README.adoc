@@ -6,43 +6,9 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :badge-chapter4: image:{url-workflows}/Chapter 4/badge.svg?branch=main
-:badge-exercise4-9: image:{url-workflows}/Exercise 4.9/badge.svg?branch=main
 :badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main
-:badge-exercise5-1: image:{url-workflows}/Exercise 5.1/badge.svg?branch=main
-:badge-exercise5-2: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main
-:badge-exercise5-3: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main
-:badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main
-:badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main
-:badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main
-:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main
-:badge-exercise5-8: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main
-:badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main
-:badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main
-:badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
-:badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
-:badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
-:badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
-:badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
-:badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
-:badge-exercise5-17: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main
-:badge-exercise5-18: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main
-:badge-exercise5-19: image:{url-workflows}/Exercise 5.19/badge.svg?branch=main
 :badge-chapter6: image:{url-workflows}/Chapter 6/badge.svg?branch=main
-:badge-exercise6-1: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main
-:badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
-:badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
-:badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
-:badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
 :badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main
-:badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
-:badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
-:badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
-:badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
-:badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
-:badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
-:badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
-:badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
-:badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
@@ -92,43 +58,9 @@ describing the TDD approach taken.
 == Solutions
 
 {badge-chapter4}[link={url-base}/tree/master/chapter4]
-{badge-exercise4-9}[link={url-base}/tree/master/chapter4/exercise4.9]
 
 {badge-chapter5}[link={url-base}/tree/master/chapter5]
-{badge-exercise5-1}[link={url-base}/tree/master/chapter5/exercise5.1]
-{badge-exercise5-2}[link={url-base}/tree/master/chapter5/exercise5.2]
-{badge-exercise5-3}[link={url-base}/tree/master/chapter5/exercise5.3]
-{badge-exercise5-4}[link={url-base}/tree/master/chapter5/exercise5.4]
-{badge-exercise5-5}[link={url-base}/tree/master/chapter5/exercise5.5]
-{badge-exercise5-6}[link={url-base}/tree/master/chapter5/exercise5.6]
-{badge-exercise5-7}[link={url-base}/tree/master/chapter5/exercise5.7]
-{badge-exercise5-8}[link={url-base}/tree/master/chapter5/exercise5.8]
-{badge-exercise5-9}[link={url-base}/tree/master/chapter5/exercise5.9]
-{badge-exercise5-10}[link={url-base}/tree/master/chapter5/exercise5.10]
-{badge-exercise5-11}[link={url-base}/tree/master/chapter5/exercise5.11]
-{badge-exercise5-12}[link={url-base}/tree/master/chapter5/exercise5.12]
-{badge-exercise5-13}[link={url-base}/tree/master/chapter5/exercise5.13]
-{badge-exercise5-14}[link={url-base}/tree/master/chapter5/exercise5.14]
-{badge-exercise5-15}[link={url-base}/tree/master/chapter5/exercise5.15]
-{badge-exercise5-16}[link={url-base}/tree/master/chapter5/exercise5.16]
-{badge-exercise5-17}[link={url-base}/tree/master/chapter5/exercise5.17]
-{badge-exercise5-18}[link={url-base}/tree/master/chapter5/exercise5.18]
-{badge-exercise5-19}[link={url-base}/tree/master/chapter5/exercise5.19]
 
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
-{badge-exercise6-1}[link={url-base}/tree/master/chapter6/exercise6.1]
-{badge-exercise6-2}[link={url-base}/tree/master/chapter6/exercise6.2]
-{badge-exercise6-3}[link={url-base}/tree/master/chapter6/exercise6.3]
-{badge-exercise6-4}[link={url-base}/tree/master/chapter6/exercise6.4]
-{badge-exercise6-5}[link={url-base}/tree/master/chapter6/exercise6.5]
 
 {badge-chapter7}[link={url-base}/tree/master/chapter7]
-{badge-exercise7-1}[link={url-base}/tree/master/chapter7/exercise7.1]
-{badge-exercise7-2}[link={url-base}/tree/master/chapter7/exercise7.2]
-{badge-exercise7-3}[link={url-base}/tree/master/chapter7/exercise7.3]
-{badge-exercise7-4}[link={url-base}/tree/master/chapter7/exercise7.4]
-{badge-exercise7-5}[link={url-base}/tree/master/chapter7/exercise7.5]
-{badge-exercise7-6}[link={url-base}/tree/master/chapter7/exercise7.6]
-{badge-exercise7-7}[link={url-base}/tree/master/chapter7/exercise7.7]
-{badge-exercise7-8}[link={url-base}/tree/master/chapter7/exercise7.8]
-{badge-exercise7-9}[link={url-base}/tree/master/chapter7/exercise7.9]
