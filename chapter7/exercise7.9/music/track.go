@@ -2,7 +2,9 @@ package music
 
 import (
 	"fmt"
+	"html/template"
 	"os"
+	"strings"
 	"text/tabwriter"
 	"time"
 )
@@ -47,6 +49,35 @@ func PrintTracks(tracks []*Track) {
 	_ = tw.Flush()
 }
 
-func PrintTracksHTML(tracks []*Track) {
-	//html/template
+func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
+	const tpl = `
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{{.Title}}</title>
+	</head>
+	<body>
+		{{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
+	</body>
+</html>`
+	var t *template.Template
+	if t, err = template.New("webpage").Parse(tpl); err != nil {
+		return "", err
+	}
+	data := struct {
+		Title string
+		Items []string
+	}{
+		Title: "My page",
+		Items: []string{
+			"My photos",
+			"My blog",
+		},
+	}
+	var output strings.Builder
+	if err = t.Execute(&output, data); err != nil {
+		return "", err
+	}
+	return output.String(), err
 }
