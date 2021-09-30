@@ -1,4 +1,4 @@
-=  TGPL Exercise Solutions
+=  TGPL Exercise Solutions using TDD
 :toc: preamble
 :toc-title:
 :toclevels: 1
