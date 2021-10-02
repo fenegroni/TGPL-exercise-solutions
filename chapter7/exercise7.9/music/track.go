@@ -55,29 +55,19 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{{.Title}}</title>
+		<title>Tracks</title>
 	</head>
 	<body>
-		{{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
+		{{ range . }}<div>{{ .Title }}</div>{{ else }}<div><strong>no rows</strong></div>{{end}}
 	</body>
 </html>`
 	var t *template.Template
 	if t, err = template.New("webpage").Parse(tpl); err != nil {
 		return "", err
 	}
-	data := struct {
-		Title string
-		Items []string
-	}{
-		Title: "My page",
-		Items: []string{
-			"My photos",
-			"My blog",
-		},
-	}
 	var output strings.Builder
-	if err = t.Execute(&output, data); err != nil {
+	if err = t.Execute(&output, tracks); err != nil {
 		return "", err
 	}
-	return output.String(), err
+	return output.String(), nil
 }

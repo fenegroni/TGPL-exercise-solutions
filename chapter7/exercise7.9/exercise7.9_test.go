@@ -3,6 +3,7 @@ package exercise7_9
 import (
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"fmt"
+	"os"
 	"testing"
 	"time"
 )
@@ -21,5 +22,11 @@ func TestPrintTracksHTML(t *testing.T) {
 		{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
 		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 	}
-	fmt.Print(music.PrintTracksAsHTMLString(tracks))
+	htmlString, err := music.PrintTracksAsHTMLString(tracks)
+	if err != nil {
+		t.Fatalf("PrintTracksAsHTMLString error: %v", err)
+	}
+	f, _ := os.Create("index.html")
+	fmt.Fprintln(f, htmlString)
+	_ = f.Close()
 }
