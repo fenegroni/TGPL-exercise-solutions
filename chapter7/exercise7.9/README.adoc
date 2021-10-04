@@ -10,3 +10,42 @@
 Use the `html/template` package (Section 4.6) to replace `printTracks` with a function
 that displays the tracks as an HTML table. Use the solution to the previous exercise to arrange
 that each click on a column head makes an HTTP request to sort the table.
+
+== Test
+
+The exercise requires us to implement the
+integration of two separate pieces of functionality:
+
+. the HTML output in table form with hyperlinks in the headers
+. the ordering of the table contents to use the ordering from exercise 7.8
+
+The integration of those two separate requirements requires us to implement
+a web routine that responds to the hyperlink to decide how to further order the data.
+
+=== Strategy
+
+My TDD strategy for this exercise is to validate the integration of all
+the different bits first. The test will be robust enough to give me
+an idea of what the integration shoud look like.
+
+I will further refine the test as I implement the different parts,
+by implementing more detailed tests for the parts that need more robust validation.
+
+The decision to not implement what most people would call Unit Tests
+is intenional: rather than focusing on the detail of the implementation
+which might change, I am focusing on the end result first
+and use those aspects of the solution to guide me further.
+
+=== Front end
+
+I am not a front end web developer.
+
+I expect the HTML output to be the bare minimum that satisfies the requirements:
+a basic table with no borders and headers that contain a fixed hyperlink.
+
+=== Integration
+
+The integration test will not validate the HTML output:
+it will assume the output is well formed and
+will extract the URL from a known element
+to then make an HTTP call and get the result.
