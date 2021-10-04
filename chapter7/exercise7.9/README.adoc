@@ -45,7 +45,15 @@ a basic table with no borders and headers that contain a fixed hyperlink.
 
 === Integration
 
-The integration test will not validate the HTML output:
-it will assume the output is well formed and
-will extract the URL from a known element
-to then make an HTTP call and get the result.
+The integration test will extract elements from the table
+by id so that we know the order is correct
+and will then extract the URL from a known element
+to then make an HTTP call and get the next result.
+
+=== Leverage exercise 5.8
+
+In exercise 5.8 we wrote a function `ElementByID`
+to extract the correct elements by ID.
+
+
+Brand perform our first UI test.

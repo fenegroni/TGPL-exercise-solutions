@@ -26,7 +26,6 @@ func TestPrintTracksHTML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("PrintTracksAsHTMLString error: %v", err)
 	}
-	f, _ := os.Create("index.html")
-	fmt.Fprintln(f, htmlString)
-	_ = f.Close()
+	// parse htmlString and extract id's for table order to validate
+
 }
