@@ -59,16 +59,16 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 	<body>
 		<table>
 			<tr>
-				<th><a href="?sort=Title">Title</a></th>
-				<th><a href="?sort=Artist">Artist</a></th>
-				<th><a href="?sort=Album">Album</a></th>
-				<th><a href="?sort=Year">Year</a></th>
-				<th><a href="?sort=Length">Length</a></th>
+				<th><a id="HeaderLink1" href="?sort=Title">Title</a></th>
+				<th><a id="HeaderLink2" href="?sort=Artist">Artist</a></th>
+				<th><a id="HeaderLink3" href="?sort=Album">Album</a></th>
+				<th><a id="HeaderLink4" href="?sort=Year">Year</a></th>
+				<th><a id="HeaderLink5" href="?sort=Length">Length</a></th>
 			</tr>
 			{{ range . }}
-			<tr>
-				<td>{{ .Title }}</td>
-				<td>{{ .Artist }}</td>
+			<tr id="rowN">
+				<td id="rowNcol1">{{ .Title }}</td>
+				<td id="rowNcol2">{{ .Artist }}</td>
 				<td>{{ .Album }}</td>
 				<td>{{ .Year }}</td>
 				<td>{{ .Length }}</td>
@@ -77,6 +77,7 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 		</table>
 	</body>
 </html>`
+	// FIXME Add the row and rowcol ids to the html
 	var t *template.Template
 	if t, err = template.New("webpage").Parse(tpl); err != nil {
 		return "", err

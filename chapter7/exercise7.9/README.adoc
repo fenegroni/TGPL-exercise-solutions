@@ -55,5 +55,20 @@ to then make an HTTP call and get the next result.
 In exercise 5.8 we wrote a function `ElementByID`
 to extract the correct elements by ID.
 
+This will be the first part of the integration test:
+given the HTML output
+extract the elements of the table
+and the links from the headers.
 
-Brand perform our first UI test.
+=== Advantage of TDD approach
+
+Because we know from the very beginning that we must somehow test our solution,
+nd because we are starting from an integration test,
+our output will be a lot better quality, and our tests less brittle.
+
+Not only HTML elements will have an ID, but their IDs will be generated
+so that we can pick individual items and validate their position,
+order, attributes, etc.
+
+This attitude towards generating output this way is not so much about
+saving effort later, but instead it esnures refactoring is less risky.
