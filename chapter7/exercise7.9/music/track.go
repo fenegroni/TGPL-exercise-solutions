@@ -59,19 +59,19 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 	<body>
 		<table>
 			<tr>
-				<th><a id="HeaderLink1" href="?sort=Title">Title</a></th>
-				<th><a id="HeaderLink2" href="?sort=Artist">Artist</a></th>
-				<th><a id="HeaderLink3" href="?sort=Album">Album</a></th>
-				<th><a id="HeaderLink4" href="?sort=Year">Year</a></th>
-				<th><a id="HeaderLink5" href="?sort=Length">Length</a></th>
+				<th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
+				<th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
+				<th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
+				<th><a id="HeaderLink3" href="?sort=Year">Year</a></th>
+				<th><a id="HeaderLink4" href="?sort=Length">Length</a></th>
 			</tr>
-			{{ range . }}
-			<tr id="rowN">
-				<td id="rowNcol1">{{ .Title }}</td>
-				<td id="rowNcol2">{{ .Artist }}</td>
-				<td>{{ .Album }}</td>
-				<td>{{ .Year }}</td>
-				<td>{{ .Length }}</td>
+			{{ range $index, $_ := . }}
+			<tr id="row{{ $index }}">
+				<td id="row{{ $index }}col0">{{ .Title }}</td>
+				<td id="row{{ $index }}col1">{{ .Artist }}</td>
+				<td id="row{{ $index }}col2">{{ .Album }}</td>
+				<td id="row{{ $index }}col3">{{ .Year }}</td>
+				<td id="row{{ $index }}col4">{{ .Length }}</td>
 			</tr>
 			{{ end }}
 		</table>

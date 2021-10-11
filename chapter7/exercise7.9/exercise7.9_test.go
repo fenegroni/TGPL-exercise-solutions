@@ -1,9 +1,12 @@
 package exercise7_9
 
 import (
+	exercise5_8 "TGPL-exercise-solutions/chapter5/exercise5.8"
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"fmt"
+	"golang.org/x/net/html"
 	"os"
+	"strings"
 	"testing"
 	"time"
 )
@@ -26,8 +29,23 @@ func TestPrintTracksHTML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("PrintTracksAsHTMLString error: %v", err)
 	}
-	// parse htmlString and extract id's for table order to validate
+	// FIXME: For debugging purposes only,
+	//  while I am developing the test,
+	//  I will save the generated html in a file.
 	f, _ := os.Create("index.html")
 	defer f.Close()
 	fmt.Fprint(f, htmlString)
+	// parse htmlString and extract links in headers
+	doc, _ := html.Parse(strings.NewReader(htmlString))
+	node := exercise5_8.ElementByID(doc, "HeaderLink0")
+	if node == nil {
+		t.Errorf("No element HeaderLink0")
+	}
+	linkText := ""
+	for _, a := range node.Attr {
+		if a.Key == "href" {
+			linkText = a.Val
+		}
+	}
+	fmt.Println("Link: ", linkText)
 }
