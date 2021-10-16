@@ -22,7 +22,7 @@ integration of two separate pieces of functionality:
 The integration of those two separate requirements requires us to implement
 a web routine that responds to the hyperlink to decide how to further order the data.
 
-=== Strategy
+== Strategy
 
 My TDD strategy for this exercise is to validate the integration of all
 the different bits first. The test will be robust enough to give me
@@ -36,21 +36,21 @@ is intenional: rather than focusing on the detail of the implementation
 which might change, I am focusing on the end result first
 and use those aspects of the solution to guide me further.
 
-=== Front end
+== Front end
 
 I am not a front end web developer.
 
 I expect the HTML output to be the bare minimum that satisfies the requirements:
-a basic table with no borders and headers that contain a fixed hyperlink.
+a basic table with no borders and headers that contain fixed hyperlinks.
 
-=== Integration
+== Integration
 
 The integration test will extract elements from the table
 by id so that we know the order is correct
 and will then extract the URL from a known element
 to then make an HTTP call and get the next result.
 
-=== Leverage exercise 5.8
+== Leverage exercise 5.8
 
 In exercise 5.8 we wrote a function `ElementByID`
 to extract the correct elements by ID.
@@ -60,7 +60,7 @@ given the HTML output
 extract the elements of the table
 and the links from the headers.
 
-=== Advantage of TDD approach
+== Advantage of TDD approach
 
 Because we know from the very beginning that we must somehow test our solution,
 nd because we are starting from an integration test,
@@ -72,3 +72,5 @@ order, attributes, etc.
 
 This attitude towards generating output this way is not so much about
 saving effort later, but instead it esnures refactoring is less risky.
+
+==

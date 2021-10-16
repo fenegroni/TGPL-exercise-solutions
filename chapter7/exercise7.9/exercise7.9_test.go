@@ -48,4 +48,10 @@ func TestPrintTracksHTML(t *testing.T) {
 		}
 	}
 	fmt.Println("Link: ", linkText)
+	// Next: look for a previous exercise where we have used a web server
+	// and either run a real web server
+	// or at least have the http handler for it
+	// so we can prove we can parse the link correctly
+	// run the correct sorting
+	// and return the correct result
 }

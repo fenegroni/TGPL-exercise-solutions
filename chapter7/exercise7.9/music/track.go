@@ -50,33 +50,25 @@ func PrintTracks(tracks []*Track) {
 }
 
 func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
-	const tpl = `<!DOCTYPE html>
-<html lang="en-GB">
-	<head>
-		<meta charset="UTF-8">
-		<title>Tracks</title>
-	</head>
-	<body>
-		<table>
-			<tr>
-				<th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
-				<th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
-				<th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
-				<th><a id="HeaderLink3" href="?sort=Year">Year</a></th>
-				<th><a id="HeaderLink4" href="?sort=Length">Length</a></th>
-			</tr>
-			{{ range $index, $_ := . }}
-			<tr id="row{{ $index }}">
-				<td id="row{{ $index }}col0">{{ .Title }}</td>
-				<td id="row{{ $index }}col1">{{ .Artist }}</td>
-				<td id="row{{ $index }}col2">{{ .Album }}</td>
-				<td id="row{{ $index }}col3">{{ .Year }}</td>
-				<td id="row{{ $index }}col4">{{ .Length }}</td>
-			</tr>
-			{{ end }}
-		</table>
-	</body>
-</html>`
+	const tpl = `
+<table>
+  <tr>
+    <th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
+    <th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
+    <th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
+    <th><a id="HeaderLink3" href="?sort=Year">Year</a></th>
+    <th><a id="HeaderLink4" href="?sort=Length">Length</a></th>
+  </tr>
+  {{ range $index, $_ := . }}
+  <tr id="row{{ $index }}">
+    <td id="row{{ $index }}col0">{{ .Title }}</td>
+    <td id="row{{ $index }}col1">{{ .Artist }}</td>
+    <td id="row{{ $index }}col2">{{ .Album }}</td>
+    <td id="row{{ $index }}col3">{{ .Year }}</td>
+    <td id="row{{ $index }}col4">{{ .Length }}</td>
+  </tr>
+  {{ end }}
+</table>`
 	// FIXME Add the row and rowcol ids to the html
 	var t *template.Template
 	if t, err = template.New("webpage").Parse(tpl); err != nil {
