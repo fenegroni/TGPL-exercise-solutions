@@ -75,4 +75,4 @@ saving effort later, but instead it esnures refactoring is less risky.
 
 == Http Handler
 
-We leverage what we learnt in exercise 5.6 to
+We leverage what we learnt in exercise 5.6 to write a handler
