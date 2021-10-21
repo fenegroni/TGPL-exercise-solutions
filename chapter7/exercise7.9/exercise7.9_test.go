@@ -5,6 +5,7 @@ import (
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"fmt"
 	"golang.org/x/net/html"
+	"net/http"
 	"os"
 	"strings"
 	"testing"
@@ -54,4 +55,14 @@ func TestPrintTracksHTML(t *testing.T) {
 	// so we can prove we can parse the link correctly
 	// run the correct sorting
 	// and return the correct result
+	http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/", "/index.html":
+			_, _ = fmt.Fprintln(w, "<html><body><a href=\"hello.html\">hello</a></body></html>")
+		case "/hello.html":
+			_, _ = fmt.Fprintln(w, "<html><body><a href=\"goodbye.html\">goodbye</a></body></html>")
+		case "/goodbye.html":
+			_, _ = fmt.Fprintf(w, "<html><body><a href=\"%s/found.html\">found</a></body></html>", server2.URL)
+		}
+	})
 }

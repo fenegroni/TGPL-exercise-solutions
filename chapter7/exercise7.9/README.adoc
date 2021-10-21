@@ -75,6 +75,6 @@ saving effort later, but instead it esnures refactoring is less risky.
 
 == Http Handler
 
-We leverage what we learnt in exercise 5.6 to write a handler
+We leverage what we learnt in exercise 5.13 to write a handler
 that decodes the URL and generates a new index.html
 with the contents sorted by the selected column header.
