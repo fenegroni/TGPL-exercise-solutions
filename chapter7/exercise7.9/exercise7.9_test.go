@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"golang.org/x/net/html"
 	"net/http"
+	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
@@ -55,7 +56,7 @@ func TestPrintTracksHTML(t *testing.T) {
 	// so we can prove we can parse the link correctly
 	// run the correct sorting
 	// and return the correct result
-	http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	handler := func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case "/", "/index.html":
 			_, _ = fmt.Fprintln(w, "<html><body><a href=\"hello.html\">hello</a></body></html>")
@@ -64,5 +65,16 @@ func TestPrintTracksHTML(t *testing.T) {
 		case "/goodbye.html":
 			_, _ = fmt.Fprintf(w, "<html><body><a href=\"%s/found.html\">found</a></body></html>", server2.URL)
 		}
-	})
+	}
+	// TODO use https://pkg.go.dev/net/http/httptest@go1.17.2#NewRequest to create a new request that mimics the link
+	//  how do we create a request from a link? no idea!
+	req := httptest.NewRequest("", linkText, nil)
+	//http.ResponseWriter()
+	//handler()
+	// TODO how do we create a response writer? we need to create our own?
+	//  lets check the httptest package, wondering if we don't really need to worry about that
+	//  after all in this test all we care about is that a request can be created
+	//  that can be decoded, the handler is written by us and the response writer signature we
+	//  really don't care right?
+	//  infact we don't even need to declare a handler in that format!
 }
