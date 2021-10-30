@@ -50,31 +50,18 @@ func TestPrintTracksHTML(t *testing.T) {
 		}
 	}
 	fmt.Println("Link: ", linkText)
-	// Next: look for a previous exercise where we have used a web server
-	// and either run a real web server
-	// or at least have the http handler for it
-	// so we can prove we can parse the link correctly
-	// run the correct sorting
-	// and return the correct result
-	handler := func(w http.ResponseWriter, r *http.Request) {
+	// We prove the link can be parsed correctly to create a Request
+	// which can then be used by a web server to pass on to a Handler.
+	handler := func(r *http.Request) string {
 		switch r.URL.Path {
 		case "/", "/index.html":
-			_, _ = fmt.Fprintln(w, "<html><body><a href=\"hello.html\">hello</a></body></html>")
+			return fmt.Sprintln("<html><body><a href=\"hello.html\">hello</a></body></html>")
 		case "/hello.html":
-			_, _ = fmt.Fprintln(w, "<html><body><a href=\"goodbye.html\">goodbye</a></body></html>")
+			return fmt.Sprintln("<html><body><a href=\"goodbye.html\">goodbye</a></body></html>")
 		case "/goodbye.html":
-			_, _ = fmt.Fprintf(w, "<html><body><a href=\"%s/found.html\">found</a></body></html>", server2.URL)
+			return fmt.Sprintln("<html><body><a href=\"found.html\">found</a></body></html>")
 		}
+		return ""
 	}
-	// TODO use https://pkg.go.dev/net/http/httptest@go1.17.2#NewRequest to create a new request that mimics the link
-	//  how do we create a request from a link? no idea!
-	req := httptest.NewRequest("", linkText, nil)
-	//http.ResponseWriter()
-	//handler()
-	// TODO how do we create a response writer? we need to create our own?
-	//  lets check the httptest package, wondering if we don't really need to worry about that
-	//  after all in this test all we care about is that a request can be created
-	//  that can be decoded, the handler is written by us and the response writer signature we
-	//  really don't care right?
-	//  infact we don't even need to declare a handler in that format!
+	handler(httptest.NewRequest("", "/"+linkText, nil))
 }
