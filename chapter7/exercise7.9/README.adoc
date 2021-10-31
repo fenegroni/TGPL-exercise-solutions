@@ -14,27 +14,32 @@ that each click on a column head makes an HTTP request to sort the table.
 == Test
 
 The exercise requires us to implement the
-integration of two separate pieces of functionality:
+integration of
+two
+separate pieces of functionality:
 
 . the HTML output in table form with hyperlinks in the headers
 . the ordering of the table contents to use the ordering from exercise 7.8
 
-The integration of those two separate requirements requires us to implement
-a web routine that responds to the hyperlink to decide how to further order the data.
+The integration of those
+two
+separate requirements also requires us to
+validate the hyperlinks in the HTML output
+can be used to make a valid request
+to obtain the desired output.
 
 == Strategy
 
-My TDD strategy for this exercise is to validate the integration of all
-the different bits first. The test will be robust enough to give me
-an idea of what the integration shoud look like.
+My TDD strategy for this exercise is to validate the integration of
+all the requirements.
+The test does not require us run a real web server
+since the `httptest` package offers us the opportunity
+to create a `Request` from a link in the HTML output
+which we can use to validate the link itself.
 
-I will further refine the test as I implement the different parts,
-by implementing more detailed tests for the parts that need more robust validation.
-
-The decision to not implement what most people would call Unit Tests
-is intenional: rather than focusing on the detail of the implementation
-which might change, I am focusing on the end result first
-and use those aspects of the solution to guide me further.
+My intention is not to implement Unit Tests for all elements.
+Rather than focusing on the detail of the individual parts
+I am focusing on the end result.
 
 == Front end
 
@@ -43,14 +48,14 @@ I am not a front end web developer.
 I expect the HTML output to be the bare minimum that satisfies the requirements:
 a basic table with no borders and headers that contain fixed hyperlinks.
 
-== Integration
+== Elements by ID
 
 The integration test will extract elements from the table
 by id so that we know the order is correct
 and will then extract the URL from a known element
 to then make an HTTP call and get the next result.
 
-== Leverage exercise 5.8
+=== Leverage exercise 5.8
 
 In exercise 5.8 we wrote a function `ElementByID`
 to extract the correct elements by ID.
@@ -60,21 +65,22 @@ given the HTML output
 extract the elements of the table
 and the links from the headers.
 
-== Advantage of TDD approach
-
-Because we know from the very beginning that we must somehow test our solution,
-nd because we are starting from an integration test,
-our output will be a lot better quality, and our tests less brittle.
-
 Not only HTML elements will have an ID, but their IDs will be generated
 so that we can pick individual items and validate their position,
 order, attributes, etc.
 
-This attitude towards generating output this way is not so much about
-saving effort later, but instead it esnures refactoring is less risky.
+== Http Request
 
-== Http Handler
+To avoid the need for a whole web server
+just to validate the link in the table's headers,
+we will instead simply assume a Request with the link and its parameters
+was sent to us and we must now satisfy it.
 
-We leverage what we learnt in exercise 5.13 to write a handler
-that decodes the URL and generates a new index.html
-with the contents sorted by the selected column header.
+We use the `httptest` package to create a Web Request
+using the link in the header of each column.
+
+We then get the `sort` attribute from the header,
+sort the table by that value,
+and validate the resulting html.
+
+== Validating the sorted HTML

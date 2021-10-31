@@ -21,10 +21,10 @@ func ExamplePrintTracks() {
 		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 	}
 	fmt.Println("Click Artist once:")
-	sort.Sort(ByArtist(tracks))
+	sort.Sort(ByTitle(tracks))
 	PrintTracks(tracks)
 	fmt.Println("Click Artist twice:")
-	sort.Sort(sort.Reverse(ByArtist(tracks)))
+	sort.Sort(sort.Reverse(ByTitle(tracks)))
 	PrintTracks(tracks)
 	fmt.Println("Click Year once:")
 	sort.Sort(ByYear(tracks))

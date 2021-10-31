@@ -17,17 +17,35 @@ type Track struct {
 	Length time.Duration
 }
 
+type ByTitle []*Track
+
+func (x ByTitle) Len() int           { return len(x) }
+func (x ByTitle) Less(i, j int) bool { return x[i].Title < x[j].Title }
+func (x ByTitle) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+
 type ByArtist []*Track
 
 func (x ByArtist) Len() int           { return len(x) }
 func (x ByArtist) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
 func (x ByArtist) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
+type ByAlbum []*Track
+
+func (x ByAlbum) Len() int           { return len(x) }
+func (x ByAlbum) Less(i, j int) bool { return x[i].Album < x[j].Album }
+func (x ByAlbum) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+
 type ByYear []*Track
 
 func (x ByYear) Len() int           { return len(x) }
 func (x ByYear) Less(i, j int) bool { return x[i].Year < x[j].Year }
 func (x ByYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+
+type ByLength []*Track
+
+func (x ByLength) Len() int           { return len(x) }
+func (x ByLength) Less(i, j int) bool { return x[i].Length < x[j].Length }
+func (x ByLength) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 type CustomSort struct {
 	t    []*Track
@@ -53,7 +71,7 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 	const tpl = `
 <table>
   <tr>
-    <th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
+    <th><a id="HeaderLink0" href="?sor=Title">Title</a></th>
     <th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
     <th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
     <th><a id="HeaderLink3" href="?sort=Year">Year</a></th>

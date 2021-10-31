@@ -5,9 +5,9 @@ import (
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"fmt"
 	"golang.org/x/net/html"
-	"net/http"
 	"net/http/httptest"
 	"os"
+	"sort"
 	"strings"
 	"testing"
 	"time"
@@ -36,7 +36,7 @@ func TestPrintTracksHTML(t *testing.T) {
 	//  I will save the generated html in a file.
 	f, _ := os.Create("index.html")
 	defer f.Close()
-	fmt.Fprint(f, htmlString)
+	_, _ = fmt.Fprint(f, htmlString)
 	// parse htmlString and extract links in headers
 	doc, _ := html.Parse(strings.NewReader(htmlString))
 	node := exercise5_8.ElementByID(doc, "HeaderLink0")
@@ -50,18 +50,21 @@ func TestPrintTracksHTML(t *testing.T) {
 		}
 	}
 	fmt.Println("Link: ", linkText)
-	// We prove the link can be parsed correctly to create a Request
-	// which can then be used by a web server to pass on to a Handler.
-	handler := func(r *http.Request) string {
-		switch r.URL.Path {
-		case "/", "/index.html":
-			return fmt.Sprintln("<html><body><a href=\"hello.html\">hello</a></body></html>")
-		case "/hello.html":
-			return fmt.Sprintln("<html><body><a href=\"goodbye.html\">goodbye</a></body></html>")
-		case "/goodbye.html":
-			return fmt.Sprintln("<html><body><a href=\"found.html\">found</a></body></html>")
-		}
-		return ""
+	sortBy := httptest.NewRequest("", "/"+linkText, nil).URL.Query().Get("sort")
+	if sortBy == "" {
+		t.Fatalf("No sort key in header link")
 	}
-	handler(httptest.NewRequest("", "/"+linkText, nil))
+	// FIXME Use my implementation of stable sorting from ex7.8
+	switch sortBy {
+	case "Title":
+		sort.Stable(music.ByTitle(tracks))
+	case "Artist":
+		sort.Stable(music.ByArtist(tracks))
+	case "Album":
+		sort.Stable(music.ByAlbum(tracks))
+	case "Year":
+		sort.Stable(music.ByYear(tracks))
+	case "Length":
+		sort.Stable(music.ByLength(tracks))
+	}
 }
