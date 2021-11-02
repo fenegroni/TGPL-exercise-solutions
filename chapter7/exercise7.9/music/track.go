@@ -71,7 +71,7 @@ func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
 	const tpl = `
 <table>
   <tr>
-    <th><a id="HeaderLink0" href="?sor=Title">Title</a></th>
+    <th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
     <th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
     <th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
     <th><a id="HeaderLink3" href="?sort=Year">Year</a></th>

@@ -3,6 +3,7 @@ package exercise7_9
 import (
 	exercise5_8 "TGPL-exercise-solutions/chapter5/exercise5.8"
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
+	"errors"
 	"fmt"
 	"golang.org/x/net/html"
 	"net/http/httptest"
@@ -27,21 +28,53 @@ func TestPrintTracksHTML(t *testing.T) {
 		{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
 		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 	}
-	htmlString, err := music.PrintTracksAsHTMLString(tracks)
+	var tracksByLengthTitle = []*music.Track{
+		{"Go", "Moby", "Moby", 1992, length("3m37s")},
+		{"Go", "Delilah", "From the Roots Up", 2012, length("3m38s")},
+		{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
+		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
+	}
+	htmlTracksByLengthTitle, err := music.PrintTracksAsHTMLString(tracksByLengthTitle)
 	if err != nil {
 		t.Fatalf("PrintTracksAsHTMLString error: %v", err)
 	}
-	// FIXME: For debugging purposes only,
-	//  while I am developing the test,
-	//  I will save the generated html in a file.
-	f, _ := os.Create("index.html")
-	defer f.Close()
-	_, _ = fmt.Fprint(f, htmlString)
-	// parse htmlString and extract links in headers
-	doc, _ := html.Parse(strings.NewReader(htmlString))
-	node := exercise5_8.ElementByID(doc, "HeaderLink0")
+	docTracksByLengtAndTitle, err := html.Parse(strings.NewReader(htmlTracksByLengthTitle))
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func clickOnColumnHeader(column string, tracks []*music.Track) (string, error) {
+	htmlTracks, err := music.PrintTracksAsHTMLString(tracks)
+	if err != nil {
+		return "", err
+	}
+	docTracks, _ := html.Parse(strings.NewReader(htmlTracks))
+	linkSortBy, err := getHeaderLink("By"+column, docTracks)
+	if err != nil {
+		return "", err
+	}
+	// FIXME I want to now specify a type that can be used in a web server as an HTTP handler
+	//  for requests within a webmusic module that provides this facility.
+	sortBy := httptest.NewRequest("", "/"+linkSortBy, nil).URL.Query().Get("sort")
+	if sortBy == "" {
+		return "", fmt.Errorf("no sort key in header link %q", linkSortBy)
+	}
+	if sortBy != column {
+		return "", fmt.Errorf("%q is not a valid sort value for column %q", sortBy, column)
+	}
+	// FIXME Use my implementation of stable sorting from ex7.8
+	switch sortBy {
+	case "Length":
+		sort.Stable(music.ByLength(tracks))
+	}
+	return music.PrintTracksAsHTMLString(tracks)
+}
+
+func getHeaderLink(by string, doc *html.Node) (string, error) {
+	node := exercise5_8.ElementByID(doc, "HeaderLink"+by)
 	if node == nil {
-		t.Errorf("No element HeaderLink0")
+		return "", errors.New("no element HeaderLink" + by)
 	}
 	linkText := ""
 	for _, a := range node.Attr {
@@ -49,22 +82,5 @@ func TestPrintTracksHTML(t *testing.T) {
 			linkText = a.Val
 		}
 	}
-	fmt.Println("Link: ", linkText)
-	sortBy := httptest.NewRequest("", "/"+linkText, nil).URL.Query().Get("sort")
-	if sortBy == "" {
-		t.Fatalf("No sort key in header link")
-	}
-	// FIXME Use my implementation of stable sorting from ex7.8
-	switch sortBy {
-	case "Title":
-		sort.Stable(music.ByTitle(tracks))
-	case "Artist":
-		sort.Stable(music.ByArtist(tracks))
-	case "Album":
-		sort.Stable(music.ByAlbum(tracks))
-	case "Year":
-		sort.Stable(music.ByYear(tracks))
-	case "Length":
-		sort.Stable(music.ByLength(tracks))
-	}
+	return linkText, nil
 }
