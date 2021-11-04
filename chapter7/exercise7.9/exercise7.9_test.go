@@ -18,18 +18,20 @@ import (
 type trackTable []*music.Track
 
 func (tracks trackTable) clickHandler(w http.ResponseWriter, r *http.Request) {
+	var stableTracks stable.SortableIndexable
 	switch r.URL.Query().Get("sort") {
 	case "Title":
-		sort.Sort(stable.NewSorted(music.ByTitle(tracks)))
+		stableTracks = music.ByTitle(tracks)
 	case "Artist":
-		sort.Sort(stable.NewSorted(music.ByArtist(tracks)))
+		stableTracks = music.ByArtist(tracks)
 	case "Album":
-		sort.Sort(stable.NewSorted(music.ByAlbum(tracks)))
+		stableTracks = music.ByAlbum(tracks)
 	case "Year":
-		sort.Sort(stable.NewSorted(music.ByYear(tracks)))
+		stableTracks = music.ByYear(tracks)
 	case "Length":
-		sort.Sort(stable.NewSorted(music.ByLength(tracks)))
+		stableTracks = music.ByLength(tracks)
 	}
+	sort.Sort(stable.NewSorted(stableTracks))
 	tracksAsHTML, _ := music.PrintTracksAsHTML(tracks)
 	_, _ = w.Write([]byte(tracksAsHTML))
 }
