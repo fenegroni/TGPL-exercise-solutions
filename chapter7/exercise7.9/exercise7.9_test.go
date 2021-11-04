@@ -2,6 +2,7 @@ package exercise7_9
 
 import (
 	exercise5_8 "TGPL-exercise-solutions/chapter5/exercise5.8"
+	"TGPL-exercise-solutions/chapter7/exercise7.8/stable"
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"errors"
 	"golang.org/x/net/html"
@@ -17,19 +18,17 @@ import (
 type trackTable []*music.Track
 
 func (tracks trackTable) clickHandler(w http.ResponseWriter, r *http.Request) {
-	sortBy := r.URL.Query().Get("sort")
-	// FIXME Use my implementation of stable sorting from ex7.8
-	switch sortBy {
+	switch r.URL.Query().Get("sort") {
 	case "Title":
-		sort.Stable(music.ByTitle(tracks))
+		sort.Sort(stable.NewSorted(music.ByTitle(tracks)))
 	case "Artist":
-		sort.Stable(music.ByArtist(tracks))
+		sort.Sort(stable.NewSorted(music.ByArtist(tracks)))
 	case "Album":
-		sort.Stable(music.ByAlbum(tracks))
+		sort.Sort(stable.NewSorted(music.ByAlbum(tracks)))
 	case "Year":
-		sort.Stable(music.ByYear(tracks))
+		sort.Sort(stable.NewSorted(music.ByYear(tracks)))
 	case "Length":
-		sort.Stable(music.ByLength(tracks))
+		sort.Sort(stable.NewSorted(music.ByLength(tracks)))
 	}
 	tracksAsHTML, _ := music.PrintTracksAsHTML(tracks)
 	_, _ = w.Write([]byte(tracksAsHTML))

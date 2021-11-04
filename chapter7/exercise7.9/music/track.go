@@ -19,33 +19,38 @@ type Track struct {
 
 type ByTitle []*Track
 
-func (x ByTitle) Len() int           { return len(x) }
-func (x ByTitle) Less(i, j int) bool { return x[i].Title < x[j].Title }
-func (x ByTitle) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x ByTitle) Len() int             { return len(x) }
+func (x ByTitle) Less(i, j int) bool   { return x[i].Title < x[j].Title }
+func (x ByTitle) Swap(i, j int)        { x[i], x[j] = x[j], x[i] }
+func (x ByTitle) At(i int) interface{} { return x[i] }
 
 type ByArtist []*Track
 
-func (x ByArtist) Len() int           { return len(x) }
-func (x ByArtist) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
-func (x ByArtist) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x ByArtist) Len() int             { return len(x) }
+func (x ByArtist) Less(i, j int) bool   { return x[i].Artist < x[j].Artist }
+func (x ByArtist) Swap(i, j int)        { x[i], x[j] = x[j], x[i] }
+func (x ByArtist) At(i int) interface{} { return x[i] }
 
 type ByAlbum []*Track
 
-func (x ByAlbum) Len() int           { return len(x) }
-func (x ByAlbum) Less(i, j int) bool { return x[i].Album < x[j].Album }
-func (x ByAlbum) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x ByAlbum) Len() int             { return len(x) }
+func (x ByAlbum) Less(i, j int) bool   { return x[i].Album < x[j].Album }
+func (x ByAlbum) Swap(i, j int)        { x[i], x[j] = x[j], x[i] }
+func (x ByAlbum) At(i int) interface{} { return x[i] }
 
 type ByYear []*Track
 
-func (x ByYear) Len() int           { return len(x) }
-func (x ByYear) Less(i, j int) bool { return x[i].Year < x[j].Year }
-func (x ByYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x ByYear) Len() int             { return len(x) }
+func (x ByYear) Less(i, j int) bool   { return x[i].Year < x[j].Year }
+func (x ByYear) Swap(i, j int)        { x[i], x[j] = x[j], x[i] }
+func (x ByYear) At(i int) interface{} { return x[i] }
 
 type ByLength []*Track
 
-func (x ByLength) Len() int           { return len(x) }
-func (x ByLength) Less(i, j int) bool { return x[i].Length < x[j].Length }
-func (x ByLength) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+func (x ByLength) Len() int             { return len(x) }
+func (x ByLength) Less(i, j int) bool   { return x[i].Length < x[j].Length }
+func (x ByLength) Swap(i, j int)        { x[i], x[j] = x[j], x[i] }
+func (x ByLength) At(i int) interface{} { return x[i] }
 
 type CustomSort struct {
 	t    []*Track
