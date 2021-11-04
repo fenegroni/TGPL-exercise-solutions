@@ -20,6 +20,14 @@ func (tracks trackTable) clickHandler(w http.ResponseWriter, r *http.Request) {
 	sortBy := r.URL.Query().Get("sort")
 	// FIXME Use my implementation of stable sorting from ex7.8
 	switch sortBy {
+	case "Title":
+		sort.Stable(music.ByTitle(tracks))
+	case "Artist":
+		sort.Stable(music.ByArtist(tracks))
+	case "Album":
+		sort.Stable(music.ByAlbum(tracks))
+	case "Year":
+		sort.Stable(music.ByYear(tracks))
 	case "Length":
 		sort.Stable(music.ByLength(tracks))
 	}
