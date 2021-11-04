@@ -4,17 +4,30 @@ import (
 	exercise5_8 "TGPL-exercise-solutions/chapter5/exercise5.8"
 	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"errors"
-	"fmt"
 	"golang.org/x/net/html"
+	"io"
+	"net/http"
 	"net/http/httptest"
-	"os"
 	"sort"
 	"strings"
 	"testing"
 	"time"
 )
 
-func TestPrintTracksHTML(t *testing.T) {
+type trackTable []*music.Track
+
+func (tracks trackTable) clickHandler(w http.ResponseWriter, r *http.Request) {
+	sortBy := r.URL.Query().Get("sort")
+	// FIXME Use my implementation of stable sorting from ex7.8
+	switch sortBy {
+	case "Length":
+		sort.Stable(music.ByLength(tracks))
+	}
+	tracksAsHTML, _ := music.PrintTracksAsHTML(tracks)
+	_, _ = w.Write([]byte(tracksAsHTML))
+}
+
+func TestPrintTracksAsHTML(t *testing.T) {
 	length := func(s string) time.Duration {
 		d, err := time.ParseDuration(s)
 		if err != nil {
@@ -22,53 +35,51 @@ func TestPrintTracksHTML(t *testing.T) {
 		}
 		return d
 	}
-	var tracks = []*music.Track{
+	var tracks = trackTable{
 		{"Go", "Delilah", "From the Roots Up", 2012, length("3m38s")},
 		{"Go", "Moby", "Moby", 1992, length("3m37s")},
 		{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
 		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 	}
-	var tracksByLengthTitle = []*music.Track{
+	var tracksOrderedByLengthTitle = trackTable{
 		{"Go", "Moby", "Moby", 1992, length("3m37s")},
 		{"Go", "Delilah", "From the Roots Up", 2012, length("3m38s")},
 		{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
 		{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
 	}
-	htmlTracksByLengthTitle, err := music.PrintTracksAsHTMLString(tracksByLengthTitle)
+	wantHTML, err := music.PrintTracksAsHTML(tracksOrderedByLengthTitle)
 	if err != nil {
-		t.Fatalf("PrintTracksAsHTMLString error: %v", err)
+		t.Fatalf("PrintTracksAsHTML error: %v", err)
 	}
-	docTracksByLengtAndTitle, err := html.Parse(strings.NewReader(htmlTracksByLengthTitle))
+	tracksAsHTML, err := music.PrintTracksAsHTML(tracks)
 	if err != nil {
 		t.Fatal(err)
 	}
+	htmlSortedByLength, err := clickOnColumnHeader(tracksAsHTML, "Length", tracks.clickHandler)
+	if err != nil {
+		t.Fatal(err)
+	}
+	htmlSortedByLengthTitle, err := clickOnColumnHeader(htmlSortedByLength, "Title", tracks.clickHandler)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if htmlSortedByLengthTitle != wantHTML {
+		t.Fatal("htmlSortedByLengthTitle does not match wantHTML")
+	}
 }
 
-func clickOnColumnHeader(column string, tracks []*music.Track) (string, error) {
-	htmlTracks, err := music.PrintTracksAsHTMLString(tracks)
-	if err != nil {
-		return "", err
-	}
-	docTracks, _ := html.Parse(strings.NewReader(htmlTracks))
+func clickOnColumnHeader(htmlTable string, column string, handler http.HandlerFunc) (string, error) {
+	docTracks, _ := html.Parse(strings.NewReader(htmlTable))
 	linkSortBy, err := getHeaderLink("By"+column, docTracks)
 	if err != nil {
 		return "", err
 	}
-	// FIXME I want to now specify a type that can be used in a web server as an HTTP handler
-	//  for requests within a webmusic module that provides this facility.
-	sortBy := httptest.NewRequest("", "/"+linkSortBy, nil).URL.Query().Get("sort")
-	if sortBy == "" {
-		return "", fmt.Errorf("no sort key in header link %q", linkSortBy)
-	}
-	if sortBy != column {
-		return "", fmt.Errorf("%q is not a valid sort value for column %q", sortBy, column)
-	}
-	// FIXME Use my implementation of stable sorting from ex7.8
-	switch sortBy {
-	case "Length":
-		sort.Stable(music.ByLength(tracks))
-	}
-	return music.PrintTracksAsHTMLString(tracks)
+	sortRequest := httptest.NewRequest("", "/"+linkSortBy, nil)
+	responseWriter := httptest.NewRecorder()
+	handler(responseWriter, sortRequest)
+	sortResponse := responseWriter.Result()
+	body, err := io.ReadAll(sortResponse.Body)
+	return string(body), err
 }
 
 func getHeaderLink(by string, doc *html.Node) (string, error) {

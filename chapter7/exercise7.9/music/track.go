@@ -67,27 +67,26 @@ func PrintTracks(tracks []*Track) {
 	_ = tw.Flush()
 }
 
-func PrintTracksAsHTMLString(tracks []*Track) (HTMLString string, err error) {
+func PrintTracksAsHTML(tracks []*Track) (HTMLString string, err error) {
 	const tpl = `
 <table>
   <tr>
-    <th><a id="HeaderLink0" href="?sort=Title">Title</a></th>
-    <th><a id="HeaderLink1" href="?sort=Artist">Artist</a></th>
-    <th><a id="HeaderLink2" href="?sort=Album">Album</a></th>
-    <th><a id="HeaderLink3" href="?sort=Year">Year</a></th>
-    <th><a id="HeaderLink4" href="?sort=Length">Length</a></th>
+    <th><a id="HeaderLinkByTitle" href="?sort=Title">Title</a></th>
+    <th><a id="HeaderLinkByArtist" href="?sort=Artist">Artist</a></th>
+    <th><a id="HeaderLinkByAlbum" href="?sort=Album">Album</a></th>
+    <th><a id="HeaderLinkByYear" href="?sort=Year">Year</a></th>
+    <th><a id="HeaderLinkByLength" href="?sort=Length">Length</a></th>
   </tr>
   {{ range $index, $_ := . }}
   <tr id="row{{ $index }}">
-    <td id="row{{ $index }}col0">{{ .Title }}</td>
-    <td id="row{{ $index }}col1">{{ .Artist }}</td>
-    <td id="row{{ $index }}col2">{{ .Album }}</td>
-    <td id="row{{ $index }}col3">{{ .Year }}</td>
-    <td id="row{{ $index }}col4">{{ .Length }}</td>
+    <td id="row{{ $index }}colTitle">{{ .Title }}</td>
+    <td id="row{{ $index }}colArtist">{{ .Artist }}</td>
+    <td id="row{{ $index }}colAlbum">{{ .Album }}</td>
+    <td id="row{{ $index }}colYear">{{ .Year }}</td>
+    <td id="row{{ $index }}colLength">{{ .Length }}</td>
   </tr>
   {{ end }}
 </table>`
-	// FIXME Add the row and rowcol ids to the html
 	var t *template.Template
 	if t, err = template.New("webpage").Parse(tpl); err != nil {
 		return "", err
