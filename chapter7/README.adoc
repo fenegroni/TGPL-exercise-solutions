@@ -43,4 +43,7 @@ Compare that approach with repeated sorting using `sort.Stable`.
 Use the `html/template` package (Section 4.6) to replace `printTracks` with a function
 that displays the tracks as an HTML table.
 * {badge-exercise7-10}[link={url-base}/tree/master/chapter7/exercise7.10] +
-...
+Write a function
+`IsPalindrome(s sort.Interface) bool`
+that
+reports whether the sequence `s` is a palindrome.
