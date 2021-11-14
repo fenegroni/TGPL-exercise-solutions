@@ -1,4 +1,5 @@
-name: Exercise 5.11
+name: Exercise 7.10
+
 on:
   push:
     branches: [ main ]
@@ -18,4 +19,4 @@ jobs:
         go-version: 1.17
 
     - name: Test
-      run: go test -v ./chapter5/exercise5.11
+      run: go test -v ./chapter7/exercise7.10

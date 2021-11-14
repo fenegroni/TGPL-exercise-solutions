@@ -13,6 +13,7 @@
 :badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
 :badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
 :badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
+:badge-exercise7-10: image:{url-workflows}/Exercise 7.10/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -41,3 +42,5 @@ Compare that approach with repeated sorting using `sort.Stable`.
 * {badge-exercise7-9}[link={url-base}/tree/master/chapter7/exercise7.9] +
 Use the `html/template` package (Section 4.6) to replace `printTracks` with a function
 that displays the tracks as an HTML table.
+* {badge-exercise7-10}[link={url-base}/tree/master/chapter7/exercise7.10] +
+...
