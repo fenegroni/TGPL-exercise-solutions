@@ -84,3 +84,14 @@ sort the table by that value,
 and validate the resulting html.
 
 == Validating the sorted HTML
+
+In this integration test,
+I assume that the HTML produced by `PrintTracksAsHTML`
+is the same whether this is the result of
+printing it after ordering it by a column
+or another.
+
+A more robust test would compare the position within the table
+of the elements with the same ID.
+
+I'll leave that for a future improvement.
