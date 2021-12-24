@@ -22,7 +22,7 @@ func TestIsPalindrome(t *testing.T) {
 		want bool
 	}{
 		{RuneSlice{}, true},
-		{RuneSlice{'a'}, false},
+		{RuneSlice{'a'}, true},
 		{RuneSlice{'a', 'b'}, false},
 		{RuneSlice{'a', 'b', 'a'}, true},
 	}
@@ -32,4 +32,5 @@ func TestIsPalindrome(t *testing.T) {
 			t.Errorf("IsPalindrome(%q): got %t, want %t", test.s, got, test.want)
 		}
 	}
+	// TODO use type string
 }
