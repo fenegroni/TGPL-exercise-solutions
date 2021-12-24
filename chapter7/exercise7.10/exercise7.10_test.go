@@ -25,6 +25,10 @@ func TestIsPalindrome(t *testing.T) {
 		{RuneSlice{'a'}, true},
 		{RuneSlice{'a', 'b'}, false},
 		{RuneSlice{'a', 'b', 'a'}, true},
+		{RuneSlice{'a', 'b', 'c'}, false},
+		{RuneSlice{'a', 'b', 'b', 'a'}, true},
+		{RuneSlice{'a', 'b', 'c', 'b', 'a'}, true},
+		{RuneSlice{'a', 'b', 'c', 'd', 'a'}, false},
 	}
 	for _, test := range tests {
 		got := IsPalindrome(test.s)
@@ -32,5 +36,6 @@ func TestIsPalindrome(t *testing.T) {
 			t.Errorf("IsPalindrome(%q): got %t, want %t", test.s, got, test.want)
 		}
 	}
-	// use type string
+	// TODO use type string
+	// TODO try case insensitive modifiers
 }
