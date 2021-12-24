@@ -32,5 +32,5 @@ func TestIsPalindrome(t *testing.T) {
 			t.Errorf("IsPalindrome(%q): got %t, want %t", test.s, got, test.want)
 		}
 	}
-	// TODO use type string
+	// use type string
 }
