@@ -29,7 +29,7 @@ func TestIsPalindrome(t *testing.T) {
 	for _, test := range tests {
 		got := IsPalindrome(test.s)
 		if got != test.want {
-			t.Errorf("IsPalindrome(%q): got , want ", test.s, got, test.want)
+			t.Errorf("IsPalindrome(%q): got %t, want %t", test.s, got, test.want)
 		}
 	}
 }
