@@ -18,3 +18,24 @@ Assume that the elements at indices `i` and `j` are equal
 if `!s.Less(i, j) && !s.Less(j, i)`.
 
 == Test
+
+The implementation of `IsPalindrome` using `sort.Interface` is straightforward.
+
+We test with two different types: `string` and `[]rune`.
+
+=== Using `String`
+
+Type `String` gives the builtin `string` type the `sort.Interface` methods we need.
+
+It shows that to add an interface to a built in type like string we need to create an alias.
+
+=== Using `RuneSlice`
+
+`RuneSlice`, defined as an alias for `[]rune`, gives us the opportunity
+to validate more than just prefectly symmetrical byte strings.
+
+=== Using `CaseInsensitiveString`
+
+The basic tests for `RuneSlice` don't look particularly promising,
+but the adapter type `CaseInsensitiveString` shows the greater flexibility of converting
+a utf8 `string` into a `RuneSlice` and adapting it to a case insensitive unicode string.
