@@ -14,6 +14,7 @@
 :badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
 :badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
 :badge-exercise7-10: image:{url-workflows}/Exercise 7.10/badge.svg?branch=main
+:badge-exercise7-11: image:{url-workflows}/Exercise 7.11/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -47,3 +48,6 @@ Write a function
 `IsPalindrome(s sort.Interface) bool`
 that
 reports whether the sequence `s` is a palindrome.
+* {badge-exercise7-11}[link={url-base}/tree/master/chapter7/exercise7.11] +
+Add additional handlers so that
+clients can create, read, update, and delete database entries.
