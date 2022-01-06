@@ -15,3 +15,8 @@ and report an error if the item does not exist or if the price is invalid.
 (Warning: this change introduces concurrent variable updates.)
 
 == Test
+
+To validate the handlers we will not use a real http server,
+but instead we will test the handlers directly.
+
+This will allow us to further test concurrent access to the database variable.
