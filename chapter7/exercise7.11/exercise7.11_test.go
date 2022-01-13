@@ -2,6 +2,7 @@ package exercise7_11
 
 import (
 	"io"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 )
@@ -14,6 +15,9 @@ func TestHandlers(t *testing.T) {
 	/*body, err :=*/ _, _ = io.ReadAll(listResponse.Body)
 }
 
-func TestWithDefaultServerMux(t *testing.T) {
-	
+func TestWithDefaultServeMux(t *testing.T) {
+	Exercise7_11()
+	server := httptest.NewServer(http.DefaultServeMux)
+	defer server.Close()
+	http.Get(server.URL + "/list") // TODO handle error
 }

@@ -1,4 +1,4 @@
-package main
+package exercise7_11
 
 import (
 	"fmt"
