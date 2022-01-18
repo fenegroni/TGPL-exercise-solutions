@@ -22,25 +22,47 @@ func TestWithDefaultServeMux(t *testing.T) {
 	defer server.Close()
 	listEndpoint := server.URL + "/list"
 	response, err := http.Get(listEndpoint)
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-			t.Fatalf("Unexpected error closing response body: %s", err)
-		}
-	}(response.Body)
 	if err != nil {
 		t.Fatalf("Unexpected error calling GET %s: %q", listEndpoint, err)
 	}
-	expectedCode := 200
+	defer response.Body.Close()
+	wantCode := 200
 	gotCode := response.StatusCode
-	if gotCode != expectedCode {
-		t.Fatalf("Expected response status code %d, got %d", expectedCode, gotCode)
+	if gotCode != wantCode {
+		t.Fatalf("endpoint %q: got response code %d, want %d", listEndpoint, gotCode, wantCode)
 	}
 	var gotResponseBodyContent []byte
 	if gotResponseBodyContent, err = io.ReadAll(response.Body); err != nil {
 		t.Fatalf("Unexpected error reading response body")
 	}
 	if strings.Compare(string(gotResponseBodyContent), "shoes: $50.00\nsocks: $5.00\n") != 0 {
+		t.Fatalf("Content does not match: %q", gotResponseBodyContent)
+	}
+	updateEndpoint := server.URL + "/update?item=socks&price=6"
+	response, err = http.Get(listEndpoint)
+	response.Body.Close()
+	if err != nil {
+		t.Fatalf("Unexpected error calling GET %s: %q", updateEndpoint, err)
+	}
+	wantCode = 200
+	gotCode = response.StatusCode
+	if gotCode != wantCode {
+		t.Fatalf("endpoint %q: got response code %d, want %d", updateEndpoint, gotCode, wantCode)
+	}
+	response, err = http.Get(listEndpoint)
+	if err != nil {
+		t.Fatalf("Unexpected error calling GET %s: %q", listEndpoint, err)
+	}
+	defer response.Body.Close()
+	wantCode = 200
+	gotCode = response.StatusCode
+	if gotCode != wantCode {
+		t.Fatalf("endpoint %q: got response code %d, want %d", listEndpoint, gotCode, wantCode)
+	}
+	if gotResponseBodyContent, err = io.ReadAll(response.Body); err != nil {
+		t.Fatalf("Unexpected error reading response body")
+	}
+	if strings.Compare(string(gotResponseBodyContent), "shoes: $50.00\nsocks: $6.00\n") != 0 {
 		t.Fatalf("Content does not match: %q", gotResponseBodyContent)
 	}
 }
