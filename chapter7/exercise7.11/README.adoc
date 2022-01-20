@@ -16,7 +16,7 @@ and report an error if the item does not exist or if the price is invalid.
 
 == Test
 
-To validate the handlers we will not use a real http server,
-but instead we will test the handlers directly.
+We set up a test server after calling `Exercise7_11`.
+The tests assume the implementation uses `DefaultServeMux`.
 
-This will allow us to further test concurrent access to the database variable.
+We validate non-concurrent updates only for now.

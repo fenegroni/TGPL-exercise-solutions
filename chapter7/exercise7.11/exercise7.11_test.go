@@ -17,14 +17,12 @@ func TestHandlers(t *testing.T) {
 }
 
 func TestWithDefaultServeMux(t *testing.T) {
-	Exercise7_11()
+	// TODO sequence list of API calls and results
+	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
 	listEndpoint := server.URL + "/list"
 	response, err := http.Get(listEndpoint)
-	if err != nil {
-		t.Fatalf("Unexpected error calling GET %s: %q", listEndpoint, err)
-	}
 	defer response.Body.Close()
 	wantCode := 200
 	gotCode := response.StatusCode
@@ -39,7 +37,7 @@ func TestWithDefaultServeMux(t *testing.T) {
 		t.Fatalf("Content does not match: %q", gotResponseBodyContent)
 	}
 	updateEndpoint := server.URL + "/update?item=socks&price=6"
-	response, err = http.Get(listEndpoint)
+	response, err = http.Get(updateEndpoint)
 	response.Body.Close()
 	if err != nil {
 		t.Fatalf("Unexpected error calling GET %s: %q", updateEndpoint, err)
