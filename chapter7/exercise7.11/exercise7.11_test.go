@@ -18,6 +18,10 @@ func TestHandlers(t *testing.T) {
 
 func TestWithDefaultServeMux(t *testing.T) {
 	// TODO sequence list of API calls and results
+	tests := []struct {
+	}{
+		{},
+	}
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
