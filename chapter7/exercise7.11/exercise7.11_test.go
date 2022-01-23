@@ -1,10 +1,10 @@
 package exercise7_11
 
 import (
+	"bytes"
 	"io"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
 )
 
@@ -18,53 +18,36 @@ func TestHandlers(t *testing.T) {
 
 func TestWithDefaultServeMux(t *testing.T) {
 	// TODO sequence list of API calls and results
-	tests := []struct {
-	}{
-		{},
-	}
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
-	listEndpoint := server.URL + "/list"
-	response, err := http.Get(listEndpoint)
-	defer response.Body.Close()
-	wantCode := 200
-	gotCode := response.StatusCode
-	if gotCode != wantCode {
-		t.Fatalf("endpoint %q: got response code %d, want %d", listEndpoint, gotCode, wantCode)
+	steps := []struct {
+		path string
+		body []byte
+	}{
+		{"list", []byte("shoes: $50.00\nsocks: $5.00\n")},
+		{"update?item=socks&price=6", []byte("")},
+		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
+		{"create?item=pants&price=30", []byte("")},
+		{"list", []byte("shoes: $50.00\nsocks: $6.00\npants: $30.00\n")},
 	}
-	var gotResponseBodyContent []byte
-	if gotResponseBodyContent, err = io.ReadAll(response.Body); err != nil {
-		t.Fatalf("Unexpected error reading response body")
-	}
-	if strings.Compare(string(gotResponseBodyContent), "shoes: $50.00\nsocks: $5.00\n") != 0 {
-		t.Fatalf("Content does not match: %q", gotResponseBodyContent)
-	}
-	updateEndpoint := server.URL + "/update?item=socks&price=6"
-	response, err = http.Get(updateEndpoint)
-	response.Body.Close()
-	if err != nil {
-		t.Fatalf("Unexpected error calling GET %s: %q", updateEndpoint, err)
-	}
-	wantCode = 200
-	gotCode = response.StatusCode
-	if gotCode != wantCode {
-		t.Fatalf("endpoint %q: got response code %d, want %d", updateEndpoint, gotCode, wantCode)
-	}
-	response, err = http.Get(listEndpoint)
-	if err != nil {
-		t.Fatalf("Unexpected error calling GET %s: %q", listEndpoint, err)
-	}
-	defer response.Body.Close()
-	wantCode = 200
-	gotCode = response.StatusCode
-	if gotCode != wantCode {
-		t.Fatalf("endpoint %q: got response code %d, want %d", listEndpoint, gotCode, wantCode)
-	}
-	if gotResponseBodyContent, err = io.ReadAll(response.Body); err != nil {
-		t.Fatalf("Unexpected error reading response body")
-	}
-	if strings.Compare(string(gotResponseBodyContent), "shoes: $50.00\nsocks: $6.00\n") != 0 {
-		t.Fatalf("Content does not match: %q", gotResponseBodyContent)
+	for stepN, s := range steps {
+		resp, err := http.Get(server.URL + "/" + s.path)
+		if err != nil {
+			t.Fatalf("step %d: %s", stepN, err)
+		}
+		// NOTE deferring Close() is ok if the number of steps is small.
+		//goland:noinspection GoDeferInLoop
+		defer resp.Body.Close()
+		if resp.StatusCode != 200 {
+			t.Fatalf("step %d: response status code %d", stepN, resp.StatusCode)
+		}
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			t.Fatalf("step %d: %s", stepN, err)
+		}
+		if bytes.Compare(s.body, body) != 0 {
+			t.Fatalf("step %d: body does not match: want %q, got %q", stepN, s.body, body)
+		}
 	}
 }
