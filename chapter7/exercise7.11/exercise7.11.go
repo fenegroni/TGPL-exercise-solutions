@@ -3,6 +3,7 @@ package exercise7_11
 import (
 	"fmt"
 	"net/http"
+	"sort"
 	"strconv"
 )
 
@@ -14,8 +15,13 @@ func (d dollars) String() string {
 }
 
 func (db database) list(response http.ResponseWriter, _ *http.Request) {
-	for item, price := range db {
-		_, _ = fmt.Fprintf(response, "%s: %s\n", item, price)
+	var items []string
+	for i := range db {
+		items = append(items, i)
+	}
+	sort.Strings(items)
+	for _, i := range items {
+		_, _ = fmt.Fprintf(response, "%s: %s\n", i, db[i])
 	}
 }
 
