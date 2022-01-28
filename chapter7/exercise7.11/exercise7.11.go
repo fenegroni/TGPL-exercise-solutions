@@ -41,9 +41,9 @@ func (db database) update(resp http.ResponseWriter, req *http.Request) {
 func (db database) create(resp http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	price := req.URL.Query().Get("price")
-	_, ok := db[item]
-	if !ok {
-		http.Error(resp, fmt.Sprintf("no such item: %q\n", item), http.StatusNotFound)
+	_, exists := db[item]
+	if !exists {
+		http.Error(resp, fmt.Sprintf("item already exists: %q\n", item), http.StatusNotModified)
 		return
 	}
 	if priceVal, err := strconv.ParseFloat(price, 32); err == nil {
