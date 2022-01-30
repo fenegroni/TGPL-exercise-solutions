@@ -16,8 +16,28 @@ func TestHandlers(t *testing.T) {
 	/*body, err :=*/ _, _ = io.ReadAll(listResponse.Body)
 }
 
-func TestWithDefaultServeMux(t *testing.T) {
-	// TODO sequence list of API calls and results
+func TestExerciseUsesDefaultServeMux(t *testing.T) {
+	Exercise711()
+	server := httptest.NewServer(http.DefaultServeMux)
+	defer server.Close()
+	resp, err := http.Get(server.URL + "/" + s.path)
+	if err != nil {
+		t.Fatalf("step %d: %s", stepN, err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != 200 {
+		t.Fatalf("step %d: response status code %d", stepN, resp.StatusCode)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		t.Fatalf("step %d: %s", stepN, err)
+	}
+	if bytes.Compare(s.body, body) != 0 {
+		t.Fatalf("step %d: body does not match: want %q, got %q", stepN, s.body, body)
+	}
+}
+
+func TestSimpleSequenceOfCreateAndUpdate(t *testing.T) {
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
@@ -29,7 +49,7 @@ func TestWithDefaultServeMux(t *testing.T) {
 		{"update?item=socks&price=6", []byte("")},
 		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
 		{"create?item=pants&price=30", []byte("")},
-		{"list", []byte("shoes: $50.00\nsocks: $6.00\npants: $30.00\n")},
+		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
 	}
 	for stepN, s := range steps {
 		resp, err := http.Get(server.URL + "/" + s.path)
@@ -49,5 +69,20 @@ func TestWithDefaultServeMux(t *testing.T) {
 		if bytes.Compare(s.body, body) != 0 {
 			t.Fatalf("step %d: body does not match: want %q, got %q", stepN, s.body, body)
 		}
+	}
+}
+
+func TestUnsuccessfulCreateAndUpdate(t *testing.T) {
+	steps := []struct {
+		path     string
+		code     int
+		listBody []byte
+	}{
+		{"update?item=socks&price=6", 200, []byte("shoes: $50.00\nsocks: $5.00\n")},
+		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
+		{"create?item=pants&price=30", []byte("")},
+		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
+		{"create?item=shirt", []byte("")},
+		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
 	}
 }
