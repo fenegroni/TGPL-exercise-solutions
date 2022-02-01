@@ -17,6 +17,10 @@ func TestEmptyList(t *testing.T) {
 }
 
 func TestUseDefaultServeMux(t *testing.T) {
+	defer func(mux *http.ServeMux) {
+		http.DefaultServeMux = mux
+	}(http.DefaultServeMux)
+	http.DefaultServeMux = http.NewServeMux()
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
@@ -32,6 +36,10 @@ func TestUseDefaultServeMux(t *testing.T) {
 }
 
 func TestSimpleSequenceOfSuccessfulCalls(t *testing.T) {
+	defer func(mux *http.ServeMux) {
+		http.DefaultServeMux = mux
+	}(http.DefaultServeMux)
+	http.DefaultServeMux = http.NewServeMux()
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()

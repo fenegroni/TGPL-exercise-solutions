@@ -50,7 +50,7 @@ func (db database) updateHandler(create bool) http.HandlerFunc {
 }
 
 func Exercise711() {
-	db := database{"shoes": 50.00, "socks": 5.00}
+	db := database{}
 	http.DefaultServeMux.HandleFunc("/list", db.listHandler)
 	http.DefaultServeMux.HandleFunc("/update", db.updateHandler(false))
 	http.DefaultServeMux.HandleFunc("/create", db.updateHandler(true))
