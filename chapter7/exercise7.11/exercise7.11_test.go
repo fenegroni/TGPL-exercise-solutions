@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-func TestHandlers(t *testing.T) {
+func TestEmptyList(t *testing.T) {
 	/*getList :=*/ _ = httptest.NewRequest("GET", "/list", nil)
 	responseWriter := httptest.NewRecorder()
 	// call db.list handler: e.g. db.list(responseWriter, getList)
@@ -16,28 +16,22 @@ func TestHandlers(t *testing.T) {
 	/*body, err :=*/ _, _ = io.ReadAll(listResponse.Body)
 }
 
-func TestExerciseUsesDefaultServeMux(t *testing.T) {
+func TestUseDefaultServeMux(t *testing.T) {
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
-	resp, err := http.Get(server.URL + "/" + s.path)
+	listUrl := server.URL + "/list"
+	resp, err := http.Get(listUrl)
 	if err != nil {
-		t.Fatalf("step %d: %s", stepN, err)
+		t.Fatalf("Error connecting to %s: %s", listUrl, err)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
-		t.Fatalf("step %d: response status code %d", stepN, resp.StatusCode)
-	}
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		t.Fatalf("step %d: %s", stepN, err)
-	}
-	if bytes.Compare(s.body, body) != 0 {
-		t.Fatalf("step %d: body does not match: want %q, got %q", stepN, s.body, body)
+		t.Fatalf("No /list handler in DefaultServeMux: %d", resp.StatusCode)
 	}
 }
 
-func TestSimpleSequenceOfCreateAndUpdate(t *testing.T) {
+func TestSimpleSequenceOfSuccessfulCalls(t *testing.T) {
 	Exercise711()
 	server := httptest.NewServer(http.DefaultServeMux)
 	defer server.Close()
@@ -45,44 +39,45 @@ func TestSimpleSequenceOfCreateAndUpdate(t *testing.T) {
 		path string
 		body []byte
 	}{
-		{"list", []byte("shoes: $50.00\nsocks: $5.00\n")},
-		{"update?item=socks&price=6", []byte("")},
-		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
-		{"create?item=pants&price=30", []byte("")},
-		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
+		{"/list", []byte("")},
+		{"/create?item=pants&price=30", []byte("")},
+		{"/create?item=socks&price=6", []byte("")},
+		{"/list", []byte("pants: $30.00\nsocks: $6.00\n")},
+		{"/update?item=pants&price=100", []byte("")},
+		{"/list", []byte("pants: $100.00\nsocks: $6.00\n")},
 	}
 	for stepN, s := range steps {
-		resp, err := http.Get(server.URL + "/" + s.path)
+		resp, err := http.Get(server.URL + s.path)
 		if err != nil {
-			t.Fatalf("step %d: %s", stepN, err)
+			t.Fatalf("Step %d: GET %s: %s", stepN, s.path, err)
 		}
 		// NOTE deferring Close() is ok if the number of steps is small.
 		//goland:noinspection GoDeferInLoop
 		defer resp.Body.Close()
 		if resp.StatusCode != 200 {
-			t.Fatalf("step %d: response status code %d", stepN, resp.StatusCode)
+			t.Fatalf("step %d: GET %s: response code %d", stepN, s.path, resp.StatusCode)
 		}
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			t.Fatalf("step %d: %s", stepN, err)
+			t.Fatalf("step %d: GET %s: ReadAll response body: %s", stepN, s.path, err)
 		}
 		if bytes.Compare(s.body, body) != 0 {
-			t.Fatalf("step %d: body does not match: want %q, got %q", stepN, s.body, body)
+			t.Fatalf("step %d: GET %s: response body does not match: want %q, got %q", stepN, s.path, s.body, body)
 		}
 	}
 }
 
-func TestUnsuccessfulCreateAndUpdate(t *testing.T) {
-	steps := []struct {
-		path     string
-		code     int
-		listBody []byte
-	}{
-		{"update?item=socks&price=6", 200, []byte("shoes: $50.00\nsocks: $5.00\n")},
-		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
-		{"create?item=pants&price=30", []byte("")},
-		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
-		{"create?item=shirt", []byte("")},
-		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
-	}
-}
+// func TestUnsuccessfulCreateAndUpdate(t *testing.T) {
+// 	steps := []struct {
+// 		path     string
+// 		code     int
+// 		listBody []byte
+// 	}{
+// 		{"update?item=socks&price=6", 200, []byte("shoes: $50.00\nsocks: $5.00\n")},
+// 		{"list", []byte("shoes: $50.00\nsocks: $6.00\n")},
+// 		{"create?item=pants&price=30", []byte("")},
+// 		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
+// 		{"create?item=shirt", []byte("")},
+// 		{"list", []byte("pants: $30.00\nshoes: $50.00\nsocks: $6.00\n")},
+// 	}
+// }
