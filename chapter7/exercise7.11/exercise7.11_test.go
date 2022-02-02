@@ -89,6 +89,7 @@ func TestCreateSameItemAfterUpdateIsABadRequest(t *testing.T) {
 		{"/update?item=shirt&price=30", http.StatusOK, []byte("")},
 		{"/create?item=shirt&price=20", http.StatusBadRequest, []byte("")},
 	}
+	// TODO refactor stage: this loop can be factored out in the tests so we can start to design our API.
 	for stepN, s := range steps {
 		resp, err := http.Get(server.URL + s.path)
 		if err != nil {
