@@ -59,8 +59,8 @@ func makeCalls(host string, calls []apiCall, t *testing.T) {
 		// NOTE deferring Close() is ok if the number of steps is small.
 		//goland:noinspection GoDeferInLoop
 		defer resp.Body.Close()
-		if resp.StatusCode != http.StatusOK {
-			t.Fatalf("step %d: GET %s: response code %d", callN, call.path, resp.StatusCode)
+		if resp.StatusCode != call.code {
+			t.Fatalf("step %d: GET %s: response code %d, want %d", callN, call.path, resp.StatusCode, call.code)
 		}
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
@@ -91,6 +91,36 @@ func TestCreateSameItemAfterUpdateIsABadRequest(t *testing.T) {
 		{"/create?item=shirt&price=10", http.StatusOK, []byte("")},
 		{"/update?item=shirt&price=30", http.StatusOK, []byte("")},
 		{"/create?item=shirt&price=20", http.StatusBadRequest, []byte("")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
+func TestDeleteItemAfterCreatingIsSuccess(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/create?item=hat&price=10", http.StatusOK, []byte("")},
+		{"/delete?item=hat", http.StatusOK, []byte("")},
+		{"/list", http.StatusOK, []byte("")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
+func TestDeleteItemAfterCreatingTwoIsSuccess(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/create?item=sock&price=10", http.StatusOK, []byte("")},
+		{"/create?item=shoe&price=20", http.StatusOK, []byte("")},
+		{"/delete?item=sock", http.StatusOK, []byte("")},
+		{"/list", http.StatusOK, []byte("shoe: $20.00\n")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
+func TestCantCreateSameItemTwice(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/create?item=sock&price=10", http.StatusOK, []byte("")},
+		{"/create?item=sock&price=20", http.StatusBadRequest, []byte("")},
 	}
 	makeCalls(server.URL, calls, t)
 }

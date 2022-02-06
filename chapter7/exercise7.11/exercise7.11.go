@@ -25,7 +25,7 @@ func (db database) listHandler(resp http.ResponseWriter, _ *http.Request) {
 	}
 }
 
-func (db database) update(resp http.ResponseWriter, req *http.Request, create bool) {
+func (db database) updateHandlerImpl(resp http.ResponseWriter, req *http.Request, create bool) {
 	item := req.URL.Query().Get("item")
 	price := req.URL.Query().Get("price")
 	if !create {
@@ -43,15 +43,23 @@ func (db database) update(resp http.ResponseWriter, req *http.Request, create bo
 	db[item] = dollars(priceVal)
 }
 
-func (db database) updateHandler(create bool) http.HandlerFunc {
-	return func(resp http.ResponseWriter, req *http.Request) {
-		db.update(resp, req, create)
-	}
+func (db database) createHandler(resp http.ResponseWriter, req *http.Request) {
+	db.updateHandlerImpl(resp, req, true)
+}
+
+func (db database) updateHandler(resp http.ResponseWriter, req *http.Request) {
+	db.updateHandlerImpl(resp, req, false)
+}
+
+func (db database) deleteHandler(resp http.ResponseWriter, req *http.Request) {
+	item := req.URL.Query().Get("item")
+	delete(db, item)
 }
 
 func Exercise711() {
 	db := database{}
 	http.DefaultServeMux.HandleFunc("/list", db.listHandler)
-	http.DefaultServeMux.HandleFunc("/update", db.updateHandler(false))
-	http.DefaultServeMux.HandleFunc("/create", db.updateHandler(true))
+	http.DefaultServeMux.HandleFunc("/create", db.createHandler)
+	http.DefaultServeMux.HandleFunc("/update", db.updateHandler)
+	http.DefaultServeMux.HandleFunc("/delete", db.deleteHandler)
 }
