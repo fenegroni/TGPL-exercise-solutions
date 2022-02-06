@@ -39,74 +39,58 @@ func TestUseDefaultServeMux(t *testing.T) {
 		t.Fatalf("Error connecting to %s: %s", listUrl, err)
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		t.Fatalf("No /list handler in DefaultServeMux: %d", resp.StatusCode)
 	}
 }
 
-func TestSimpleSequenceOfSuccessfulCalls(t *testing.T) {
-	server := setupWithDefaultMux(t)
-	steps := []struct {
-		path string
-		body []byte
-	}{
-		{"/list", []byte("")},
-		{"/create?item=pants&price=30", []byte("")},
-		{"/create?item=socks&price=6", []byte("")},
-		{"/list", []byte("pants: $30.00\nsocks: $6.00\n")},
-		{"/update?item=pants&price=100", []byte("")},
-		{"/list", []byte("pants: $100.00\nsocks: $6.00\n")},
-	}
-	for stepN, s := range steps {
-		resp, err := http.Get(server.URL + s.path)
+type apiCall struct {
+	path string
+	code int
+	body []byte
+}
+
+func makeCalls(host string, calls []apiCall, t *testing.T) {
+	for callN, call := range calls {
+		resp, err := http.Get(host + call.path)
 		if err != nil {
-			t.Fatalf("Step %d: GET %s: %s", stepN, s.path, err)
+			t.Fatalf("Step %d: GET %s: %s", callN, call.path, err)
 		}
 		// NOTE deferring Close() is ok if the number of steps is small.
 		//goland:noinspection GoDeferInLoop
 		defer resp.Body.Close()
 		if resp.StatusCode != http.StatusOK {
-			t.Fatalf("step %d: GET %s: response code %d", stepN, s.path, resp.StatusCode)
+			t.Fatalf("step %d: GET %s: response code %d", callN, call.path, resp.StatusCode)
 		}
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			t.Fatalf("step %d: GET %s: ReadAll response body: %s", stepN, s.path, err)
+			t.Fatalf("step %d: GET %s: ReadAll response body: %s", callN, call.path, err)
 		}
-		if bytes.Compare(s.body, body) != 0 {
-			t.Fatalf("step %d: GET %s: response body does not match: want %q, got %q", stepN, s.path, s.body, body)
+		if bytes.Compare(call.body, body) != 0 {
+			t.Fatalf("step %d: GET %s: response body does not match: want %q, got %q", callN, call.path, call.body, body)
 		}
 	}
 }
 
+func TestSimpleSequenceOfSuccessfulCalls(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/list", http.StatusOK, []byte("")},
+		{"/create?item=pants&price=30", http.StatusOK, []byte("")},
+		{"/create?item=socks&price=6", http.StatusOK, []byte("")},
+		{"/list", http.StatusOK, []byte("pants: $30.00\nsocks: $6.00\n")},
+		{"/update?item=pants&price=100", http.StatusOK, []byte("")},
+		{"/list", http.StatusOK, []byte("pants: $100.00\nsocks: $6.00\n")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
 func TestCreateSameItemAfterUpdateIsABadRequest(t *testing.T) {
 	server := setupWithDefaultMux(t)
-	steps := []struct {
-		path string
-		code int
-		body []byte
-	}{
+	calls := []apiCall{
 		{"/create?item=shirt&price=10", http.StatusOK, []byte("")},
 		{"/update?item=shirt&price=30", http.StatusOK, []byte("")},
 		{"/create?item=shirt&price=20", http.StatusBadRequest, []byte("")},
 	}
-	// TODO refactor stage: this loop can be factored out in the tests so we can start to design our API.
-	for stepN, s := range steps {
-		resp, err := http.Get(server.URL + s.path)
-		if err != nil {
-			t.Fatalf("Step %d: GET %s: %s", stepN, s.path, err)
-		}
-		// NOTE deferring Close() is ok if the number of steps is small.
-		//goland:noinspection GoDeferInLoop
-		defer resp.Body.Close()
-		if resp.StatusCode != 200 {
-			t.Fatalf("step %d: GET %s: response code %d", stepN, s.path, resp.StatusCode)
-		}
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			t.Fatalf("step %d: GET %s: ReadAll response body: %s", stepN, s.path, err)
-		}
-		if bytes.Compare(s.body, body) != 0 {
-			t.Fatalf("step %d: GET %s: response body does not match: want %q, got %q", stepN, s.path, s.body, body)
-		}
-	}
+	makeCalls(server.URL, calls, t)
 }
