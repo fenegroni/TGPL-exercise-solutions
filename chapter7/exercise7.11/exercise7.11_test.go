@@ -60,14 +60,14 @@ func makeCalls(host string, calls []apiCall, t *testing.T) {
 		//goland:noinspection GoDeferInLoop
 		defer resp.Body.Close()
 		if resp.StatusCode != call.code {
-			t.Fatalf("step %d: GET %s: response code %d, want %d", callN, call.path, resp.StatusCode, call.code)
+			t.Fatalf("call %d: GET %s: response code %d, want %d", callN, call.path, resp.StatusCode, call.code)
 		}
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			t.Fatalf("step %d: GET %s: ReadAll response body: %s", callN, call.path, err)
+			t.Fatalf("call %d: GET %s: ReadAll response body: %s", callN, call.path, err)
 		}
-		if bytes.Compare(call.body, body) != 0 {
-			t.Fatalf("step %d: GET %s: response body does not match: want %q, got %q", callN, call.path, call.body, body)
+		if len(call.body) > 0 && bytes.Compare(call.body, body) != 0 {
+			t.Fatalf("call %d: GET %s: response body does not match: want %q, got %q", callN, call.path, call.body, body)
 		}
 	}
 }
