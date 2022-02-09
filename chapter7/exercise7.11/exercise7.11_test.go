@@ -124,3 +124,30 @@ func TestCantCreateSameItemTwice(t *testing.T) {
 	}
 	makeCalls(server.URL, calls, t)
 }
+
+func TestDeleteNonExistantItemSucceeds(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/create?item=sock&price=10", http.StatusOK, []byte("")},
+		{"/delete?item=shoes", http.StatusOK, []byte("")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
+func TestUpdateWithInvalidPrice(t *testing.T) {
+	server := setupWithDefaultMux(t)
+	calls := []apiCall{
+		{"/create?item=socks&price=10", http.StatusOK, []byte("")},
+		{"/update?item=socks&price=AB", http.StatusBadRequest, []byte("")},
+		{"/list", http.StatusOK, []byte("socks: $10.00\n")},
+		{"/update?item=socks&price=", http.StatusBadRequest, []byte("")},
+		{"/list", http.StatusOK, []byte("socks: $10.00\n")},
+		{"/update?item=socks&prie=20", http.StatusBadRequest, []byte("")},
+		{"/list", http.StatusOK, []byte("socks: $10.00\n")},
+		{"/update?item=socks&price=19.99", http.StatusOK, []byte("")},
+		{"/list", http.StatusOK, []byte("socks: $19.99\n")},
+	}
+	makeCalls(server.URL, calls, t)
+}
+
+// TODO implement concurrent updates
