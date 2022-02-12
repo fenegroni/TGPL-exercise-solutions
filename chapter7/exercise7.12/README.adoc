@@ -11,3 +11,5 @@ Change the handler for `/list` to print its output as an HTML table, not text.
 You may find the `html/template` package useful.
 
 == Test
+
+We copy the test module from exercise 7.11 and change the expected output.
