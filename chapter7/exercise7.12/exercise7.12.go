@@ -21,10 +21,10 @@ func (db database) listHandler(resp http.ResponseWriter, _ *http.Request) {
     <th>Item</th>
     <th>Price</th>
   </tr>
-  {{ range $index, $_ := . }}
+  {{ range $item, $price := . }}
   <tr>
-    <td id="item{{ $index }}">{{ . }}</td>
-    <td id="price{{ $index }}">{{ . }}</td>
+    <td id="item">{{ $item }}</td>
+    <td id="price">{{ $price }}</td>
   </tr>
   {{ end }}
 </table>`
