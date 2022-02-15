@@ -1,4 +1,4 @@
-=  TGPL Exercise Solutions, using TAD.
+=  TGPL Exercise Solutions with a test-first approach.
 :toc: preamble
 :toc-title:
 :toclevels: 1
@@ -33,7 +33,7 @@ or (at your option) any later version.
 For a copy of the GNU General Public License
 see <https://www.gnu.org/licenses/>.
 
-== Test Aided Development
+== Test first approach
 
 The development process begins with a first test
 capturing a valuable assumption of the solution.
