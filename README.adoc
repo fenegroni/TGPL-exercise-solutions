@@ -1,4 +1,4 @@
-=  TGPL Exercise Solutions with a test-first approach.
+=  TGPL Exercise Solutions, using TAD.
 :toc: preamble
 :toc-title:
 :toclevels: 1
@@ -33,7 +33,17 @@ or (at your option) any later version.
 For a copy of the GNU General Public License
 see <https://www.gnu.org/licenses/>.
 
-== Test first approach
+== Solutions
+
+{badge-chapter4}[link={url-base}/tree/master/chapter4]
+
+{badge-chapter5}[link={url-base}/tree/master/chapter5]
+
+{badge-chapter6}[link={url-base}/tree/master/chapter6]
+
+{badge-chapter7}[link={url-base}/tree/master/chapter7]
+
+== Test Aided Development
 
 The development process begins with a first test
 capturing a valuable assumption of the solution.
@@ -53,13 +63,3 @@ If the test isn't valuable anymore, throw away the test and write a better one.
 
 If the test passes, evaluate if a failing test would have been more valuable.
 If it would have been so, continue writing enough of the solution to fail the test.
-
-== Solutions
-
-{badge-chapter4}[link={url-base}/tree/master/chapter4]
-
-{badge-chapter5}[link={url-base}/tree/master/chapter5]
-
-{badge-chapter6}[link={url-base}/tree/master/chapter6]
-
-{badge-chapter7}[link={url-base}/tree/master/chapter7]
