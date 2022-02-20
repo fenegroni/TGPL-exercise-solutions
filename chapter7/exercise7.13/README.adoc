@@ -1,0 +1,13 @@
+= Exercise 7.13
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:badge-exercise: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main[link={url-actions}]
+
+{badge-exercise}
+
+Add a `String` method to `Expr` to pretty-print the syntax tree.
+Check that the results, when parsed again, yield an equivalent tree.
+
+== Test
