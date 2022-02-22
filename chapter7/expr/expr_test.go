@@ -2,7 +2,6 @@ package expr
 
 import (
 	"fmt"
-	"gopl.io/ch7/eval"
 	"math"
 	"testing"
 )
@@ -26,7 +25,7 @@ func TestEval(t *testing.T) {
 			fmt.Printf("\n%s\n", test.expr)
 			prevExpr = test.expr
 		}
-		expr, err := eval.Parse(test.expr)
+		expr, err := Parse(test.expr)
 		if err != nil {
 			t.Errorf("Parse: %s", err)
 			continue
