@@ -1,4 +1,4 @@
-=  TGPL Exercise Solutions, using TAD.
+=  _TGPL_ Exercise Solutions
 :toc: preamble
 :toc-title:
 :toclevels: 1
@@ -18,8 +18,7 @@ image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solution
 {badge-chapter7}[link={url-base}/tree/master/chapter7]
 
 Solutions to the exercises in the book
-_The Go Programming Language_
-using TAD: _Test Aided Development_.
+_The Go Programming Language_.
 
 Copyright (C) 2021, 2022  Filippo Erik Negroni
 
@@ -42,24 +41,3 @@ see <https://www.gnu.org/licenses/>.
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
 
 {badge-chapter7}[link={url-base}/tree/master/chapter7]
-
-== Test Aided Development
-
-The development process begins with a first test
-capturing a valuable assumption of the solution.
-
-Strive to make this first test cheap and quick to write and run, but not useless.
-
-Don't worry about whether it is a behaviour, interface, system, integration or unit test.
-The only attribute that matters is the Return On Investment:
-a measure of how much feedback the test generates per unit of time spent writing and running it.
-
-Write enough implementation of the solution to validate if the test is valuable:
-green bars (test pass rate) mean nothing.
-
-If the test fails, evaluate if passing the test is still valuable.
-If it is, continue the effort of writing enough of the solution until the next assumption.
-If the test isn't valuable anymore, throw away the test and write a better one.
-
-If the test passes, evaluate if a failing test would have been more valuable.
-If it would have been so, continue writing enough of the solution to fail the test.
