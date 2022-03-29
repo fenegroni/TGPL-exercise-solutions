@@ -1,10 +1,10 @@
 package exercise7_9
 
 import (
-	exercise5_8 "TGPL-exercise-solutions/chapter5/exercise5.8"
-	"TGPL-exercise-solutions/chapter7/exercise7.8/stable"
-	"TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"errors"
+	exercise58 "github.com/fenegroni/TGPL-exercise-solutions/chapter5/exercise5.8"
+	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.8/stable"
+	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"
@@ -92,7 +92,7 @@ func clickOnColumnHeader(htmlTable string, column string, handler http.HandlerFu
 }
 
 func getHeaderLink(by string, doc *html.Node) (string, error) {
-	node := exercise5_8.ElementByID(doc, "HeaderLink"+by)
+	node := exercise58.ElementByID(doc, "HeaderLink"+by)
 	if node == nil {
 		return "", errors.New("no element HeaderLink" + by)
 	}

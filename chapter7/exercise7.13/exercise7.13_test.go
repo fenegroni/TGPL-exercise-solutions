@@ -1,7 +1,7 @@
 package exercise7_13
 
 import (
-	"TGPL-exercise-solutions/chapter7/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/expr"
 	"testing"
 )
 

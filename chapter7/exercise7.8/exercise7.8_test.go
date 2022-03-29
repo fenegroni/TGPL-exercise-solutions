@@ -1,7 +1,7 @@
 package exercise7_8
 
 import (
-	"TGPL-exercise-solutions/chapter7/exercise7.8/stable"
+	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.8/stable"
 	"sort"
 	"testing"
 )

@@ -1,8 +1,8 @@
 package exercise7_7
 
 import (
-	"TGPL-exercise-solutions/chapter7/exercise7.6/tempconv"
 	"flag"
+	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.6/tempconv"
 	"strings"
 	"testing"
 )
