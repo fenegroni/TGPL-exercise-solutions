@@ -16,6 +16,7 @@
 :badge-exercise7-10: image:{url-workflows}/Exercise 7.10/badge.svg?branch=main
 :badge-exercise7-11: image:{url-workflows}/Exercise 7.11/badge.svg?branch=main
 :badge-exercise7-12: image:{url-workflows}/Exercise 7.12/badge.svg?branch=main
+:badge-exercise7-13: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main
 
 {badge-chapter7}
 
@@ -54,3 +55,5 @@ Add additional handlers so that
 clients can create, read, update, and delete database entries.
 * {badge-exercise7-12}[link={url-base}/tree/master/chapter7/exercise7.12] +
 Change the handler for `/list` to print its output as an HTML table, not text.
+* {badge-exercise7-13}[link={url-base}/tree/master/chapter7/exercise7.13] +
+Add a `String` method to `Expr` to pretty-print the syntax tree.
