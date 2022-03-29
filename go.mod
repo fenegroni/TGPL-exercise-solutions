@@ -1,4 +1,4 @@
-module TGPL-exercise-solutions
+module github.com/fenegroni/TGPL-exercise-solutions
 
 go 1.17
 
