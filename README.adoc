@@ -1,7 +1,4 @@
 =  _TGPL_ Exercise Solutions
-:toc: preamble
-:toc-title:
-:toclevels: 1
 // Refs:
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
@@ -12,7 +9,7 @@
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
-{badge-chapter4}[link={url-base}/tree/master/chapter4]
+{badge-chapter4}[link={url-base}/tree/master/ch4]
 {badge-chapter5}[link={url-base}/tree/master/chapter5]
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
 {badge-chapter7}[link={url-base}/tree/master/chapter7]
@@ -34,7 +31,7 @@ see <https://www.gnu.org/licenses/>.
 
 == Solutions
 
-{badge-chapter4}[link={url-base}/tree/master/chapter4]
+{badge-chapter4}[link={url-base}/tree/master/ch4]
 
 {badge-chapter5}[link={url-base}/tree/master/chapter5]
 
