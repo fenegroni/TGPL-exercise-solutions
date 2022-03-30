@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package exercise5_11
 
 type edges map[string]bool
 type graph map[string]edges
@@ -22,15 +18,7 @@ var prereqs = graph{
 	"linear algebra":        {"calculus": true},
 }
 
-func main() {
-	if order, ok := topoSort(prereqs); ok {
-		for i, course := range order {
-			fmt.Printf("%d:\t%s\n", i+1, course)
-		}
-	}
-}
-
-func topoSort(g graph) (order []string, ok bool) {
+func TopoSort(g graph) (order []string, ok bool) {
 	seen := make(map[string]bool)
 	dependents := make(map[string]bool)
 	var visitAll func(edges) // needed for recursive call

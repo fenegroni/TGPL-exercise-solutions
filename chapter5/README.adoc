@@ -22,6 +22,7 @@
 :badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
 :badge-exercise5-17: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main
 :badge-exercise5-18: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main
+:badge-exercise5-19: image:{url-workflows}/Exercise 5.19/badge.svg?branch=main
 
 {badge-chapter5}
 

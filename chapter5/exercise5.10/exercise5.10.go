@@ -1,7 +1,6 @@
-package main
+package exercise5_10
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -20,12 +19,6 @@ var prereqs = graph{
 	"networks":              {"operating systems": true},
 	"operating systems":     {"data structures": true, "computer organisation": true},
 	"programming languages": {"data structures": true, "computer organisation": true},
-}
-
-func main() {
-	for i, course := range topoSort(prereqs) {
-		fmt.Printf("%d:\t%s\n", i+1, course)
-	}
 }
 
 func topoSort(g graph) (order []string) {

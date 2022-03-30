@@ -42,7 +42,7 @@ func outline(input io.Reader) error {
 
 	startElement := func(n *html.Node) {
 		if n.Type == html.ElementNode {
-			fmt.Fprintf(output, "%*s<%s>\n", depth*2, "", n.Data)
+			_, _ = fmt.Fprintf(output, "%*s<%s>\n", depth*2, "", n.Data)
 			depth++
 		}
 	}
@@ -50,7 +50,7 @@ func outline(input io.Reader) error {
 	endElement := func(n *html.Node) {
 		if n.Type == html.ElementNode {
 			depth--
-			fmt.Fprintf(output, "%*s</%s>\n", depth*2, "", n.Data)
+			_, _ = fmt.Fprintf(output, "%*s</%s>\n", depth*2, "", n.Data)
 		}
 	}
 

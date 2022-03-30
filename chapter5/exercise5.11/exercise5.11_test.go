@@ -1,4 +1,4 @@
-package main
+package exercise5_11
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func TestVerifyTopoSort(t *testing.T) {
 	}
 	for _, test := range tests {
 		if l, err := verifyTopologicalSorting(test, false); err != nil {
-			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
+			t.Errorf("TopoSort(%v) = %v: %v", test, l, err)
 		}
 	}
 }
@@ -36,7 +36,7 @@ func TestTopoSortCyclicGraph(t *testing.T) {
 	}
 	for _, test := range tests {
 		if l, err := verifyTopologicalSorting(test, true); err != nil {
-			t.Errorf("topoSort(%v) = %v: %v", test, l, err)
+			t.Errorf("TopoSort(%v) = %v: %v", test, l, err)
 		}
 	}
 }
@@ -57,16 +57,16 @@ func TestTopoSortCyclicSubjects(t *testing.T) {
 		"linear algebra":        {"calculus": true},
 	}
 	if l, err := verifyTopologicalSorting(test, true); err != nil {
-		t.Errorf("topoSort(%v) = %v: %v", test, l, err)
+		t.Errorf("TopoSort(%v) = %v: %v", test, l, err)
 	}
 }
 
 // verifyTopologicalSorting verifies that g is cyclic only if cyclic is set to true.
-// It errors if topoSort fails to detect a cyclic graph,
+// It errors if TopoSort fails to detect a cyclic graph,
 // fails to order all the elements of the graph,
 // or lists elements that were not in the original graph.
 func verifyTopologicalSorting(g graph, cyclic bool) ([]string, error) {
-	l, ok := topoSort(g)
+	l, ok := TopoSort(g)
 	if cyclic {
 		if ok {
 			return l, fmt.Errorf("failed to detect cycle")

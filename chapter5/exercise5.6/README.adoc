@@ -20,7 +20,7 @@ This allows us to compare the new implementation of `corner` to the old one.
 An opaque-box test of `corner` vs. `oldcorner`.
 Given the same input, we expect the same output from both functions.
 If `oldcorner` returns NaN, we skip to the next iteration so that
-a new corner implementation can resolve the issue.
+a new Corner implementation can resolve the issue.
 
 === `TestCornerReturnsNaNOrInf`
 

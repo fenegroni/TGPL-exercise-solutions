@@ -1,4 +1,4 @@
-package main
+package exercise5_7
 
 import (
 	"fmt"
@@ -10,10 +10,6 @@ import (
 var depth int
 var input io.Reader = os.Stdin
 var output io.Writer = os.Stdout
-
-func main() {
-	PrettyPrint()
-}
 
 func PrettyPrint() {
 	parseTree, err := html.Parse(input)

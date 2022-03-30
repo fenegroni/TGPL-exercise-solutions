@@ -1,6 +1,6 @@
 // CountWordsAndImages counts the words and images in each HTML document.
 // The URL to each document is supplied on the command line.
-package main
+package exercise5_5
 
 import (
 	"bufio"

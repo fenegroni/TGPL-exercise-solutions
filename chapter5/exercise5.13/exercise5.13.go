@@ -1,4 +1,4 @@
-package main
+package exercise5_13
 
 import (
 	"fmt"
@@ -11,12 +11,6 @@ import (
 )
 
 var DownloadDir string
-
-func main() {
-	// Crawl the web breadth-first,
-	// starting from the command-line arguments.
-	breadthFirst(crawl, os.Args[1:2])
-}
 
 // breadthFirst calls f for each item in the worklist.
 // Any items returned by f are added to the worklist.
@@ -98,7 +92,7 @@ func Extract(address string) ([]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to create file %q", filepath)
 	}
-	saveFile.Close()
+	_ = saveFile.Close()
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "a" {
 			for _, a := range n.Attr {

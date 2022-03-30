@@ -1,23 +1,13 @@
 // Exercise5.3 prints the content of all text nodes in an HTML document
 // read from standard input, except for <script> and <style> elements.
-package main
+package exercise5_3
 
 import (
 	"fmt"
 	"golang.org/x/net/html"
 	"io"
-	"os"
 	"strings"
 )
-
-func main() {
-	parseTree, err := html.Parse(os.Stdin)
-	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "exercise5.3: %v\n", err)
-		os.Exit(1)
-	}
-	PrintAllTextNodesContent(parseTree, os.Stdout)
-}
 
 // PrintAllTextNodesContent prints the contents of all text nodes found in n into out.
 // It does not descend into <script> or <style> elements,

@@ -1,22 +1,9 @@
 // Exercise5.1 prints the links in an HTML document read from standard input.
-package main
+package exercise5_1
 
 import (
-	"fmt"
 	"golang.org/x/net/html"
-	"os"
 )
-
-func main() {
-	doc, err := html.Parse(os.Stdin)
-	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "exercise5.1: %v\n", err)
-		os.Exit(1)
-	}
-	for _, link := range Visit(nil, doc) {
-		fmt.Println(link)
-	}
-}
 
 // Visit appends to links each link found in n and returns the result.
 func Visit(links []string, n *html.Node) []string {

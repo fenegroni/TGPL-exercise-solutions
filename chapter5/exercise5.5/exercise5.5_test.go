@@ -1,4 +1,4 @@
-package main
+package exercise5_5
 
 import (
 	"golang.org/x/net/html"

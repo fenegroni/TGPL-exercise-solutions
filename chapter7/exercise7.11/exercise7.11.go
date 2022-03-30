@@ -41,7 +41,7 @@ func (db database) updateHandler(resp http.ResponseWriter, req *http.Request) {
 	db.updateHandlerImpl(resp, req, false)
 }
 
-func (db database) deleteHandler(resp http.ResponseWriter, req *http.Request) {
+func (db database) deleteHandler(_ http.ResponseWriter, req *http.Request) {
 	item := req.URL.Query().Get("item")
 	delete(db, item)
 }
