@@ -10,7 +10,7 @@
 
 == Composite Types
 
-* {url-base}/tree/master/chapter4/exercise4.9[Exercise 4.9] {badge-exercise4-9} +
+* {url-base}/tree/master/ch4/ex9[Exercise 4.9] {badge-exercise4-9} +
 Write a program `wordfreq`
 to report the frequency of each word in an input text file.
 Call `input.Split(bufio.ScanWords)` before the first call to `Scan`

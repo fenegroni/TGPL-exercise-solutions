@@ -1,4 +1,4 @@
-package exercise4_9
+package ex9
 
 import (
 	"fmt"
