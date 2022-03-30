@@ -1,15 +1,41 @@
 package exercise7_13
 
 import (
-	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/expr"
+	"fmt"
+	. "github.com/fenegroni/TGPL-exercise-solutions/chapter7/expr"
+	"math"
 	"testing"
 )
 
-func TestExpr(t *testing.T) {
-	e1, _ := expr.Parse("sqrt(A / pi)")
-	e2, _ := expr.Parse("pow(x, 3) + pow(y, 3)")
-	e3, _ := expr.Parse("(F - 32) * 5 / 9")
-	t.Logf("e1: %v", e1)
-	t.Logf("e2: %v", e2)
-	t.Logf("e3: %v", e3)
+func TestEval(t *testing.T) {
+	tests := []struct {
+		expr string
+		env  Env
+		want string
+	}{
+		{"sqrt(A / pi)", Env{"A": 87616, "pi": math.Pi}, "167"},
+		{"pow(x, 3) + pow(y, 3)", Env{"x": 12, "y": 1}, "1729"},
+		{"pow(x, 3) + pow(y, 3)", Env{"x": 9, "y": 10}, "1729"},
+		{"5 / 9 * (F - 32)", Env{"F": -40}, "-40"},
+		{"5 / 9 * (F - 32)", Env{"F": 32}, "0"},
+		{"5 / 9 * (F - 32)", Env{"F": 212}, "100"},
+	}
+	var prevExpr string
+	for _, test := range tests {
+		if test.expr != prevExpr {
+			fmt.Printf("\n%s\n", test.expr)
+			prevExpr = test.expr
+		}
+		expr, err := Parse(test.expr)
+		if err != nil {
+			t.Errorf("Parse: %s", err)
+			continue
+		}
+		got := fmt.Sprintf("%.6g", expr.Eval(test.env))
+		fmt.Printf("\t%v => %s\n", test.env, got)
+		if got != test.want {
+			t.Errorf("%s.Eval() in %v = %q, want %q",
+				test.expr, test.env, got, test.want)
+		}
+	}
 }
