@@ -3,14 +3,14 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :badge-chapter4: image:{url-workflows}/Chapter 4/badge.svg?branch=main
-:badge-chapter5: image:{url-workflows}/Chapter 5/badge.svg?branch=main
+:badge-ch5: image:{url-workflows}/Chapter 5/badge.svg?branch=main
 :badge-chapter6: image:{url-workflows}/Chapter 6/badge.svg?branch=main
 :badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 {badge-chapter4}[link={url-base}/tree/master/ch4]
-{badge-chapter5}[link={url-base}/tree/master/chapter5]
+{badge-ch5}[link={url-base}/tree/master/ch5]
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
 {badge-chapter7}[link={url-base}/tree/master/chapter7]
 
@@ -33,7 +33,7 @@ see <https://www.gnu.org/licenses/>.
 
 {badge-chapter4}[link={url-base}/tree/master/ch4]
 
-{badge-chapter5}[link={url-base}/tree/master/chapter5]
+{badge-ch5}[link={url-base}/tree/master/ch5]
 
 {badge-chapter6}[link={url-base}/tree/master/chapter6]
 

@@ -2,7 +2,7 @@ package exercise7_12
 
 import (
 	"bytes"
-	. "github.com/fenegroni/TGPL-exercise-solutions/chapter5/exercise5.8"
+	. "github.com/fenegroni/TGPL-exercise-solutions/ch5/exercise5.8"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"

@@ -2,7 +2,7 @@ package exercise7_9
 
 import (
 	"errors"
-	exercise58 "github.com/fenegroni/TGPL-exercise-solutions/chapter5/exercise5.8"
+	exercise58 "github.com/fenegroni/TGPL-exercise-solutions/ch5/exercise5.8"
 	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.8/stable"
 	"github.com/fenegroni/TGPL-exercise-solutions/chapter7/exercise7.9/music"
 	"golang.org/x/net/html"
