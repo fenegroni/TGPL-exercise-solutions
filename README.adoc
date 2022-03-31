@@ -23,8 +23,24 @@
 :badge-exercise5-17: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main
 :badge-exercise5-18: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main
 :badge-exercise5-19: image:{url-workflows}/Exercise 5.19/badge.svg?branch=main
-:badge-chapter6: image:{url-workflows}/Chapter 6/badge.svg?branch=main
-:badge-chapter7: image:{url-workflows}/Chapter 7/badge.svg?branch=main
+:badge-exercise6-1: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main
+:badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
+:badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
+:badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
+:badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
+:badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
+:badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
+:badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
+:badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
+:badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
+:badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
+:badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
+:badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
+:badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
+:badge-exercise7-10: image:{url-workflows}/Exercise 7.10/badge.svg?branch=main
+:badge-exercise7-11: image:{url-workflows}/Exercise 7.11/badge.svg?branch=main
+:badge-exercise7-12: image:{url-workflows}/Exercise 7.12/badge.svg?branch=main
+:badge-exercise7-13: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
 image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
@@ -72,8 +88,24 @@ see <https://www.gnu.org/licenses/>.
 
 == Chapter 6 - _Methods_
 
-{badge-chapter6}[link={url-base}/tree/master/chapter6]
+{badge-exercise6-1}[link={url-base}/tree/master/ch6ex1]
+{badge-exercise6-2}[link={url-base}/tree/master/ch6ex2]
+{badge-exercise6-3}[link={url-base}/tree/master/ch6ex3]
+{badge-exercise6-4}[link={url-base}/tree/master/ch6ex4]
+{badge-exercise6-5}[link={url-base}/tree/master/ch6ex5]
 
 == Chapter 7 - _Interfaces_
 
-{badge-chapter7}[link={url-base}/tree/master/chapter7]
+{badge-exercise7-1}[link={url-base}/tree/master/ch7ex1]
+{badge-exercise7-2}[link={url-base}/tree/master/ch7ex2]
+{badge-exercise7-3}[link={url-base}/tree/master/ch7ex3]
+{badge-exercise7-4}[link={url-base}/tree/master/ch7ex4]
+{badge-exercise7-5}[link={url-base}/tree/master/ch7ex5]
+{badge-exercise7-6}[link={url-base}/tree/master/ch7ex6]
+{badge-exercise7-7}[link={url-base}/tree/master/ch7ex7]
+{badge-exercise7-8}[link={url-base}/tree/master/ch7ex8]
+{badge-exercise7-9}[link={url-base}/tree/master/ch7ex9]
+{badge-exercise7-10}[link={url-base}/tree/master/ch7ex10]
+{badge-exercise7-11}[link={url-base}/tree/master/ch7ex11]
+{badge-exercise7-12}[link={url-base}/tree/master/ch7ex12]
+{badge-exercise7-13}[link={url-base}/tree/master/ch7ex13]

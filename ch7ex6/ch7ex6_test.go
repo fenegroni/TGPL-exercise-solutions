@@ -1,0 +1,34 @@
+package ch7ex6
+
+import (
+	"flag"
+	tempconv2 "github.com/fenegroni/TGPL-exercise-solutions/ch7ex6/tempconv"
+	"testing"
+)
+
+func TestCelsiusFlag(t *testing.T) {
+	tests := []struct {
+		line  []string
+		value tempconv2.Celsius
+	}{
+		{[]string{}, 20.0},
+		{[]string{"-temp", "10C"}, 10.0},
+		{[]string{"-temp", "10°C"}, 10.0},
+		{[]string{"-temp", "-10°C"}, -10.0},
+		{[]string{"-temp", "32F"}, 0},
+		{[]string{"-temp", "32°F"}, 0},
+		{[]string{"-temp", "212°F"}, 100.0},
+		{[]string{"-temp", "0K"}, -273.15},
+		{[]string{"-temp", "273.15K"}, 0},
+	}
+	for _, test := range tests {
+		flags := flag.NewFlagSet("test", flag.ContinueOnError)
+		var temp = tempconv2.CelsiusFlag(flags, "temp", 20.0, "the temperature")
+		if err := flags.Parse(test.line); err != nil {
+			t.Error(err)
+		}
+		if *temp != test.value {
+			t.Errorf("%v = %f, want %f", test.line, *temp, test.value)
+		}
+	}
+}
