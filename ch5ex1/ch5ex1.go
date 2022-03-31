@@ -1,5 +1,5 @@
 // Exercise5.1 prints the links in an HTML document read from standard input.
-package exercise5_1
+package ch5ex1
 
 import (
 	"golang.org/x/net/html"

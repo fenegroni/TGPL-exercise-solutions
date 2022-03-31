@@ -1,4 +1,4 @@
-package exercise5_1
+package ch5ex1
 
 import (
 	"fmt"

@@ -18,4 +18,4 @@ jobs:
         go-version: 1.18
 
     - name: Test
-      run: go test -v ./ch5/exercise5.17
+      run: go test -v ./ch5ex17

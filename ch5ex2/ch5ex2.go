@@ -1,6 +1,6 @@
 // Exercise5.2 prints a count of all the elements in an HTML document
 // read from standard input.
-package exercise5_2
+package ch5ex2
 
 import (
 	"golang.org/x/net/html"
