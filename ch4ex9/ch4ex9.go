@@ -1,5 +1,5 @@
 // Exercise 4.9 reports the frequency of each word in an input text file.
-package ex9
+package ch4ex9
 
 import (
 	"bufio"

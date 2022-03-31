@@ -1,4 +1,4 @@
-package ex9
+package ch4ex9
 
 import (
 	"fmt"
