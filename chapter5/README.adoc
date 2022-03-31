@@ -28,6 +28,7 @@
 
 == Functions
 
+{badge-exercise4-9}
 * {badge-exercise5-1}[link={url-base}/tree/master/ch5/exercise5.1] +
 Change the `findlinks` program to traverse the `n.FirstChild` linked list
 using recursive calls to `Visit` instead of a loop.

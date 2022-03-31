@@ -33,7 +33,7 @@ The red box didn't move over.
 
 the Example function's `Unordered output` is:
 
-[source,go]
+[source]
 ----
 // Unordered output:
 // 3 the
