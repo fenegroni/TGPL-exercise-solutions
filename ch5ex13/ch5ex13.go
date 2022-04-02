@@ -34,7 +34,7 @@ func BreadthFirst(f func(string) []string, worklist []string) {
 func Crawl(address string) []string {
 	links, err := Extract(address)
 	if err != nil {
-		log.Printf("error: Extract(%q): %v", address, err)
+		log.Printf("error: Extract: %s", err)
 		return nil
 	}
 	var sameDomainLinks []string

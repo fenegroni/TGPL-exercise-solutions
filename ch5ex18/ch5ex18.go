@@ -8,7 +8,7 @@ import (
 	"path"
 )
 
-func Fetch(url string) (filename string, n int64, err error) {
+func Fetch(url string) (string, int64, error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", 0, err
@@ -22,7 +22,7 @@ func Fetch(url string) (filename string, n int64, err error) {
 	if err != nil {
 		return "", 0, err
 	}
-	n, err = io.Copy(f, resp.Body)
+	n, err := io.Copy(f, resp.Body)
 	defer func() {
 		// Close file, but prefer error from Copy, if any.
 		if closeErr := f.Close(); err == nil {
