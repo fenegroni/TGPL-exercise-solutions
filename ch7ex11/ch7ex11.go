@@ -51,15 +51,15 @@ func (db database) updateHandlerImpl(resp http.ResponseWriter, req *http.Request
 	price := req.URL.Query().Get("price")
 	_, found := db[item]
 	if !found && !create {
-		http.Error(resp, fmt.Sprintf("no such item: %q\n", item), http.StatusBadRequest)
+		http.Error(resp, "No such item.\n", http.StatusBadRequest)
 		return
 	} else if found && create {
-		http.Error(resp, fmt.Sprintf("item already exists: %q\n", item), http.StatusBadRequest)
+		http.Error(resp, "Item already exists.\n", http.StatusBadRequest)
 		return
 	}
 	priceVal, err := strconv.ParseFloat(price, 32)
 	if err != nil {
-		http.Error(resp, fmt.Sprintf("Could not parse price: %q\n", price), http.StatusBadRequest)
+		http.Error(resp, "Could not parse price.", http.StatusBadRequest)
 		return
 	}
 	db[item] = dollars(priceVal)
