@@ -8,7 +8,7 @@ import (
 
 func TestEval(t *testing.T) {
 	tests := []struct {
-		expr string
+		exp  string
 		env  Env
 		want string
 	}{
@@ -21,11 +21,11 @@ func TestEval(t *testing.T) {
 	}
 	var prevExpr string
 	for _, test := range tests {
-		if test.expr != prevExpr {
-			fmt.Printf("\n%s\n", test.expr)
-			prevExpr = test.expr
+		if test.exp != prevExpr {
+			fmt.Printf("\n%s\n", test.exp)
+			prevExpr = test.exp
 		}
-		expr, err := Parse(test.expr)
+		expr, err := Parse(test.exp)
 		if err != nil {
 			t.Errorf("Parse: %s", err)
 			continue
@@ -34,7 +34,7 @@ func TestEval(t *testing.T) {
 		fmt.Printf("\t%v => %s\n", test.env, got)
 		if got != test.want {
 			t.Errorf("%s.Eval() in %v = %q, want %q",
-				test.expr, test.env, got, test.want)
+				test.exp, test.env, got, test.want)
 		}
 	}
 }

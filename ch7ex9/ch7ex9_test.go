@@ -2,7 +2,7 @@ package ch7ex9
 
 import (
 	"errors"
-	exercise58 "github.com/fenegroni/TGPL-exercise-solutions/ch5/ch5ex8"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch5ex8"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex8/stable"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex9/music"
 	"golang.org/x/net/html"
@@ -92,7 +92,7 @@ func clickOnColumnHeader(htmlTable string, column string, handler http.HandlerFu
 }
 
 func getHeaderLink(by string, doc *html.Node) (string, error) {
-	node := exercise58.ElementByID(doc, "HeaderLink"+by)
+	node := ch5ex8.ElementByID(doc, "HeaderLink"+by)
 	if node == nil {
 		return "", errors.New("no element HeaderLink" + by)
 	}
