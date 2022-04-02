@@ -2,6 +2,7 @@ package ch7ex12
 
 import (
 	"bytes"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch5ex8"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"
@@ -23,11 +24,11 @@ func TestListIsHTML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Can't parse response as HTML: %q", body)
 	}
-	node := ElementByID(doc, "item")
+	node := ch5ex8.ElementByID(doc, "item")
 	if node == nil {
 		t.Fatalf("Could not find element 'item1': %q", body)
 	}
-	node = ElementByID(doc, "price")
+	node = ch5ex8.ElementByID(doc, "price")
 	if node == nil {
 		t.Fatalf("Could not find element 'price1': %q", body)
 	}
