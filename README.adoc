@@ -42,8 +42,8 @@
 :badge-exercise7-12: image:{url-workflows}/Exercise 7.12/badge.svg?branch=main
 :badge-exercise7-13: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main
 
-image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat-square[]
-image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat-square[]
+image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat[]
+image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat[]
 
 Solutions to the exercises in the book
 _The Go Programming Language_.
