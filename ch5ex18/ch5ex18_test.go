@@ -1,4 +1,4 @@
-package main
+package ch5ex18
 
 import (
 	"log"
@@ -11,7 +11,7 @@ func Test_fetch(t *testing.T) {
 	output := new(strings.Builder)
 	log.SetOutput(output)
 	url := "https://www.google.com"
-	filename, _, err := fetch(url)
+	filename, _, err := Fetch(url)
 	if err != nil && filename == "" {
 		t.Fatalf("Could not fetch %q", url)
 	}

@@ -1,7 +1,6 @@
-package main
+package ch5ex18
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -9,18 +8,7 @@ import (
 	"path"
 )
 
-func main() {
-	for _, url := range os.Args[1:] {
-		filename, n, err := fetch(url)
-		if err != nil {
-			fmt.Printf("could not fetch url %q: %v", url, err)
-			continue
-		}
-		fmt.Printf("%s: %d", filename, n)
-	}
-}
-
-func fetch(url string) (filename string, n int64, err error) {
+func Fetch(url string) (filename string, n int64, err error) {
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", 0, err
