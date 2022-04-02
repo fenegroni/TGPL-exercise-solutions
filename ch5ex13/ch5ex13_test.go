@@ -29,7 +29,7 @@ func TestSavePages(t *testing.T) {
 	}))
 	defer server.Close()
 	DownloadDir = t.TempDir()
-	breadthFirst(crawl, []string{server.URL})
+	BreadthFirst(Crawl, []string{server.URL})
 	serverUrl, _ := url.Parse(server.URL)
 	hostname := serverUrl.Hostname()
 	port := serverUrl.Port()

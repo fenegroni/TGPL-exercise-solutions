@@ -12,10 +12,10 @@ import (
 
 var DownloadDir string
 
-// breadthFirst calls f for each item in the worklist.
+// BreadthFirst calls f for each item in the worklist.
 // Any items returned by f are added to the worklist.
 // f is called at most once for each item.
-func breadthFirst(f func(string) []string, worklist []string) {
+func BreadthFirst(f func(string) []string, worklist []string) {
 	seen := make(map[string]bool)
 	for len(worklist) > 0 {
 		items := worklist
@@ -29,9 +29,9 @@ func breadthFirst(f func(string) []string, worklist []string) {
 	}
 }
 
-// crawl wraps calls to Extract, logging any errors,
-// allowing breadthFirst to continue crawling through all the hyperlinks.
-func crawl(address string) []string {
+// Crawl wraps calls to Extract, logging any errors,
+// allowing BreadthFirst to continue crawling through all the hyperlinks.
+func Crawl(address string) []string {
 	links, err := Extract(address)
 	if err != nil {
 		log.Print(err)
