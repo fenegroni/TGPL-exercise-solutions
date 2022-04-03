@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+# *TGPL* Exercise Solutions
 
-You can use the [editor on GitHub](https://github.com/fenegroni/TGPL-exercise-solutions/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Solutions to the exercises in the book *The Go Programming Language*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Copyright © 2021, 2022 Filippo Erik Negroni
 
-### Markdown
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+For a copy of the GNU General Public License see https://www.gnu.org/licenses/.
 
-```markdown
-Syntax highlighted code block
+## Chapter 4 - *Composite Types*
 
-# Header 1
-## Header 2
-### Header 3
+![Exercise 4.9](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch4ex9.yml/badge.svg?branch=main)
 
-- Bulleted
-- List
+## Chapter 5 - *Functions*
 
-1. Numbered
-2. List
+badge badge badge badge badge badge badge badge badge badge badge badge badge badge badge badge badge badge badge
 
-**Bold** and _Italic_ and `Code` text
+## Chapter 6 - *Methods*
 
-[Link](url) and ![Image](src)
-```
+badge badge badge badge badge
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## Chapter 7 - *Interfaces*
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fenegroni/TGPL-exercise-solutions/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+badge badge badge badge badge badge badge badge badge badge badge badge badge
