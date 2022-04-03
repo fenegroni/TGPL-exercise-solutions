@@ -45,4 +45,16 @@ For a copy of the GNU General Public License see https://www.gnu.org/licenses/.
 
 ## Chapter 7 - *Interfaces*
 
-badge badge badge badge badge badge badge badge badge badge badge badge badge
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex1.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex1)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex2.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex2)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex3.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex3)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex4.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex4)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex5.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex5)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex6.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex6)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex7.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex7)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex8.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex8)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex9.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex9)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex10.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex10)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex11.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex11)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex12.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex12)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch7ex13.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch7ex13)
