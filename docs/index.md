@@ -37,7 +37,11 @@ For a copy of the GNU General Public License see https://www.gnu.org/licenses/.
 
 ## Chapter 6 - *Methods*
 
-badge badge badge badge badge
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch6ex1.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch6ex1)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch6ex2.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch6ex2)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch6ex3.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch6ex3)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch6ex4.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch6ex4)
+[![](https://github.com/fenegroni/TGPL-exercise-solutions/actions/workflows/ch6ex5.yml/badge.svg?branch=main)](https://github.com/fenegroni/TGPL-exercise-solutions/tree/main/ch6ex5)
 
 ## Chapter 7 - *Interfaces*
 
