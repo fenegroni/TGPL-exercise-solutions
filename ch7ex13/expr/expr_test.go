@@ -48,9 +48,11 @@ func TestParseAndCheckErrors(t *testing.T) {
 		wantCheckErr error
 	}{
 		{"x % 2", Env{"x": 42}, fmt.Errorf("%%"), nil},
-		{"math.Pi", Env{"x": 42}, fmt.Errorf("."), nil},
-		{"!true", Env{"x": 42}, fmt.Errorf("!"), nil},
-		{"\"hello\"", Env{"x": 42}, fmt.Errorf("\""), nil},
+		{"math.Pi", Env{}, fmt.Errorf("."), nil},
+		{"!true", Env{}, fmt.Errorf("!"), nil},
+		{"\"hello\"", Env{}, fmt.Errorf("\""), nil},
+		{"log(10)", Env{}, nil, fmt.Errorf("log")},
+		{"sqrt(1, 2)", Env{}, nil, fmt.Errorf("sqrt")},
 	}
 	for _, test := range tests {
 		expr, err := Parse(test.exp)
@@ -73,7 +75,7 @@ func TestParseAndCheckErrors(t *testing.T) {
 			t.Errorf("%q.Check() must give error containing %q, got %v", test.exp, test.wantCheckErr, err)
 			continue
 		}
-		if !strings.Contains(err.Error(), test.wantParseErr.Error()) {
+		if !strings.Contains(err.Error(), test.wantCheckErr.Error()) {
 			t.Errorf("%q.Check() must give error containing %q, got %q", test.exp, test.wantCheckErr, err)
 			continue
 		}
