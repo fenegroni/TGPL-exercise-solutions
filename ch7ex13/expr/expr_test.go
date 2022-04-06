@@ -48,7 +48,7 @@ func TestParseAndCheckErrors(t *testing.T) {
 		wantCheckErr error
 	}{
 		{"x % 2", Env{"x": 42}, fmt.Errorf("%%"), nil},
-		{"x + 2", Env{"y": 42}, nil, fmt.Errorf("x")},
+		{"x + y", Env{"y": 42}, nil, fmt.Errorf("x")},
 	}
 	var prevExpr string
 	for _, test := range tests {
@@ -58,28 +58,27 @@ func TestParseAndCheckErrors(t *testing.T) {
 		}
 		expr, err := Parse(test.exp)
 		if test.wantParseErr == nil && err != nil {
-			t.Errorf("%s.Parse() in %v returns unexpected error %q", test.exp, test.env, err)
+			t.Errorf("%q.Parse() in %v returns unexpected error %v", test.exp, test.env, err)
 			continue
 		}
 		if test.wantParseErr != nil {
 			if err == nil {
-				t.Errorf("%s.Parse() in %v does not error, want error containing %q", test.exp, test.env, test.wantParseErr)
+				t.Errorf("%q.Parse() in %v must give error containing %q, got %v", test.exp, test.env, test.wantParseErr, err)
 			}
 			if !strings.Contains(err.Error(), test.wantParseErr.Error()) {
-				t.Errorf("%s.Parse() in %v = error %q, can't find %q", test.exp, test.env, err, test.wantParseErr)
+				t.Errorf("%q.Parse() in %v must give error containing %q, got %q", test.exp, test.env, test.wantParseErr, err)
 			}
 			continue
 		}
 		vars := make(map[Var]bool)
 		err = expr.Check(vars)
 		if err == nil {
-			t.Errorf("%s.Check() in %v does not error, want error containing %q", test.exp, test.env, test.wantCheckErr)
+			t.Errorf("%q.Check() must give error containing %q, got %v", test.exp, test.wantCheckErr, err)
 			continue
 		}
 		if !strings.Contains(err.Error(), test.wantParseErr.Error()) {
-			t.Errorf("%s.Check() in %v = error %q, can't find %q", test.exp, test.env, err, test.wantCheckErr)
+			t.Errorf("%q.Check() must give error containing %q, got %q", test.exp, test.wantCheckErr, err)
 			continue
 		}
-		// TODO check vars against env? maybe need to have nil errors for Check too
 	}
 }
