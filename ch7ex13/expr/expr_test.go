@@ -77,7 +77,7 @@ func TestParseAndCheckErrors(t *testing.T) {
 			continue
 		}
 		if !strings.Contains(err.Error(), test.wantParseErr.Error()) {
-			t.Errorf("%s.Parse() in %v = error %q, can't find %q", test.exp, test.env, err, test.wantCheckErr)
+			t.Errorf("%s.Check() in %v = error %q, can't find %q", test.exp, test.env, err, test.wantCheckErr)
 			continue
 		}
 		// TODO check vars against env? maybe need to have nil errors for Check too
