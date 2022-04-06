@@ -2,9 +2,8 @@ package expr
 
 import (
 	"fmt"
-	"strconv"
+	"math"
 	"strings"
-	"text/scanner"
 )
 
 type Expr interface {
@@ -13,154 +12,111 @@ type Expr interface {
 	Check(vars map[Var]bool) error
 }
 
-// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+type literal float64
 
-// ---- lexer ----
-
-// This lexer is similar to the one described in Chapter 13.
-type lexer struct {
-	scan  scanner.Scanner
-	token rune // current lookahead token
+func (l literal) Eval(_ Env) float64 {
+	return float64(l)
 }
 
-func (lex *lexer) next()        { lex.token = lex.scan.Scan() }
-func (lex *lexer) text() string { return lex.scan.TokenText() }
+func (literal) Check(_ map[Var]bool) error {
+	return nil
+}
 
-type lexPanic string
+type unary struct {
+	op rune // '+', '-'
+	x  Expr
+}
 
-// describe returns a string describing the current token, for use in errors.
-func (lex *lexer) describe() string {
-	switch lex.token {
-	case scanner.EOF:
-		return "end of file"
-	case scanner.Ident:
-		return fmt.Sprintf("identifier %s", lex.text())
-	case scanner.Int, scanner.Float:
-		return fmt.Sprintf("number %s", lex.text())
+func (u unary) Eval(env Env) float64 {
+	switch u.op {
+	case '+':
+		return +u.x.Eval(env)
+	case '-':
+		return -u.x.Eval(env)
 	}
-	return fmt.Sprintf("%q", lex.token) // any other rune
+	panic(fmt.Sprintf("unsupported unary operator: %q", u.op))
 }
 
-func precedence(op rune) int {
-	switch op {
-	case '*', '/':
-		return 2
-	case '+', '-':
-		return 1
+func (u unary) Check(vars map[Var]bool) error {
+	if !strings.ContainsRune("+-", u.op) {
+		return fmt.Errorf("unexpected unary op %q", u.op)
 	}
-	return 0
+	return u.x.Check(vars)
 }
 
-// ---- parser ----
+type binary struct {
+	op   rune // '+', '-', '*', '/'
+	x, y Expr
+}
 
-// Parse parses the input string as an arithmetic expression.
-//
-//   expr = num                         a literal number, e.g., 3.14159
-//        | id                          a variable name, e.g., x
-//        | id '(' expr ',' ... ')'     a function call
-//        | '-' expr                    a unary operator (+-)
-//        | expr '+' expr               a binary operator (+-*/)
-//
-func Parse(input string) (_ Expr, err error) {
-	defer func() {
-		switch x := recover().(type) {
-		case nil:
-			// no panic
-		case lexPanic:
-			err = fmt.Errorf("%s", x)
-		default:
-			// unexpected panic: resume state of panic.
-			panic(x)
-		}
-	}()
-	lex := new(lexer)
-	lex.scan.Init(strings.NewReader(input))
-	lex.scan.Mode = scanner.ScanIdents | scanner.ScanInts | scanner.ScanFloats
-	lex.next() // initial lookahead
-	e := parseExpr(lex)
-	if lex.token != scanner.EOF {
-		return nil, fmt.Errorf("unexpected %s", lex.describe())
+func (b binary) Eval(env Env) float64 {
+	switch b.op {
+	case '*':
+		return b.x.Eval(env) * b.y.Eval(env)
+	case '/':
+		return b.x.Eval(env) / b.y.Eval(env)
+	case '+':
+		return b.x.Eval(env) + b.y.Eval(env)
+	case '-':
+		return b.x.Eval(env) - b.y.Eval(env)
 	}
-	return e, nil
+	panic(fmt.Sprintf("unsupported binary operator: %q", b.op))
 }
 
-func parseExpr(lex *lexer) Expr { return parseBinary(lex, 1) }
+func (b binary) Check(vars map[Var]bool) error {
+	if !strings.ContainsRune("*/+-", b.op) {
+		return fmt.Errorf("unexpected binary op %q", b.op)
+	}
+	if err := b.x.Check(vars); err != nil {
+		return err
+	}
+	return b.y.Check(vars)
+}
 
-// binary = unary ('+' binary)*
-// parseBinary stops when it encounters an
-// operator of lower precedence than prec1.
-func parseBinary(lex *lexer, prec1 int) Expr {
-	lhs := parseUnary(lex)
-	for prec := precedence(lex.token); prec >= prec1; prec-- {
-		for precedence(lex.token) == prec {
-			op := lex.token
-			lex.next() // consume operator
-			rhs := parseBinary(lex, prec+1)
-			lhs = binary{op, lhs, rhs}
+type Var string
+
+type Env map[Var]float64
+
+func (v Var) Eval(env Env) float64 {
+	return env[v]
+}
+
+func (v Var) Check(vars map[Var]bool) error {
+	vars[v] = true
+	return nil
+}
+
+type call struct {
+	fn   string // "pow", "sin", "sqrt"
+	args []Expr
+}
+
+func (c call) Eval(env Env) float64 {
+	switch c.fn {
+	case "pow":
+		return math.Pow(c.args[0].Eval(env), c.args[1].Eval(env))
+	case "sin":
+		return math.Sin(c.args[0].Eval(env))
+	case "sqrt":
+		return math.Sqrt(c.args[0].Eval(env))
+	}
+	panic(fmt.Sprintf("unsupported function call: %q", c.fn))
+}
+
+func (c call) Check(vars map[Var]bool) error {
+	arity, ok := numParams[c.fn]
+	if !ok {
+		return fmt.Errorf("unknown function %q", c.fn)
+	}
+	if len(c.args) != arity {
+		return fmt.Errorf("call to %s has %d args, want %d", c.fn, len(c.args), arity)
+	}
+	for _, arg := range c.args {
+		if err := arg.Check(vars); err != nil {
+			return err
 		}
 	}
-	return lhs
+	return nil
 }
 
-// unary = '+' expr | primary
-func parseUnary(lex *lexer) Expr {
-	if lex.token == '+' || lex.token == '-' {
-		op := lex.token
-		lex.next() // consume '+' or '-'
-		return unary{op, parseUnary(lex)}
-	}
-	return parsePrimary(lex)
-}
-
-// primary = id
-//         | id '(' expr ',' ... ',' expr ')'
-//         | num
-//         | '(' expr ')'
-func parsePrimary(lex *lexer) Expr {
-	switch lex.token {
-	case scanner.Ident:
-		id := lex.text()
-		lex.next() // consume Ident
-		if lex.token != '(' {
-			return Var(id)
-		}
-		lex.next() // consume '('
-		var args []Expr
-		if lex.token != ')' {
-			for {
-				args = append(args, parseExpr(lex))
-				if lex.token != ',' {
-					break
-				}
-				lex.next() // consume ','
-			}
-			if lex.token != ')' {
-				msg := fmt.Sprintf("got %s, want ')'", lex.describe())
-				panic(lexPanic(msg))
-			}
-		}
-		lex.next() // consume ')'
-		return call{id, args}
-
-	case scanner.Int, scanner.Float:
-		f, err := strconv.ParseFloat(lex.text(), 64)
-		if err != nil {
-			panic(lexPanic(err.Error()))
-		}
-		lex.next() // consume number
-		return literal(f)
-
-	case '(':
-		lex.next() // consume '('
-		e := parseExpr(lex)
-		if lex.token != ')' {
-			msg := fmt.Sprintf("got %s, want ')'", lex.describe())
-			panic(lexPanic(msg))
-		}
-		lex.next() // consume ')'
-		return e
-	}
-	msg := fmt.Sprintf("unexpected %s", lex.describe())
-	panic(lexPanic(msg))
-}
+var numParams = map[string]int{"pow": 2, "sin": 1, "sqrt": 1}
