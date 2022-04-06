@@ -34,7 +34,7 @@ func TestEval(t *testing.T) {
 		got := fmt.Sprintf("%.6g", expr.Eval(test.env))
 		fmt.Printf("\t%v => %s\n", test.env, got)
 		if got != test.want {
-			t.Errorf("%s.Eval() in %v = %q, want %q",
+			t.Errorf("%q.Eval() in %v = %q, want %q",
 				test.exp, test.env, got, test.want)
 		}
 	}
@@ -48,14 +48,11 @@ func TestParseAndCheckErrors(t *testing.T) {
 		wantCheckErr error
 	}{
 		{"x % 2", Env{"x": 42}, fmt.Errorf("%%"), nil},
-		{"x + y", Env{"y": 42}, nil, fmt.Errorf("x")},
+		{"math.Pi", Env{"x": 42}, fmt.Errorf("."), nil},
+		{"!true", Env{"x": 42}, fmt.Errorf("!"), nil},
+		{"\"hello\"", Env{"x": 42}, fmt.Errorf("\""), nil},
 	}
-	var prevExpr string
 	for _, test := range tests {
-		if test.exp != prevExpr {
-			fmt.Printf("\n%s\n", test.exp)
-			prevExpr = test.exp
-		}
 		expr, err := Parse(test.exp)
 		if test.wantParseErr == nil && err != nil {
 			t.Errorf("%q.Parse() in %v returns unexpected error %v", test.exp, test.env, err)
