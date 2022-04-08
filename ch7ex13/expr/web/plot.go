@@ -2,9 +2,10 @@ package web
 
 import (
 	"fmt"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr/plot"
 	"net/http"
 )
-import "github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
 
 func Plot(w http.ResponseWriter, r *http.Request) {
 	_ = r.ParseForm()
@@ -14,10 +15,9 @@ func Plot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "image/svg+xml")
-	/* TODO implement surface
-	surface(w, func(x, y float64) float64 {
-
-	}*/
+	plot.Surface(w, func(x, y float64) float64 {
+		return 0
+	})
 }
 
 func parseAndCheck(s string) (expr.Expr, error) {
