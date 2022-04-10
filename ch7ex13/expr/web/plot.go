@@ -3,20 +3,22 @@ package web
 import (
 	"fmt"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr/plot"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/plot"
+	"math"
 	"net/http"
 )
 
 func Plot(w http.ResponseWriter, r *http.Request) {
 	_ = r.ParseForm()
-	/* exp */ _, err := parseAndCheck(r.Form.Get("expr"))
+	exp, err := parseAndCheck(r.Form.Get("expr"))
 	if err != nil {
 		http.Error(w, "bad expr: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 	w.Header().Set("Content-Type", "image/svg+xml")
-	plot.Surface(w, func(x, y float64) float64 {
-		return 0
+	_, _ = plot.Surface(w, func(x, y float64) float64 {
+		r := math.Hypot(x, y)
+		return exp.Eval(expr.Env{"x": x, "y": y, "r": r})
 	})
 }
 
