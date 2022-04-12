@@ -9,7 +9,6 @@ import (
 // TestSurface validates the output of Surface is a valid SVG ready
 // to be embedded in an HTTP response with content type SVG.
 func TestSurface(t *testing.T) {
-	// TODO Implement TestSurface
 	buf := new(bytes.Buffer)
 	written, err := Surface(buf, func(x, y float64) float64 {
 		return 0
