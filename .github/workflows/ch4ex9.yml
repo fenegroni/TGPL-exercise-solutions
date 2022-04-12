@@ -19,4 +19,4 @@ jobs:
         go-version: 1.18
 
     - name: Test
-      run: go test ./ch4ex9
+      run: go test ./ch4ex9/...
