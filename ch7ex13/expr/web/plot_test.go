@@ -22,3 +22,8 @@ func TestPlot(t *testing.T) {
 		t.Errorf("Response Content-Type: got %q, want %q", got, wantType)
 	}
 }
+
+// ExamplePlot runs an http server so you can experiment with different expressions.
+func ExamplePlot() {
+	// TODO implement ExamplePlot
+}
