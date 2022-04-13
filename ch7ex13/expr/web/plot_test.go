@@ -25,5 +25,7 @@ func TestPlot(t *testing.T) {
 
 // ExamplePlot runs an http server so you can experiment with different expressions.
 func ExamplePlot() {
-	// TODO implement ExamplePlot
+	if err := http.ListenAndServe(":8000", http.HandlerFunc(Plot)); err != nil {
+		panic(err)
+	}
 }
