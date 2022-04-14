@@ -33,9 +33,13 @@ func TestStringEval(t *testing.T) {
 			continue
 		}
 		result2 := fmt.Sprintf("%.6g", exp2.Eval(test.env))
+		t.Logf("%s => %s", test.exp, got)
 		if result1 != result2 {
-			t.Errorf("%q.Eval() and %q.Eval() don't give the same result",
-				test.exp, got)
+			t.Errorf("%q and %q don't give the same result", test.exp, got)
 		}
 	}
 }
+
+// TODO implement test option 2
+
+// TODO implement test option 3

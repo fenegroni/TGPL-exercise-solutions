@@ -12,20 +12,40 @@ Check that the results, when parsed again, yield an equivalent tree.
 
 == Test
 
-We have two options.
+We have three options to test this.
 
-. Given a known expression with a known result,
+The first two options take less time to implement,
+because they don't compare the resulting expression tree directly.
+
+1. Given a known expression with a known result,
 calling `Eval` on the string representation
 yields the same result.
 
-. Given any expression,
+2. Given any expression,
 if we first call `Parse` on it,
 then we call `String` on the resulting `Expr`,
 if we call `Parse` on that resulting string
 and then call `String` on the `Expr`
 the first `String` result should match the second `String` result.
 
-=== Using `Eval`
+3. Given any expression,
+if we first call `Parse` on it,
+then we call `String` on the resulting `Expr`,
+if we call `Parse` on that resulting string
+
+The third option we have is similar to the second one,
+except instead of comparing the string result,
+we deep compare the tree of `Expr`.
+
+The reason I don't particularly like the third option at this stage
+is because it's asking us to either expose how `Expr` is implemented
+to the test, or implement an `Expr`-tree comparison function.
+
+This would require more code that is superflous at this stage,
+but for the sake of the exercise, which is to learn Go,
+I will implement that function.
+
+=== Option 1: Using `Eval`
 
 The first test, `TestStringEval`, uses the first strategy.
 

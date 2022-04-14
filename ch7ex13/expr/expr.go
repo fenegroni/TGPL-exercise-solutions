@@ -10,7 +10,6 @@ type Expr interface {
 	Eval(env Env) float64
 	// Check reports errors in this Expr and adds its Vars to the set.
 	Check(vars map[Var]bool) error
-	// TODO implement String
 	String() string
 }
 
@@ -84,7 +83,12 @@ func (b binary) Check(vars map[Var]bool) error {
 }
 
 func (b binary) String() string {
-	return fmt.Sprintf("%s %c %s", b.x, b.op, b.y)
+	var left, right string
+	if precedence(b.op) < 2 {
+		left = "("
+		right = ")"
+	}
+	return fmt.Sprintf("%s%s %c %s%s", left, b.x, b.op, b.y, right)
 }
 
 type Var string
@@ -107,8 +111,15 @@ func (v Var) String() string {
 type callArgs []Expr
 
 func (c callArgs) String() string {
-	// TODO implement me
-	panic("implement me")
+	b := new(strings.Builder)
+	for n, a := range c {
+		sep := ", "
+		if n == 0 {
+			sep = ""
+		}
+		_, _ = fmt.Fprint(b, sep, a.String())
+	}
+	return b.String()
 }
 
 type call struct {
