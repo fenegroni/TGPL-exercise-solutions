@@ -85,8 +85,7 @@ func (b binary) Check(vars map[Var]bool) error {
 func (b binary) String() string {
 	var left, right string
 	if precedence(b.op) < 2 {
-		left = "("
-		right = ")"
+		left, right = "(", ")"
 	}
 	return fmt.Sprintf("%s%s %c %s%s", left, b.x, b.op, b.y, right)
 }
