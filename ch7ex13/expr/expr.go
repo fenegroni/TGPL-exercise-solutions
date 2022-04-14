@@ -10,6 +10,8 @@ type Expr interface {
 	Eval(env Env) float64
 	// Check reports errors in this Expr and adds its Vars to the set.
 	Check(vars map[Var]bool) error
+	// TODO implement String
+	String() string
 }
 
 type literal float64
@@ -20,6 +22,10 @@ func (l literal) Eval(_ Env) float64 {
 
 func (literal) Check(_ map[Var]bool) error {
 	return nil
+}
+
+func (l literal) String() string {
+	return fmt.Sprintf("%.6g", l)
 }
 
 type unary struct {
@@ -42,6 +48,10 @@ func (u unary) Check(vars map[Var]bool) error {
 		return fmt.Errorf("unexpected unary op %q", u.op)
 	}
 	return u.x.Check(vars)
+}
+
+func (u unary) String() string {
+	return fmt.Sprintf("%c%s", u.op, u.x)
 }
 
 type binary struct {
@@ -73,6 +83,10 @@ func (b binary) Check(vars map[Var]bool) error {
 	return b.y.Check(vars)
 }
 
+func (b binary) String() string {
+	return fmt.Sprintf("%s %c %s", b.x, b.op, b.y)
+}
+
 type Var string
 
 type Env map[Var]float64
@@ -86,9 +100,20 @@ func (v Var) Check(vars map[Var]bool) error {
 	return nil
 }
 
+func (v Var) String() string {
+	return string(v)
+}
+
+type callArgs []Expr
+
+func (c callArgs) String() string {
+	// TODO implement me
+	panic("implement me")
+}
+
 type call struct {
 	fn   string // "pow", "sin", "sqrt"
-	args []Expr
+	args callArgs
 }
 
 func (c call) Eval(env Env) float64 {
@@ -117,6 +142,10 @@ func (c call) Check(vars map[Var]bool) error {
 		}
 	}
 	return nil
+}
+
+func (c call) String() string {
+	return fmt.Sprintf("%s(%s)", c.fn, c.args)
 }
 
 var numParams = map[string]int{"pow": 2, "sin": 1, "sqrt": 1}

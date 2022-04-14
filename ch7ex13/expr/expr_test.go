@@ -20,19 +20,13 @@ func TestEval(t *testing.T) {
 		{"5 / 9 * (F - 32)", Env{"F": 32}, "0"},
 		{"5 / 9 * (F - 32)", Env{"F": 212}, "100"},
 	}
-	var prevExpr string
 	for _, test := range tests {
-		if test.exp != prevExpr {
-			fmt.Printf("\n%s\n", test.exp)
-			prevExpr = test.exp
-		}
 		expr, err := Parse(test.exp)
 		if err != nil {
 			t.Errorf("Parse: %s", err)
 			continue
 		}
 		got := fmt.Sprintf("%.6g", expr.Eval(test.env))
-		fmt.Printf("\t%v => %s\n", test.env, got)
 		if got != test.want {
 			t.Errorf("%q.Eval() in %v = %q, want %q",
 				test.exp, test.env, got, test.want)

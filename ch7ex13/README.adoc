@@ -11,3 +11,42 @@ Add a `String` method to `Expr` to pretty-print the syntax tree.
 Check that the results, when parsed again, yield an equivalent tree.
 
 == Test
+
+We have two options.
+
+. Given a known expression with a known result,
+calling `Eval` on the string representation
+yields the same result.
+
+. Given any expression,
+if we first call `Parse` on it,
+then we call `String` on the resulting `Expr`,
+if we call `Parse` on that resulting string
+and then call `String` on the `Expr`
+the first `String` result should match the second `String` result.
+
+=== Using `Eval`
+
+The first test, `TestStringEval`, uses the first strategy.
+
+We apply `Eval` to an expression that we know are parsed and evaluated correctly
+(see `TestEval` in `expr_test.go`).
+
+Then we take the string repsentation of the parsed expression
+and apply `Eval` to it.
+
+If we get the same result from both evaluations,
+we _know_ the string representation is compatible.
+
+Obviously we could think of cases where
+two expressions which are different give the same results:
+that's why this strategy is a little flaky.
+
+=== New type args
+
+While implementing `String` for `call`,
+I realised that since the arguments are stored in a `[]Expr`,
+a bit of logic is needed to represent them properly in string format.
+
+So I decided to create the new type `args`
+to implement the `fmt.Stringer` interface.
