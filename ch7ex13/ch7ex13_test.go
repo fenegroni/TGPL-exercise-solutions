@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
 	"math"
+	"reflect"
 	"testing"
 )
 
@@ -40,6 +41,60 @@ func TestStringEval(t *testing.T) {
 	}
 }
 
-// TODO implement test option 2
+func TestStringParse(t *testing.T) {
+	tests := []string{
+		"sqrt(A / pi)",
+		"pow(x, 3) + pow(y, 3)",
+		"pow(x, 3) + pow(y, 3)",
+		"5 / 9 * (F - 32)",
+		"5 / 9 * (F - 32)",
+		"5 / 9 * (F - 32)",
+	}
+	for _, test := range tests {
+		var exp expr.Expr
+		var err error
+		exp, err = expr.Parse(test)
+		if err != nil {
+			t.Errorf("Parse original exp: %s", err)
+			continue
+		}
+		got1 := exp.String()
+		exp, err = expr.Parse(got1)
+		if err != nil {
+			t.Errorf("Parse first string: %s", err)
+			continue
+		}
+		got2 := exp.String()
+		if got1 != got2 {
+			t.Errorf("got1 %q != got2: %q", got1, got2)
+		}
+	}
+}
 
-// TODO implement test option 3
+func TestStringDeepCompare(t *testing.T) {
+	tests := []string{
+		"sqrt(A / pi)",
+		"pow(x, 3) + pow(y, 3)",
+		"pow(x, 3) + pow(y, 3)",
+		"5 / 9 * (F - 32)",
+		"5 / 9 * (F - 32)",
+		"5 / 9 * (F - 32)",
+	}
+	for _, test := range tests {
+		var exp1, exp2 expr.Expr
+		var err error
+		exp1, err = expr.Parse(test)
+		if err != nil {
+			t.Errorf("Parse original exp: %s", err)
+			continue
+		}
+		exp2, err = expr.Parse(exp1.String())
+		if err != nil {
+			t.Errorf("Parse string rep.: %s", err)
+			continue
+		}
+		if false == reflect.DeepEqual(exp1, exp2) {
+			t.Error("syntax trees are different")
+		}
+	}
+}

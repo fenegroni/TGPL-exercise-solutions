@@ -3,70 +3,69 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-exercise: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main[link={url-actions}]
+:url-badge-main: badge.svg?branch=main
 
-{badge-exercise}
+image:{url-workflows}/Exercise 7.13/{url-badge-main}[link={url-actions}]
 
 Add a `String` method to `Expr` to pretty-print the syntax tree.
 Check that the results, when parsed again, yield an equivalent tree.
 
 == Test
 
-We have three options to test this.
+We have three options to validate the `String` method.
 
-The first two options take less time to implement,
-because they don't compare the resulting expression tree directly.
+1. Check we get the same result from evaluating the string representation.
 
-1. Given a known expression with a known result,
-calling `Eval` on the string representation
-yields the same result.
+2. Check there is a one to one relationship between a syntax tree
+and its string representation, by repeatedly parsing the string
+obtained from a syntax tree.
 
-2. Given any expression,
-if we first call `Parse` on it,
-then we call `String` on the resulting `Expr`,
-if we call `Parse` on that resulting string
-and then call `String` on the `Expr`
-the first `String` result should match the second `String` result.
+3. Deep-compare the syntax trees resulting from
+parsing the original expression string
+and parsing the string representation of that syntax tree.
 
-3. Given any expression,
-if we first call `Parse` on it,
-then we call `String` on the resulting `Expr`,
-if we call `Parse` on that resulting string
+The first two options don't necesserily prove
+the syntax trees are equivalent,
+but do allow for some implementation flexibility.
 
-The third option we have is similar to the second one,
-except instead of comparing the string result,
-we deep compare the tree of `Expr`.
+The third option is the best one
+but requires the sytax trees not just being equivalent,
+but identical.
+The test therefore becomes somewhat brittle.
 
-The reason I don't particularly like the third option at this stage
-is because it's asking us to either expose how `Expr` is implemented
-to the test, or implement an `Expr`-tree comparison function.
+There might be optimisations that would allow our syntax tree
+to differ slightly yet deliver the same result when evaluated.
 
-This would require more code that is superflous at this stage,
-but for the sake of the exercise, which is to learn Go,
-I will implement that function.
+We will implement all three test strategies
+so that you can make your own mind up
+as to which one is best.
+
 
 === Option 1: Using `Eval`
 
-The first test, `TestStringEval`, uses the first strategy.
+The first test, `TestStringEval`, implements
+the first `String` method validation strategy.
 
-We apply `Eval` to an expression that we know are parsed and evaluated correctly
-(see `TestEval` in `expr_test.go`).
+We could think of two expressions that give the same result
+yet have completely different `string` representations and syntax trees.
 
-Then we take the string repsentation of the parsed expression
-and apply `Eval` to it.
-
-If we get the same result from both evaluations,
-we _know_ the string representation is compatible.
-
-Obviously we could think of cases where
-two expressions which are different give the same results:
-that's why this strategy is a little flaky.
 
 === New type args
 
-While implementing `String` for `call`,
-I realised that since the arguments are stored in a `[]Expr`,
-a bit of logic is needed to represent them properly in string format.
+We create the new type `args`
+to implement the `fmt.Stringer` interface for `expr.call`.
 
-So I decided to create the new type `args`
-to implement the `fmt.Stringer` interface.
+
+== Option 2: Using `Parse`
+
+The second test, `TestStringParse`, implements the second strategy
+to validate the `String` method.
+
+This has the advantage of
+not requiring a call to `Eval` for each expression.
+
+
+== Option 3: Deep-compare
+
+The third test, `TestDeepCompare`, implements the third strategy
+and requires the use of `reflect.DeepEqual`.

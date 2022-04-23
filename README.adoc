@@ -3,52 +3,16 @@
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
 :url-workflows: {url-base}/workflows
 :url-actions: {url-base}/actions
-:badge-exercise4-9: image:{url-workflows}/Exercise 4.9/badge.svg?branch=main
-:badge-exercise5-1: image:{url-workflows}/Exercise 5.1/badge.svg?branch=main
-:badge-exercise5-2: image:{url-workflows}/Exercise 5.2/badge.svg?branch=main
-:badge-exercise5-3: image:{url-workflows}/Exercise 5.3/badge.svg?branch=main
-:badge-exercise5-4: image:{url-workflows}/Exercise 5.4/badge.svg?branch=main
-:badge-exercise5-5: image:{url-workflows}/Exercise 5.5/badge.svg?branch=main
-:badge-exercise5-6: image:{url-workflows}/Exercise 5.6/badge.svg?branch=main
-:badge-exercise5-7: image:{url-workflows}/Exercise 5.7/badge.svg?branch=main
-:badge-exercise5-8: image:{url-workflows}/Exercise 5.8/badge.svg?branch=main
-:badge-exercise5-9: image:{url-workflows}/Exercise 5.9/badge.svg?branch=main
-:badge-exercise5-10: image:{url-workflows}/Exercise 5.10/badge.svg?branch=main
-:badge-exercise5-11: image:{url-workflows}/Exercise 5.11/badge.svg?branch=main
-:badge-exercise5-12: image:{url-workflows}/Exercise 5.12/badge.svg?branch=main
-:badge-exercise5-13: image:{url-workflows}/Exercise 5.13/badge.svg?branch=main
-:badge-exercise5-14: image:{url-workflows}/Exercise 5.14/badge.svg?branch=main
-:badge-exercise5-15: image:{url-workflows}/Exercise 5.15/badge.svg?branch=main
-:badge-exercise5-16: image:{url-workflows}/Exercise 5.16/badge.svg?branch=main
-:badge-exercise5-17: image:{url-workflows}/Exercise 5.17/badge.svg?branch=main
-:badge-exercise5-18: image:{url-workflows}/Exercise 5.18/badge.svg?branch=main
-:badge-exercise5-19: image:{url-workflows}/Exercise 5.19/badge.svg?branch=main
-:badge-exercise6-1: image:{url-workflows}/Exercise 6.1/badge.svg?branch=main
-:badge-exercise6-2: image:{url-workflows}/Exercise 6.2/badge.svg?branch=main
-:badge-exercise6-3: image:{url-workflows}/Exercise 6.3/badge.svg?branch=main
-:badge-exercise6-4: image:{url-workflows}/Exercise 6.4/badge.svg?branch=main
-:badge-exercise6-5: image:{url-workflows}/Exercise 6.5/badge.svg?branch=main
-:badge-exercise7-1: image:{url-workflows}/Exercise 7.1/badge.svg?branch=main
-:badge-exercise7-2: image:{url-workflows}/Exercise 7.2/badge.svg?branch=main
-:badge-exercise7-3: image:{url-workflows}/Exercise 7.3/badge.svg?branch=main
-:badge-exercise7-4: image:{url-workflows}/Exercise 7.4/badge.svg?branch=main
-:badge-exercise7-5: image:{url-workflows}/Exercise 7.5/badge.svg?branch=main
-:badge-exercise7-6: image:{url-workflows}/Exercise 7.6/badge.svg?branch=main
-:badge-exercise7-7: image:{url-workflows}/Exercise 7.7/badge.svg?branch=main
-:badge-exercise7-8: image:{url-workflows}/Exercise 7.8/badge.svg?branch=main
-:badge-exercise7-9: image:{url-workflows}/Exercise 7.9/badge.svg?branch=main
-:badge-exercise7-10: image:{url-workflows}/Exercise 7.10/badge.svg?branch=main
-:badge-exercise7-11: image:{url-workflows}/Exercise 7.11/badge.svg?branch=main
-:badge-exercise7-12: image:{url-workflows}/Exercise 7.12/badge.svg?branch=main
-:badge-exercise7-13: image:{url-workflows}/Exercise 7.13/badge.svg?branch=main
+:url-link-base: {url-base}/tree/main
+:url-badge-main: badge.svg?branch=main
 
 image:https://img.shields.io/github/license/fenegroni/TGPL-exercise-solutions?style=flat[]
-//image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat[]
+image:https://img.shields.io/tokei/lines/github/fenegroni/TGPL-exercise-solutions?style=flat[]
 
 Solutions to the exercises in the book
 _The Go Programming Language_.
 
-Copyright (C) 2021, 2022  Filippo Erik Negroni
+Copyright (C) 2021, 2022 Filippo Erik Negroni
 
 This program is free software:
 you can redistribute it and/or modify it
@@ -62,50 +26,51 @@ see <https://www.gnu.org/licenses/>.
 
 == Chapter 4 - _Composite Types_
 
-{badge-exercise4-9}[link={url-base}/tree/master/ch4ex9]
+image:{url-workflows}/Exercise 4.9/{url-badge-main}[link={url-link-base}/ch4ex9]
 
 == Chapter 5 - _Functions_
 
-{badge-exercise5-1}[link={url-base}/tree/master/ch5ex1]
-{badge-exercise5-2}[link={url-base}/tree/master/ch5ex2]
-{badge-exercise5-3}[link={url-base}/tree/master/ch5ex3]
-{badge-exercise5-4}[link={url-base}/tree/master/ch5ex4]
-{badge-exercise5-5}[link={url-base}/tree/master/ch5ex5]
-{badge-exercise5-6}[link={url-base}/tree/master/ch5ex6]
-{badge-exercise5-7}[link={url-base}/tree/master/ch5ex7]
-{badge-exercise5-8}[link={url-base}/tree/master/ch5ex8]
-{badge-exercise5-9}[link={url-base}/tree/master/ch5ex9]
-{badge-exercise5-10}[link={url-base}/tree/master/ch5ex10]
-{badge-exercise5-11}[link={url-base}/tree/master/ch5ex11]
-{badge-exercise5-12}[link={url-base}/tree/master/ch5ex12]
-{badge-exercise5-13}[link={url-base}/tree/master/ch5ex13]
-{badge-exercise5-14}[link={url-base}/tree/master/ch5ex14]
-{badge-exercise5-15}[link={url-base}/tree/master/ch5ex15]
-{badge-exercise5-16}[link={url-base}/tree/master/ch5ex16]
-{badge-exercise5-17}[link={url-base}/tree/master/ch5ex17]
-{badge-exercise5-18}[link={url-base}/tree/master/ch5ex18]
-{badge-exercise5-19}[link={url-base}/tree/master/ch5ex19]
+image:{url-workflows}/Exercise 5.1/{url-badge-main}[link={url-link-base}/ch5ex1]
+image:{url-workflows}/Exercise 5.2/{url-badge-main}[link={url-link-base}/ch5ex2]
+image:{url-workflows}/Exercise 5.3/{url-badge-main}[link={url-link-base}/ch5ex3]
+image:{url-workflows}/Exercise 5.4/{url-badge-main}[link={url-link-base}/ch5ex4]
+image:{url-workflows}/Exercise 5.5/{url-badge-main}[link={url-link-base}/ch5ex5]
+image:{url-workflows}/Exercise 5.6/{url-badge-main}[link={url-link-base}/ch5ex6]
+image:{url-workflows}/Exercise 5.7/{url-badge-main}[link={url-link-base}/ch5ex7]
+image:{url-workflows}/Exercise 5.8/{url-badge-main}[link={url-link-base}/ch5ex8]
+image:{url-workflows}/Exercise 5.9/{url-badge-main}[link={url-link-base}/ch5ex9]
+image:{url-workflows}/Exercise 5.10/{url-badge-main}[link={url-link-base}/ch5ex10]
+image:{url-workflows}/Exercise 5.11/{url-badge-main}[link={url-link-base}/ch5ex11]
+image:{url-workflows}/Exercise 5.12/{url-badge-main}[link={url-link-base}/ch5ex12]
+image:{url-workflows}/Exercise 5.13/{url-badge-main}[link={url-link-base}/ch5ex13]
+image:{url-workflows}/Exercise 5.14/{url-badge-main}[link={url-link-base}/ch5ex14]
+image:{url-workflows}/Exercise 5.15/{url-badge-main}[link={url-link-base}/ch5ex15]
+image:{url-workflows}/Exercise 5.16/{url-badge-main}[link={url-link-base}/ch5ex16]
+image:{url-workflows}/Exercise 5.17/{url-badge-main}[link={url-link-base}/ch5ex17]
+image:{url-workflows}/Exercise 5.18/{url-badge-main}[link={url-link-base}/ch5ex18]
+image:{url-workflows}/Exercise 5.19/{url-badge-main}[link={url-link-base}/ch5ex19]
 
 == Chapter 6 - _Methods_
 
-{badge-exercise6-1}[link={url-base}/tree/master/ch6ex1]
-{badge-exercise6-2}[link={url-base}/tree/master/ch6ex2]
-{badge-exercise6-3}[link={url-base}/tree/master/ch6ex3]
-{badge-exercise6-4}[link={url-base}/tree/master/ch6ex4]
-{badge-exercise6-5}[link={url-base}/tree/master/ch6ex5]
+image:{url-workflows}/Exercise 6.1/{url-badge-main}[link={url-link-base}/ch6ex1]
+image:{url-workflows}/Exercise 6.2/{url-badge-main}[link={url-link-base}/ch6ex2]
+image:{url-workflows}/Exercise 6.3/{url-badge-main}[link={url-link-base}/ch6ex3]
+image:{url-workflows}/Exercise 6.4/{url-badge-main}[link={url-link-base}/ch6ex4]
+image:{url-workflows}/Exercise 6.5/{url-badge-main}[link={url-link-base}/ch6ex5]
 
 == Chapter 7 - _Interfaces_
 
-{badge-exercise7-1}[link={url-base}/tree/master/ch7ex1]
-{badge-exercise7-2}[link={url-base}/tree/master/ch7ex2]
-{badge-exercise7-3}[link={url-base}/tree/master/ch7ex3]
-{badge-exercise7-4}[link={url-base}/tree/master/ch7ex4]
-{badge-exercise7-5}[link={url-base}/tree/master/ch7ex5]
-{badge-exercise7-6}[link={url-base}/tree/master/ch7ex6]
-{badge-exercise7-7}[link={url-base}/tree/master/ch7ex7]
-{badge-exercise7-8}[link={url-base}/tree/master/ch7ex8]
-{badge-exercise7-9}[link={url-base}/tree/master/ch7ex9]
-{badge-exercise7-10}[link={url-base}/tree/master/ch7ex10]
-{badge-exercise7-11}[link={url-base}/tree/master/ch7ex11]
-{badge-exercise7-12}[link={url-base}/tree/master/ch7ex12]
-{badge-exercise7-13}[link={url-base}/tree/master/ch7ex13]
+image:{url-workflows}/Exercise 7.1/{url-badge-main}[link={url-link-base}/ch7ex1]
+image:{url-workflows}/Exercise 7.2/{url-badge-main}[link={url-link-base}/ch7ex2]
+image:{url-workflows}/Exercise 7.3/{url-badge-main}[link={url-link-base}/ch7ex3]
+image:{url-workflows}/Exercise 7.4/{url-badge-main}[link={url-link-base}/ch7ex4]
+image:{url-workflows}/Exercise 7.5/{url-badge-main}[link={url-link-base}/ch7ex5]
+image:{url-workflows}/Exercise 7.6/{url-badge-main}[link={url-link-base}/ch7ex6]
+image:{url-workflows}/Exercise 7.7/{url-badge-main}[link={url-link-base}/ch7ex7]
+image:{url-workflows}/Exercise 7.8/{url-badge-main}[link={url-link-base}/ch7ex8]
+image:{url-workflows}/Exercise 7.9/{url-badge-main}[link={url-link-base}/ch7ex9]
+image:{url-workflows}/Exercise 7.10/{url-badge-main}[link={url-link-base}/ch7ex10]
+image:{url-workflows}/Exercise 7.11/{url-badge-main}[link={url-link-base}/ch7ex11]
+image:{url-workflows}/Exercise 7.12/{url-badge-main}[link={url-link-base}/ch7ex12]
+image:{url-workflows}/Exercise 7.13/{url-badge-main}[link={url-link-base}/ch7ex13]
+image:{url-workflows}/Exercise 7.14/{url-badge-main}[link={url-link-base}/ch7ex14]

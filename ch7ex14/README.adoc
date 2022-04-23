@@ -1,0 +1,17 @@
+= Exercise 7.14
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:url-badge-main: badge.svg?branch=main
+
+image:{url-workflows}/Exercise 7.14/{url-badge-main}[link={url-actions}]
+
+Define a new concrete type that satisfies the `Expr` interface and provides a new
+operation such as computing the minimum value of its operands. Since the `Parse` function
+does not create instances of this new type, to use it you will need to construct a syntax tree
+directly (or extend the parser).
+
+== Test
+
+T
