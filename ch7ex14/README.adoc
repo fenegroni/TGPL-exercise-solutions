@@ -12,6 +12,33 @@ operation such as computing the minimum value of its operands. Since the `Parse`
 does not create instances of this new type, to use it you will need to construct a syntax tree
 directly (or extend the parser).
 
-== Test
+== Some thoughts about the exercise
+The operation suggested by the exercise doesn't seem to require a whole new concrete type.
+I would rather extend `call` with a `min` function instead.
 
-T
+Looking at the grammar, I struggle to think of an operation that would require a new concrete type.
+
+----
+expr = num                         a literal number, e.g., 3.14159
+     | id                          a variable name, e.g., x
+     | id '(' expr ',' ... ')'     a function call
+     | '-' expr                    a unary operator (+-)
+     | expr '+' expr               a binary operator (+-*/)
+----
+
+The concrete types implementing `Expr` seem to be at the very first level of the grammar.
+A ternary operator is the only operation I can think of to require a new concrete type.
+Any other operation would be an extension to the original set.
+
+Perhaps this exercise should be about making the existing concrete types extendable.
+This would be better implemented using reflection and injection.
+
+== Test the new operation
+If I stick to the letter of the exercise,
+I can implement a simple test to validate the new operation,
+first by creating a syntax tree and then by extending the parser.
+
+The new operation, `min`, is a duplicate of `call`.
+
+To build the syntax tree we need access to the unexported types in `expr`.
+Therefore we will create our test inside the `expr` package.
