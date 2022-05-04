@@ -17,7 +17,7 @@ If I stick to the letter of the exercise,
 I can implement a simple test to validate the new operation,
 first by creating a syntax tree and then by extending the parser.
 
-The new operation, `min`, is a duplicate of `call`.
+The new operation, `min`, is like a function call with two parameters.
 
 To build the syntax tree we need access to the unexported types in `expr`.
 Therefore we will create our test inside the `expr` package, in `min_test.go`.

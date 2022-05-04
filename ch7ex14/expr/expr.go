@@ -136,7 +136,7 @@ func (c call) Eval(env Env) float64 {
 	case "sqrt":
 		return math.Sqrt(c.args[0].Eval(env))
 	}
-	panic(fmt.Sprintf("unsupported function call: %q", c.fn))
+	panic(fmt.Sprintf("unsupported function: %q", c.fn))
 }
 
 func (c call) Check(vars map[Var]bool) error {
