@@ -26,6 +26,7 @@ func TestEval(t *testing.T) {
 			t.Errorf("Parse: %s", err)
 			continue
 		}
+		// TODO use literal or define type for Eval result to String
 		got := fmt.Sprintf("%.6g", expr.Eval(test.env))
 		if got != test.want {
 			t.Errorf("%q.Eval() in %v = %q, want %q",
