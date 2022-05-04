@@ -40,3 +40,18 @@ func TestMinComplexTree(t *testing.T) {
 		t.Errorf("Want %s, got %s", wantResult, gotResult)
 	}
 }
+
+func TestParseMin(t *testing.T) {
+	ex, err := Parse("min(2, 3)")
+	if err != nil {
+		t.Fatalf("Parse error: %s", err)
+	}
+	if err = ex.Check(nil); err != nil {
+		t.Fatalf("Check error: %s", err)
+	}
+	wantResult := literal(3).String()
+	gotResult := literal(ex.Eval(nil)).String()
+	if gotResult != wantResult {
+		t.Errorf("Want %s, got %s", wantResult, gotResult)
+	}
+}
