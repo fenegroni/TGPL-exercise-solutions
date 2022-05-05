@@ -13,6 +13,7 @@ import (
 //
 //   expr = num                         a literal number, e.g., 3.14159
 //        | id                          a variable name, e.g., x
+//	  | 'min' '(' expr ',' expr ')' the min operator, e.g., min(1, 2) => 1
 //        | id '(' expr ',' ... ')'     a function call
 //        | '-' expr                    a unary operator (+-)
 //        | expr '+' expr               a binary operator (+-*/)
@@ -106,6 +107,12 @@ func parsePrimary(lex *lexer) Expr {
 			}
 		}
 		lex.next() // consume ')'
+		if id == "min" {
+			return min{
+				x: args[0],
+				y: args[1],
+			}
+		}
 		return call{id, args}
 
 	case scanner.Int, scanner.Float:

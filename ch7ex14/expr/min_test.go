@@ -49,7 +49,7 @@ func TestParseMin(t *testing.T) {
 	if err = ex.Check(nil); err != nil {
 		t.Fatalf("Check error: %s", err)
 	}
-	wantResult := literal(3).String()
+	wantResult := literal(2).String()
 	gotResult := literal(ex.Eval(nil)).String()
 	if gotResult != wantResult {
 		t.Errorf("Want %s, got %s", wantResult, gotResult)
