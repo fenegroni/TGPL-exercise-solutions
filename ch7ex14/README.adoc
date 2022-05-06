@@ -17,12 +17,16 @@ If I stick to the letter of the exercise,
 I can implement a simple test to validate the new operation,
 first by creating a syntax tree and then by extending the parser.
 
-The new operation, `min`, is like a function call with two parameters.
+The new operation, `min`, is like a function call with two parameters,
+e.g. `min(2,3) * 2` will evaluate to 4.
 
 To build the syntax tree we need access to the unexported types in `expr`.
 Therefore we will create our test inside the `expr` package, in `min_test.go`.
 
 == Extending the parser
+In `TestParseMin` we validate that we extended the parser correctly.
+
+When
 
 == Some thoughts about the exercise
 The operation suggested by the exercise doesn't seem to require a whole new concrete type.

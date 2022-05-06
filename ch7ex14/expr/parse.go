@@ -108,6 +108,7 @@ func parsePrimary(lex *lexer) Expr {
 		}
 		lex.next() // consume ')'
 		if id == "min" {
+			// TODO validate we have two arguments
 			return min{
 				x: args[0],
 				y: args[1],
