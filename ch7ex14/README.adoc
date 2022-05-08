@@ -26,7 +26,8 @@ Therefore we will create our test inside the `expr` package, in `min_test.go`.
 == Extending the parser
 In `TestParseMin` we validate that we extended the parser correctly.
 
-When
+The parser recognises the identifier `min` and expects two arguments,
+throwing a `panic` if too many or too few arguments are given.
 
 == Some thoughts about the exercise
 The operation suggested by the exercise doesn't seem to require a whole new concrete type.

@@ -55,3 +55,40 @@ func TestParseMin(t *testing.T) {
 		t.Errorf("Want %s, got %s", wantResult, gotResult)
 	}
 }
+
+func TestParseMinComplexExpression(t *testing.T) {
+	env := Env{"A": 2, "B": 3}
+	ex, err := Parse("min(min(A, B) + 1, min(A, B) + 2)")
+	if err != nil {
+		t.Fatalf("Parse error: %s", err)
+	}
+	if err = ex.Check(map[Var]bool{"A": false, "B": false}); err != nil {
+		t.Fatalf("Check error: %s", err)
+	}
+	wantResult := literal(3).String()
+	gotResult := literal(ex.Eval(env)).String()
+	if gotResult != wantResult {
+		t.Errorf("Want %s, got %s", wantResult, gotResult)
+	}
+}
+
+func TestParseMinTooManyArgs(t *testing.T) {
+	_, err := Parse("min(2, 3, 4)")
+	t.Logf("Parse error: %v", err)
+	if err == nil {
+		t.Error("Parse did not detect error")
+	}
+}
+
+func TestParseMinTooFewArgs(t *testing.T) {
+	_, err := Parse("min(4)")
+	t.Logf("Parse error: %v", err)
+	if err == nil {
+		t.Error("Parse did not detect error")
+	}
+	_, err = Parse("min()")
+	t.Logf("Parse error: %v", err)
+	if err == nil {
+		t.Error("Parse did not detect error")
+	}
+}
