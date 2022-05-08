@@ -108,7 +108,10 @@ func parsePrimary(lex *lexer) Expr {
 		}
 		lex.next() // consume ')'
 		if id == "min" {
-			// TODO validate we have two arguments
+			if len(args) != 2 {
+				msg := fmt.Sprintf("min: got %d arguments, want exactly 2", len(args))
+				panic(lexPanic(msg))
+			}
 			return min{
 				x: args[0],
 				y: args[1],
