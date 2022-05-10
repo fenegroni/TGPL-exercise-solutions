@@ -10,3 +10,10 @@ image:{url-workflows}/Exercise 7.15/{url-badge-main}[link={url-actions}]
 Write a program that reads a single expression from the standard input,
 prompts the user to provide values for any variables, then evaluates the expression in the
 resulting environment. Handle all errors gracefully.
+
+== Test
+Can an example function interact with standard input?
+
+The test focuses on ensuring we can correctly detect the variables to be supplied
+
+This means testing `Expr.Check` reports what variables need a value to be supplied by the user.
