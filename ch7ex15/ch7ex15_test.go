@@ -1,7 +1,6 @@
 package ch7ex15
 
 import (
-	"fmt"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
 	"reflect"
 	"testing"
@@ -35,10 +34,4 @@ func TestVarsDetected(t *testing.T) {
 			t.Errorf("variables in %q: want %v, got %v", test.ex, test.want, got)
 		}
 	}
-}
-
-func ExampleCh7ex15() {
-	var x string
-	fmt.Scanf("%s", &x)
-	fmt.Printf("%s", x)
 }
