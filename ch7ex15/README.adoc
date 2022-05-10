@@ -1,0 +1,12 @@
+= Exercise 7.15
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:url-badge-main: badge.svg?branch=main
+
+image:{url-workflows}/Exercise 7.14/{url-badge-main}[link={url-actions}]
+
+Write a program that reads a single expression from the standard input,
+prompts the user to provide values for any variables, then evaluates the expression in the
+resulting environment. Handle all errors gracefully.
