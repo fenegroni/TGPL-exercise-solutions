@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="workspace" />
+    <orderEntry type="module" module-name="workspace" />
   </component>
 </module>
