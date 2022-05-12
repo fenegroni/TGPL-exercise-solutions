@@ -13,6 +13,7 @@ func Ch7ex15() {
 	type varMap map[expr.Var]bool
 	var inEx string
 	fmt.Print("?> ")
+	// TODO handle error
 	fmt.Scanf("%s", &inEx)
 	ex, err := expr.Parse(inEx)
 	if err != nil {
