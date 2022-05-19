@@ -1,0 +1,10 @@
+= Exercise 7.16
+// Refs:
+:url-base: https://github.com/fenegroni/TGPL-exercise-solutions
+:url-workflows: {url-base}/workflows
+:url-actions: {url-base}/actions
+:url-badge-main: badge.svg?branch=main
+
+image:{url-workflows}/Exercise 7.16/{url-badge-main}[link={url-actions}]
+
+Write a web-based calculator program.
