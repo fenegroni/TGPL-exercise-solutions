@@ -8,3 +8,13 @@
 image:{url-workflows}/Exercise 7.16/{url-badge-main}[link={url-actions}]
 
 Write a web-based calculator program.
+
+== Cloud functions
+
+I will implement the solution using the command line and cloud functions.
+
+Each major provider does it slightly differently.
+
+As the solution evolves there will be lots of refactoring.
+
+== Using Google Cloud Platform
