@@ -2,7 +2,7 @@ package ch7ex12
 
 import (
 	"bytes"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch5ex8"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch5/ch5ex8"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"
