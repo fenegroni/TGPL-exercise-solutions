@@ -1,4 +1,3 @@
-// Exercise 4.9 reports the frequency of each word in an input text file.
 package ch4ex9
 
 import (

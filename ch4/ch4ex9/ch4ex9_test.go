@@ -7,7 +7,11 @@ import (
 	"testing"
 )
 
-func TestWordFreq(t *testing.T) {
+func TestEx9(t *testing.T) {
+	t.Run("WordFreq", testWordFreq)
+}
+
+func testWordFreq(t *testing.T) {
 	type wordfreq map[string]int
 	tests := []struct {
 		input string
