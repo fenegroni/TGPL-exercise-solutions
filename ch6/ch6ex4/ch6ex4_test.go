@@ -8,12 +8,12 @@ import (
 
 func TestIntSet_Elems(t *testing.T) {
 	tests := [][]int{
-		[]int(nil),
-		[]int{1000},
-		[]int{1, 2},
-		[]int{0, 1000},
-		[]int{1000},
-		[]int{1, 200, 3000, 40000},
+		nil,
+		{1000},
+		{1, 2},
+		{0, 1000},
+		{1000},
+		{1, 200, 3000, 40000},
 	}
 	for _, test := range tests {
 		v := new(IntSet)
