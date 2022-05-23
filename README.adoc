@@ -26,37 +26,37 @@ see <https://www.gnu.org/licenses/>.
 
 == Chapter 4 - _Composite Types_
 
-image:{url-workflows}/Exercise 4.9/{url-badge-main}[link={url-link-base}/ch4ex9]
+image:{url-workflows}/Exercise 4.9/{url-badge-main}[link={url-link-base}/ch4/ch4ex9]
 
 == Chapter 5 - _Functions_
 
-image:{url-workflows}/Exercise 5.1/{url-badge-main}[link={url-link-base}/ch5ex1]
-image:{url-workflows}/Exercise 5.2/{url-badge-main}[link={url-link-base}/ch5ex2]
-image:{url-workflows}/Exercise 5.3/{url-badge-main}[link={url-link-base}/ch5ex3]
-image:{url-workflows}/Exercise 5.4/{url-badge-main}[link={url-link-base}/ch5ex4]
-image:{url-workflows}/Exercise 5.5/{url-badge-main}[link={url-link-base}/ch5ex5]
-image:{url-workflows}/Exercise 5.6/{url-badge-main}[link={url-link-base}/ch5ex6]
-image:{url-workflows}/Exercise 5.7/{url-badge-main}[link={url-link-base}/ch5ex7]
-image:{url-workflows}/Exercise 5.8/{url-badge-main}[link={url-link-base}/ch5ex8]
-image:{url-workflows}/Exercise 5.9/{url-badge-main}[link={url-link-base}/ch5ex9]
-image:{url-workflows}/Exercise 5.10/{url-badge-main}[link={url-link-base}/ch5ex10]
-image:{url-workflows}/Exercise 5.11/{url-badge-main}[link={url-link-base}/ch5ex11]
-image:{url-workflows}/Exercise 5.12/{url-badge-main}[link={url-link-base}/ch5ex12]
-image:{url-workflows}/Exercise 5.13/{url-badge-main}[link={url-link-base}/ch5ex13]
-image:{url-workflows}/Exercise 5.14/{url-badge-main}[link={url-link-base}/ch5ex14]
-image:{url-workflows}/Exercise 5.15/{url-badge-main}[link={url-link-base}/ch5ex15]
-image:{url-workflows}/Exercise 5.16/{url-badge-main}[link={url-link-base}/ch5ex16]
-image:{url-workflows}/Exercise 5.17/{url-badge-main}[link={url-link-base}/ch5ex17]
-image:{url-workflows}/Exercise 5.18/{url-badge-main}[link={url-link-base}/ch5ex18]
-image:{url-workflows}/Exercise 5.19/{url-badge-main}[link={url-link-base}/ch5ex19]
+image:{url-workflows}/Exercise 5.1/{url-badge-main}[link={url-link-base}/ch5/ch5ex1]
+image:{url-workflows}/Exercise 5.2/{url-badge-main}[link={url-link-base}/ch5/ch5ex2]
+image:{url-workflows}/Exercise 5.3/{url-badge-main}[link={url-link-base}/ch5/ch5ex3]
+image:{url-workflows}/Exercise 5.4/{url-badge-main}[link={url-link-base}/ch5/ch5ex4]
+image:{url-workflows}/Exercise 5.5/{url-badge-main}[link={url-link-base}/ch5/ch5ex5]
+image:{url-workflows}/Exercise 5.6/{url-badge-main}[link={url-link-base}/ch5/ch5ex6]
+image:{url-workflows}/Exercise 5.7/{url-badge-main}[link={url-link-base}/ch5/ch5ex7]
+image:{url-workflows}/Exercise 5.8/{url-badge-main}[link={url-link-base}/ch5/ch5ex8]
+image:{url-workflows}/Exercise 5.9/{url-badge-main}[link={url-link-base}/ch5/ch5ex9]
+image:{url-workflows}/Exercise 5.10/{url-badge-main}[link={url-link-base}/ch5/ch5ex10]
+image:{url-workflows}/Exercise 5.11/{url-badge-main}[link={url-link-base}/ch5/ch5ex11]
+image:{url-workflows}/Exercise 5.12/{url-badge-main}[link={url-link-base}/ch5/ch5ex12]
+image:{url-workflows}/Exercise 5.13/{url-badge-main}[link={url-link-base}/ch5/ch5ex13]
+image:{url-workflows}/Exercise 5.14/{url-badge-main}[link={url-link-base}/ch5/ch5ex14]
+image:{url-workflows}/Exercise 5.15/{url-badge-main}[link={url-link-base}/ch5/ch5ex15]
+image:{url-workflows}/Exercise 5.16/{url-badge-main}[link={url-link-base}/ch5/ch5ex16]
+image:{url-workflows}/Exercise 5.17/{url-badge-main}[link={url-link-base}/ch5/ch5ex17]
+image:{url-workflows}/Exercise 5.18/{url-badge-main}[link={url-link-base}/ch5/ch5ex18]
+image:{url-workflows}/Exercise 5.19/{url-badge-main}[link={url-link-base}/ch5/ch5ex19]
 
 == Chapter 6 - _Methods_
 
-image:{url-workflows}/Exercise 6.1/{url-badge-main}[link={url-link-base}/ch6ex1]
-image:{url-workflows}/Exercise 6.2/{url-badge-main}[link={url-link-base}/ch6ex2]
-image:{url-workflows}/Exercise 6.3/{url-badge-main}[link={url-link-base}/ch6ex3]
-image:{url-workflows}/Exercise 6.4/{url-badge-main}[link={url-link-base}/ch6ex4]
-image:{url-workflows}/Exercise 6.5/{url-badge-main}[link={url-link-base}/ch6ex5]
+image:{url-workflows}/Exercise 6.1/{url-badge-main}[link={url-link-base}/ch6/ch6ex1]
+image:{url-workflows}/Exercise 6.2/{url-badge-main}[link={url-link-base}/ch6/ch6ex2]
+image:{url-workflows}/Exercise 6.3/{url-badge-main}[link={url-link-base}/ch6/ch6ex3]
+image:{url-workflows}/Exercise 6.4/{url-badge-main}[link={url-link-base}/ch6/ch6ex4]
+image:{url-workflows}/Exercise 6.5/{url-badge-main}[link={url-link-base}/ch6/ch6ex5]
 
 == Chapter 7 - _Interfaces_
 
