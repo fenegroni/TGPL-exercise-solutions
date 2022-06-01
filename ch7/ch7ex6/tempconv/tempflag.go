@@ -11,7 +11,9 @@ type celsiusFlag struct{ Celsius }
 func (f *celsiusFlag) Set(s string) error {
 	var unit string
 	var value float64
-	fmt.Sscanf(s, "%f%s", &value, &unit)
+	if _, err := fmt.Sscanf(s, "%f%s", &value, &unit); err != nil {
+		return fmt.Errorf("invalid input format %q", s)
+	}
 	switch unit {
 	case "C", "°C":
 		f.Celsius = Celsius(value)

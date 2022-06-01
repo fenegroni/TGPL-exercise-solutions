@@ -2,7 +2,7 @@ package ch7ex7
 
 import (
 	"flag"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex6/tempconv"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex6/tempconv"
 	"strings"
 	"testing"
 )

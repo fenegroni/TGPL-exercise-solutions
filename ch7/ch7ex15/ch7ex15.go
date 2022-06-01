@@ -3,7 +3,7 @@ package ch7ex15
 import (
 	"bufio"
 	"fmt"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex13/expr"
 	"log"
 	"os"
 	"strconv"

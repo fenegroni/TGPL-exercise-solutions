@@ -1,7 +1,7 @@
 package ch7ex15
 
 import (
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex13/expr"
 	"reflect"
 	"testing"
 )

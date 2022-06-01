@@ -2,7 +2,7 @@ package ch7ex13
 
 import (
 	"fmt"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex13/expr"
 	"math"
 	"reflect"
 	"testing"

@@ -2,8 +2,8 @@ package web
 
 import (
 	"fmt"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/expr"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex13/plot"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex13/expr"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex13/plot"
 	"math"
 	"net/http"
 )

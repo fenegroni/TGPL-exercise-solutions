@@ -3,8 +3,8 @@ package ch7ex9
 import (
 	"errors"
 	"github.com/fenegroni/TGPL-exercise-solutions/ch5/ch5ex8"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex8/stable"
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex9/music"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex8/stable"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex9/music"
 	"golang.org/x/net/html"
 	"io"
 	"net/http"

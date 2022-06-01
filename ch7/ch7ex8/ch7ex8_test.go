@@ -1,7 +1,7 @@
 package ch7ex8
 
 import (
-	"github.com/fenegroni/TGPL-exercise-solutions/ch7ex8/stable"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex8/stable"
 	"sort"
 	"testing"
 )

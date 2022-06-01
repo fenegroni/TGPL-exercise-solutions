@@ -8,11 +8,11 @@ type Reader struct {
 	s string
 }
 
-func (r *Reader) WriteTo(w io.Writer) (n int64, err error) {
+func (r *Reader) WriteTo(io.Writer) (n int64, err error) {
 	panic("implement me")
 }
 
-func (r *Reader) Seek(offset int64, whence int) (int64, error) {
+func (r *Reader) Seek(int64, int) (int64, error) {
 	panic("implement me")
 }
 
@@ -24,7 +24,7 @@ func (r *Reader) ReadByte() (byte, error) {
 	panic("implement me")
 }
 
-func (r *Reader) ReadAt(p []byte, off int64) (n int, err error) {
+func (r *Reader) ReadAt([]byte, int64) (n int, err error) {
 	panic("implement me")
 }
 

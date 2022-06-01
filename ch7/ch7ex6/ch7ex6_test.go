@@ -2,14 +2,14 @@ package ch7ex6
 
 import (
 	"flag"
-	tempconv2 "github.com/fenegroni/TGPL-exercise-solutions/ch7ex6/tempconv"
+	"github.com/fenegroni/TGPL-exercise-solutions/ch7/ch7ex6/tempconv"
 	"testing"
 )
 
 func TestCelsiusFlag(t *testing.T) {
 	tests := []struct {
 		line  []string
-		value tempconv2.Celsius
+		value tempconv.Celsius
 	}{
 		{[]string{}, 20.0},
 		{[]string{"-temp", "10C"}, 10.0},
@@ -23,7 +23,7 @@ func TestCelsiusFlag(t *testing.T) {
 	}
 	for _, test := range tests {
 		flags := flag.NewFlagSet("test", flag.ContinueOnError)
-		var temp = tempconv2.CelsiusFlag(flags, "temp", 20.0, "the temperature")
+		var temp = tempconv.CelsiusFlag(flags, "temp", 20.0, "the temperature")
 		if err := flags.Parse(test.line); err != nil {
 			t.Error(err)
 		}
