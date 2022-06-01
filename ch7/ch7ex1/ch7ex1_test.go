@@ -11,16 +11,14 @@ func TestByteCounter(t *testing.T) {
 	if got := int(c); got != want {
 		t.Fatalf("ByteCounter default value is %d, want %d", got, want)
 	}
-	write, err := c.Write([]byte("hello"))
-	if err != nil {
+	if _, err := c.Write([]byte("hello")); err != nil {
 		t.Fatal("Unexpected error")
 	}
 	want = 5
 	if got := int(c); got != want {
 		t.Errorf("c is %d, want %d", got, want)
 	}
-	err, err := c.Write([]byte("Dolly"))
-	if err != nil {
+	if _, err := c.Write([]byte("Dolly")); err != nil {
 		t.Fatal("Unexpected error")
 	}
 	want = 10
@@ -29,7 +27,9 @@ func TestByteCounter(t *testing.T) {
 	}
 	c = 0 // reset the counter
 	var name = "Dolly"
-	fmt.Fprintf(&c, "hello, %s", name)
+	if _, err := fmt.Fprintf(&c, "hello, %s", name); err != nil {
+		t.Fatal("Unexpected error")
+	}
 	want = 12
 	if got := int(c); got != want {
 		t.Errorf("c is %d, want %d", got, want)

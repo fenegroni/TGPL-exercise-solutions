@@ -13,18 +13,26 @@ type tree struct {
 
 func (t *tree) String() string {
 	var b strings.Builder
-	b.WriteString("[")
-	appendValues(&b, t)
-	b.WriteString(" ]")
+	_, _ = b.WriteString("[")
+	if err := appendValues(&b, t); err != nil {
+		panic(err) // strings.Builder.Write always returns a nil error
+	}
+	_, _ = b.WriteString(" ]")
 	return b.String()
 }
 
-func appendValues(w io.Writer, t *tree) {
-	if t != nil {
-		appendValues(w, t.left)
-		fmt.Fprintf(w, " %d", t.value)
-		appendValues(w, t.right)
+func appendValues(w io.Writer, t *tree) (err error) {
+	if t == nil {
+		return
 	}
+	if err = appendValues(w, t.left); err != nil {
+		return
+	}
+	if _, err = fmt.Fprintf(w, " %d", t.value); err != nil {
+		return
+	}
+	err = appendValues(w, t.right)
+	return
 }
 
 func add(t *tree, value int) *tree {

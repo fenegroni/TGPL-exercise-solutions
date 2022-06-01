@@ -31,15 +31,15 @@ func (db database) listHandler(resp http.ResponseWriter, _ *http.Request) {
 	t, err := template.New("db list").Parse(tpl)
 	if err != nil {
 		resp.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprintf(resp, "%s", err)
+		_, _ = fmt.Fprintf(resp, "%s", err)
 		return
 	}
 	var output strings.Builder
 	err = t.Execute(&output, db)
 	if err != nil {
 		resp.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprintf(resp, "%s", err)
+		_, _ = fmt.Fprintf(resp, "%s", err)
 		return
 	}
-	fmt.Fprintln(resp, output.String())
+	_, _ = fmt.Fprintln(resp, output.String())
 }
