@@ -1,11 +1,13 @@
 = Exercise 4.9
 // Refs:
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
-:url-workflows: {url-base}/workflows
-:url-actions: {url-base}/actions
-:badge-exercise4-9: image:{url-workflows}/Exercise 4.9/badge.svg?branch=main[link={url-actions}]
+:workflow: workflows/Exercise 4.9
+:action: actions/workflows/ch4ex9.yml
+:url-workflow: {url-base}/{workflow}
+:url-action: {url-base}/{action}
+:badge-exercise: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
 
-{badge-exercise4-9}
+{badge-exercise}
 
 Write a program `wordfreq`
 to report the frequency of each word in an input text file.
