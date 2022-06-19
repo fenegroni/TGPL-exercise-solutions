@@ -1,11 +1,15 @@
 = Exercise 7.15
 // Refs:
+:chapter: 7
+:exercise: 15
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
-:url-workflows: {url-base}/workflows
-:url-actions: {url-base}/actions
-:url-badge-main: badge.svg?branch=main
+:workflow: workflows/Exercise {chapter}.{exercise}
+:action: actions/workflows/ch{chapter}ex{exercise}.yml
+:url-workflow: {url-base}/{workflow}
+:url-action: {url-base}/{action}
+:badge-exercise: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
 
-image:{url-workflows}/Exercise 7.15/{url-badge-main}[link={url-actions}]
+{badge-exercise}
 
 Write a program that reads a single expression from the standard input,
 prompts the user to provide values for any variables, then evaluates the expression in the

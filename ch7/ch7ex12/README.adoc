@@ -1,9 +1,13 @@
 = Exercise 7.12
 // Refs:
+:chapter: 7
+:exercise: 12
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
-:url-workflows: {url-base}/workflows
-:url-actions: {url-base}/actions
-:badge-exercise: image:{url-workflows}/Exercise 7.12/badge.svg?branch=main[link={url-actions}]
+:workflow: workflows/Exercise {chapter}.{exercise}
+:action: actions/workflows/ch{chapter}ex{exercise}.yml
+:url-workflow: {url-base}/{workflow}
+:url-action: {url-base}/{action}
+:badge-exercise: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
 
 {badge-exercise}
 
