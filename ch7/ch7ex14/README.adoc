@@ -1,15 +1,13 @@
-= Exercise 7.14
-// Refs:
 :chapter: 7
 :exercise: 14
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
-:workflow: workflows/Exercise {chapter}.{exercise}
-:action: actions/workflows/ch{chapter}ex{exercise}.yml
-:url-workflow: {url-base}/{workflow}
-:url-action: {url-base}/{action}
-:badge-exercise: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
+:url-workflow: {url-base}/workflows/Exercise {chapter}.{exercise}
+:url-action: {url-base}/actions/workflows/ch{chapter}ex{exercise}.yml
+:img-badge: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
 
-{badge-exercise}
+= Exercise {chapter}.{exercise}
+
+{img-badge}
 
 Define a new concrete type that satisfies the `Expr` interface and provides a new
 operation such as computing the minimum value of its operands. Since the `Parse` function

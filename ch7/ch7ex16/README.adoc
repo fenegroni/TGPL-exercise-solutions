@@ -1,15 +1,13 @@
-= Exercise 7.16
-// Refs:
 :chapter: 7
 :exercise: 16
 :url-base: https://github.com/fenegroni/TGPL-exercise-solutions
-:workflow: workflows/Exercise {chapter}.{exercise}
-:action: actions/workflows/ch{chapter}ex{exercise}.yml
-:url-workflow: {url-base}/{workflow}
-:url-action: {url-base}/{action}
-:badge-exercise: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
+:url-workflow: {url-base}/workflows/Exercise {chapter}.{exercise}
+:url-action: {url-base}/actions/workflows/ch{chapter}ex{exercise}.yml
+:img-badge: image:{url-workflow}/badge.svg?branch=main[link={url-action}]
 
-{badge-exercise}
+= Exercise {chapter}.{exercise}
+
+{img-badge}
 
 Write a web-based calculator program.
 
