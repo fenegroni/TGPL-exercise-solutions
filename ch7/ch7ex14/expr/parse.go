@@ -11,13 +11,12 @@ import (
 
 // Parse parses the input string as an arithmetic expression.
 //
-//   expr = num                         a literal number, e.g., 3.14159
-//        | id                          a variable name, e.g., x
-//	  | 'min' '(' expr ',' expr ')' the min operator, e.g., min(1, 2) => 1
-//        | id '(' expr ',' ... ')'     a function call
-//        | '-' expr                    a unary operator (+-)
-//        | expr '+' expr               a binary operator (+-*/)
-//
+//	  expr = num                         a literal number, e.g., 3.14159
+//	       | id                          a variable name, e.g., x
+//		  | 'min' '(' expr ',' expr ')' the min operator, e.g., min(1, 2) => 1
+//	       | id '(' expr ',' ... ')'     a function call
+//	       | '-' expr                    a unary operator (+-)
+//	       | expr '+' expr               a binary operator (+-*/)
 func Parse(input string) (_ Expr, err error) {
 	defer func() {
 		switch x := recover().(type) {
@@ -80,9 +79,10 @@ func parseUnary(lex *lexer) Expr {
 }
 
 // primary = id
-//         | id '(' expr ',' ... ',' expr ')'
-//         | num
-//         | '(' expr ')'
+//
+//	| id '(' expr ',' ... ',' expr ')'
+//	| num
+//	| '(' expr ')'
 func parsePrimary(lex *lexer) Expr {
 	switch lex.token {
 	case scanner.Ident:
@@ -108,14 +108,14 @@ func parsePrimary(lex *lexer) Expr {
 		}
 		lex.next() // consume ')'
 		if id == "min" {
-			if len(args) != 2 {
-				msg := fmt.Sprintf("min: got %d arguments, want exactly 2", len(args))
-				panic(lexPanic(msg))
+			if len(args) == 2 {
+				return min{
+					x: args[0],
+					y: args[1],
+				}
 			}
-			return min{
-				x: args[0],
-				y: args[1],
-			}
+			msg := fmt.Sprintf("min: got %d arguments, want exactly 2", len(args))
+			panic(lexPanic(msg))
 		}
 		return call{id, args}
 
